@@ -1,0 +1,66 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    //position: fixed;
+    // top: 0;
+    // left: 0;
+    // right: 0;
+    //background-color: white;
+    width: 100%;
+    // z-index: 1;
+    background: linear-gradient(to right, #D3D3D3, #87CEEB, #E6E6FA);
+}
+
+// .nav {
+//     width: 100%;
+// }
+
+h1::before {
+    content: "Cloudband";
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: darkgray;
+    text-shadow: 2px 2px 0px #333, 4px 4px 0px #E6E6FA;
+    // display: flex;
+    // text-align: center;
+    // width: 100%;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    // justify-content: flex-end space-between;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    padding-right: 20px;
+}
+    
+
+a {
+    // display: flex;
+    // justify-content: space-between;
+    width: 100%;
+    color: #333; /* deep, dark grey */
+    font-family: "Sky";
+}
+
+// .navbar nav {
+//     // display: flex;
+//     // flex: 1;
+//     // flex-direction: row;
+//     // align-items: center;
+//     // justify-content: space-between;
+//     // padding: 0 1rem;
+// }
+
+// .menu-items {
+//     display: flex;
+//     flex-direction: row;
+//     align-items: center;
+//     justify-content: space-between;
+//     padding: 0 1rem;
+// }
