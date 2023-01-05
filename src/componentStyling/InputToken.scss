@@ -1,0 +1,16 @@
+.input-token-wrapper {
+  border: 1px solid black;
+  // border-radius: 20px;
+  width: 30%;
+  
+  h2 {
+    padding-left: 20px;
+  }
+}
+
+.token-input-form {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding-left: 20px;
+}
