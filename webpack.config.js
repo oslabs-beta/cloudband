@@ -23,6 +23,9 @@ module.exports = {
     hot: true,
     compress: true,
     historyApiFallback: true,
+    proxy: {
+      '/': 'http://localhost:3000/',
+    },
   },
   module: {
     rules: [
@@ -48,7 +51,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env',  `@babel/preset-react`],
+            presets: ['@babel/preset-env', `@babel/preset-react`],
           },
         },
       },
