@@ -1,14 +1,16 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const cloudWatchController = require('./controllers/aws/cloudWatchController');
+
 // add cookie parser
 
 // import routers and controllers
 
 // invoke express
 const app = express();
-const PORT = 8080;
-
+const PORT = 3000;
+console.log('server is running');
 // use cors
 app.use(cors());
 
@@ -21,14 +23,16 @@ app.use(express.json());
 app.use(express.static('src'));
 
 // routes
-
+app.get('/test', cloudWatchController.getMetrics, (req, res) => {
+  return res.status(200).json(res.locals.data);
+});
 // 404 error handler :)
 app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');
 });
 
 // global error handler :(
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
     status: 400,
@@ -40,7 +44,7 @@ app.use((err, req, res) => {
 
 // set it to listen to a port
 app.listen(PORT, () => {
-  console.log('Server listening on port 8080');
+  console.log('Server listening on port 3000');
 });
 
 // exports (express app)
