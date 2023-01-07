@@ -9,22 +9,32 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name][contenthash].js',
-    clean: true,
-    assetModuleFilename: '[name][ext]',
+    filename: 'bundle.js',
+    // filename: '[name][contenthash].js',
+    // clean: true,
+    // assetModuleFilename: '[name][ext]',
   },
-  devtool: 'source-map',
+  // devtool: 'source-map',
+  devtool: 'eval-source-map',
+  target: 'web',
   devServer: {
     static: {
       directory: path.resolve(__dirname, 'public'),
+      publicPath: '/',
     },
     port: 8080,
+    host: 'localhost',
     open: true,
     hot: true,
     compress: true,
     historyApiFallback: true,
+    headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/': 'http://localhost:3000/',
+      '/': {
+        target: 'http://localhost:8080/',
+        router: () => 'http://localhost:3000',
+        secure: false,
+      },
     },
   },
   module: {
