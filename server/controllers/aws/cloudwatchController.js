@@ -1,36 +1,64 @@
-const {
+// Description: This file contains the controller for the AWS CloudWatch API
+import {
   CloudWatchClient,
+  //   GetMetricStatisticsCommand,  
   GetMetricDataCommand,
-} = require('@aws-sdk/client-cloudwatch');
-const { AssumeRoleCommand, STSClient } = require('@aws-sdk/client-sts');
+  //   GetMetricDataCommandInput,
+} from '@aws-sdk/client-cloudwatch';
 
-// import {
-//   CloudWatchClient,
-//   GetMetricDataCommand,
-// } from '@aws-sdk/client-cloudwatch';
-// import { AssumeRoleCommand, STSClient } from '@aws-sdk/client-sts';
+import { AssumeRoleCommand, STSClient } from '@aws-sdk/client-sts';
 
 module.exports = {
   getMetrics: async (req, res, next) => {
-    console.log('entered cloudwatchController getMetrics');
-    const info = {
+    const { accessKey, secretKey, stackName, templateLocation } = req.body;
+
+    const assumeRoleCommand = new AssumeRoleCommand({
+      RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
+      RoleSessionName: 'CloudbandDelegationRoleSession',
+    });
+
+
+    // const info = {
+    //   region: 'us-east-1',
+    //   credentials: accessKeyId: ,
+    //   secretAccessKey:
+    //   // 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
+    // };
+
+    const stsClient = new STSClient({
       region: 'us-east-1',
       credentials: {
-        accessKeyId: 'AKIAUE2Y2VULDWWSMOFO',
-        secretAccessKey: '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',
+        accessKeyId: accessKey,
+        secretAccessKey: secretKey,
       },
-      // 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
-      // john's arn:aws:iam::285264751894:role/CloudbandDelegationRole
-    };
+    });
 
-    // const stsClient = new STSClient({
-    //   region: 'us-east-1',
-    //   credentials: {
-    //     accessKeyId: 's',
-    //     secretAccessKey: 's',
-    //   },
-    //   // 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
-    // });
+    const assumeRoleResponse = await stsClient.send(assumeRoleCommand);
+    const {
+      Credentials: { AccessKeyId, SecretAccessKey, SessionToken },
+    } = assumeRoleResponse;
+    
+    const cloudWatchClient = new CloudWatchClient({
+      region: 'us-east-1',
+      credentials: {
+        accessKeyId: AccessKeyId,
+        secretAccessKey: SecretAccessKey,
+        sessionToken: SessionToken,
+      },
+    })
+
+    const getMetricDataCommand = new GetMetricDataCommand({
+      //add your CloudWatch API request parameters here
+    });
+
+    const metricData = await cloudWatchClient.send(getMetricDataCommand);
+
+    //add logic to handle the response from the CloudWatch API and send a response back to the client
+  },
+};
+
+
+
     const client = new CloudWatchClient(info);
 
     try {
@@ -76,8 +104,7 @@ module.exports = {
       console.log('error fetching aws', error);
       next(error);
     }
-  },
-};
+  
 
 // example with ec2 in namespace
 // {
