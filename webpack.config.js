@@ -22,7 +22,7 @@ module.exports = {
       directory: path.resolve(__dirname, 'public'),
       publicPath: '/',
     },
-    port: 8080,
+    port: 8000,
     host: 'localhost',
     open: true,
     hot: true,
@@ -31,8 +31,8 @@ module.exports = {
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
       '/': {
-        target: 'http://localhost:8080/',
-        router: () => 'http://localhost:3000',
+        target: 'http://localhost:8000/',
+        router: () => 'http://localhost:8000',
         secure: false,
       },
     },

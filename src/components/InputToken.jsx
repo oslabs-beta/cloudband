@@ -1,5 +1,90 @@
+// import React, { useState } from 'react';
+// import '../componentStyling/InputToken.scss';
+
+// const InputToken = () => {
+//   const [accessKeyId, setAccessKeyId] = useState();
+//   const [secretAccessKey, setSecretAccessKey] = useState();
+//   const [sessionToken, setSessionToken] = useState();
+
+//   const handleChange = (event, setState) => {
+//     setState(event.target.value);
+//   };
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+//     // Send the user-provided credentials to the server via an HTTP request
+//     fetch('/api/add-credentials', {
+//       method: 'POST',
+//       body: JSON.stringify({
+//         accessKeyId,
+//         secretAccessKey,
+//         sessionToken,
+//       }),
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log(data);
+//       })
+//       .catch((error) => {
+//         console.error(error);
+//       });
+//   };
+
+//   return (
+//     <div className="input-token-wrapper">
+//       <h2>Step 1: Add AWS Credentials</h2>
+//       <form action="" className="token-input-form">
+//         <label className="access-key-id-label">Enter Access Key ID</label>
+//         <input
+//           type="text"
+//           placeholder="access key ID"
+//           id="accessKeyId"
+//           onChange={() => {
+//             handleChange(event, setAccessKeyId);
+//           }}
+//         />
+//         <label className="secret-access-key-label">
+//           Enter Secret Access Key
+//         </label>
+//         <input
+//           type="text"
+//           placeholder="secret access key"
+//           id="secretAccessKey"
+//           onChange={() => {
+//             handleChange(event, setSecretAccessKey);
+//           }}
+//         />
+//         <label className="session-token-label">Enter Session Token</label>
+//         <input
+//           type="text"
+//           placeholder="session token"
+//           id="sessionToken"
+//           onChange={() => {
+//             handleChange(event, setSessionToken);
+//           }}
+//         />
+//         <button id="credentials-button" onClick={handleSubmit}>
+//           Submit
+//         </button>
+//       </form>
+//     </div>
+//   );
+// };
+
+
 import React, { useState } from 'react';
 import '../componentStyling/InputToken.scss';
+//import AWS SDK
+const AWS = require('aws-sdk');
+//set the region
+AWS.config.update({region: 'REGION'});
+
+//create a new SSO service object
+//const sso = new AWS.SSO({apiVersion: '2019-06-10'});
 
 const InputToken = () => {
   const [accessKey, setAccessKey] = useState();
@@ -17,10 +102,10 @@ const InputToken = () => {
     console.log(secretKey);
     console.log(stackName);
     console.log(templateLocation);
-    // const accessKey = event.target.elements.accessKey.value;
-    // const secretKey = event.target.elements.secret-access.key.value;
-    // const stackName = event.target.elements.stackName.value;
-    // const templateLocation = event.target.elements.templateLocation.value;
+    const accessKey = event.target.elements.accessKey.value;
+    const secretKey = event.target.elements.secret-access.key.value;
+    const stackName = event.target.elements.stackName.value;
+    const templateLocation = event.target.elements.templateLocation.value;
   };
 
   return (

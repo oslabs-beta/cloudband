@@ -31,6 +31,8 @@ app.use(express.static('src'));
 app.get('/test', instancesController.getInstances, (req, res) => {
   return res.status(200).json('hello');
 });
+
+
 // 404 error handler :)
 app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');
