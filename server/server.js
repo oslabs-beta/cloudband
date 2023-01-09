@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
-const getCredentials = require('./controllers/user/getCredentials')
+const instancesController = require('./controllers/aws/instancesController');
 
 // add cookie parser
 
@@ -23,12 +23,13 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
-// routes - this only works for hardcoded credentials
+// routes;
 // app.get('/test', cloudWatchController.getMetrics, (req, res) => {
 //   return res.status(200).json(res.locals.data);
 // });
-app.get('/test', getCredentials, cloudWatchController.getMetrics, (req, res) => {
-  return res.status(200).json(res.locals.data);
+
+app.get('/test', instancesController.getInstances, (req, res) => {
+  return res.status(200).json('hello');
 });
 
 
