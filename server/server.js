@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
+const getCredentials = require('./controllers/user/getCredentials')
 
 // add cookie parser
 
@@ -22,10 +23,15 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
-// routes
-app.get('/test', cloudWatchController.getMetrics, (req, res) => {
+// routes - this only works for hardcoded credentials
+// app.get('/test', cloudWatchController.getMetrics, (req, res) => {
+//   return res.status(200).json(res.locals.data);
+// });
+app.get('/test', getCredentials, cloudWatchController.getMetrics, (req, res) => {
   return res.status(200).json(res.locals.data);
 });
+
+
 // 404 error handler :)
 app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');
