@@ -62,7 +62,7 @@ module.exports = {
                   },
                 ],
               },
-              Period: 300,
+              Period: 3600,
               Stat: 'Average',
             },
           },
@@ -70,7 +70,14 @@ module.exports = {
       };
       const command = new GetMetricDataCommand(input);
       const response = await client.send(command);
-      console.log('response', response.MetricDataResults[0].Values);
+      console.log('values', response.MetricDataResults[0].Values);
+      console.log('timestamp', response.MetricDataResults[0].Timestamps);
+      console.log('response', response);
+
+      res.locals.data = {
+        values: response.MetricDataResults[0].Values,
+        timestamps: response.MetricDataResults[0].Timestamps,
+      };
       return next();
     } catch (error) {
       console.log('error fetching aws', error);

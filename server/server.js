@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
+const instancesController = require('./controllers/aws/instancesController');
 
 // add cookie parser
 
@@ -22,9 +23,13 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
-// routes
-app.get('/test', cloudWatchController.getMetrics, (req, res) => {
-  return res.status(200).json(res.locals.data);
+// routes;
+// app.get('/test', cloudWatchController.getMetrics, (req, res) => {
+//   return res.status(200).json(res.locals.data);
+// });
+
+app.get('/test', instancesController.getInstances, (req, res) => {
+  return res.status(200).json('hello');
 });
 // 404 error handler :)
 app.get('*', (req, res) => {
