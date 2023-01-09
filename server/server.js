@@ -24,14 +24,18 @@ app.use(express.json());
 app.use(express.static('src'));
 
 // routes;
-// app.get('/test', cloudWatchController.getMetrics, (req, res) => {
-//   return res.status(200).json(res.locals.data);
+app.get(
+  '/test',
+  instancesController.getInstances,
+  cloudWatchController.getMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.data);
+  }
+);
+
+// app.get('/test', instancesController.getInstances, (req, res) => {
+//   return res.status(200).json('hello');
 // });
-
-app.get('/test', instancesController.getInstances, (req, res) => {
-  return res.status(200).json('hello');
-});
-
 
 // 404 error handler :)
 app.get('*', (req, res) => {
