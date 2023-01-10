@@ -5,7 +5,7 @@ function Navbar() {
     return (
         <div className="navbar" id="cloud-intro">
             {/* <nav> */}
-                <h1></h1>
+                <h1 className="Cloudband">Cloudband</h1>
                     <ul className="menu-items">
                         <li><a href='#'>
                         {/* <svg width="100" height="100">

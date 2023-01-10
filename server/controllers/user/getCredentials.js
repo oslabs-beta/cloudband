@@ -87,26 +87,26 @@ const getCredentials = async (req, res, next) => {
 // module.exports = { credentialController };
 
 
-// const stsClient = new STSClient({
-//   region: 'us-east-1',
-//   credentials: credentials,
-// });
+const stsClient = new STSClient({
+  region: 'us-east-1',
+  credentials: credentials,
+});
 
-// const getCredentials = async (req, res, next) => {
-//   const info = {
-//     RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
-//     RoleSessionName: 'CloudbandDelegationRole',
-//   };
-//   try {
-//     const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
-//     const accessKeyId = assumedRole.Credentials.AccessKeyId;
-//     const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
-//     const sessionToken = assumedRole.Credentials.SessionToken;
-//   } catch (error) {
-//     console.log(error);
-//     next(error);
-//   }
-// };
+const getCredentials = async (req, res, next) => {
+  const info = {
+    RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
+    RoleSessionName: 'CloudbandDelegationRole',
+  };
+  try {
+    const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
+    const accessKeyId = assumedRole.Credentials.AccessKeyId;
+    const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
+    const sessionToken = assumedRole.Credentials.SessionToken;
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+};
 
 
 // const getCredentials = async (req, res, next, roleArn, roleSessionName, authorizationCode) => {
