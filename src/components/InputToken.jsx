@@ -100,32 +100,23 @@ const InputToken = () => {
     event.preventDefault();
     console.log(accessKey);
     console.log(secretKey);
-    console.log(stackName);
-    console.log(templateLocation);
+    //console.log(stackName);
+    //console.log(templateLocation);
     const accessKey = event.target.elements.accessKey.value;
     const secretKey = event.target.elements.secret-access.key.value;
-    const stackName = event.target.elements.stackName.value;
-    const templateLocation = event.target.elements.templateLocation.value;
+    //const stackName = event.target.elements.stackName.value;
+    //const templateLocation = event.target.elements.templateLocation.value;
   };
 
   return (
     <div className="input-token-wrapper">
-      <h2>Step 1: Create a Stack</h2>
+      <h2>Connect to Your Account</h2>
       <form action="" className="token-input-form">
         {/* <label htmlFor="token" className="token-input-label">Enter Token Here:</label>
           <input type="text" placeholder="token" id="token-input"/> */}
         <span>
-          Click here to go to the Stack Creation Wizard in your AWS Account:
+          Input Your Details Here:
         </span>
-        <a
-          href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=cloudband-permission&param_ExternalId=61ae90dc-8d15-11ed-a1eb-0242ac120002&templateURL=https://cloudbandtemplate.s3.amazonaws.com/cloudformation.yml"
-          target="blank"
-        >
-          <img
-            src="https://s3.amazonaws.com/cloudformation-examples/cloudformation-launch-stack.png"
-            alt="Launch stack wizard link"
-          />
-        </a>
         <label className="access-key-label">Enter Access Key</label>
         <input
           type="text"
@@ -146,7 +137,7 @@ const InputToken = () => {
             handleChange(event, setSecretKey);
           }}
         />
-        <label className="stack-name-label">Enter Stack Name</label>
+        {/* <label className="stack-name-label">Enter Stack Name</label>
         <input
           type="text"
           placeholder="stack name"
@@ -154,8 +145,8 @@ const InputToken = () => {
           onChange={() => {
             handleChange(event, setStackName);
           }}
-        />
-        <label className="template-location-label">
+        /> */}
+        {/* <label className="template-location-label">
           Enter Template Location
         </label>
         <input
@@ -165,7 +156,7 @@ const InputToken = () => {
           onChange={() => {
             handleChange(event, setTemplateLocation);
           }}
-        />
+        /> */}
         <button id="credentials-button" onClick={handleSubmit}>
           Submit
         </button>

@@ -16,16 +16,13 @@
 //     width: 100%;
 // }
 
+//make this text appear cloud-like
 h1::before {
     content: "Cloudband";
-    font-family: 'Open Sans', sans-serif;
-    font-size: 48px;
-    font-weight: bold;
-    color: darkgray;
-    text-shadow: 2px 2px 0px #333, 4px 4px 0px #E6E6FA;
-    // display: flex;
-    // text-align: center;
-    // width: 100%;
+    font-family: "Sky";
+    font-size: 2rem;
+    color: #333; /* deep, dark grey */
+    
 }
 
 ul {

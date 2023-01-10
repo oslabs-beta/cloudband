@@ -3,7 +3,7 @@ import '../componentStyling/Navbar.scss';
 
 function Navbar() {
     return (
-        <div className="navbar">
+        <div className="navbar" id="cloud-intro">
             {/* <nav> */}
                 <h1></h1>
                     <ul className="menu-items">

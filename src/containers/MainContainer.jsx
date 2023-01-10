@@ -5,7 +5,7 @@ import '../containerStyling/MainContainer.scss';
 
 const MainContainer = () => {
     return (
-      <div className="main-container-wrapper">
+      <div className="main-container-wrapper" id="cloud-intro">
         <InputToken />
         <Chart />
       </div>
