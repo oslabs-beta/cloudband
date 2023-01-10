@@ -16,8 +16,8 @@ module.exports = {
       //const Instances = Reservations.flatMap(reservation => reservation.Instances);
 
       const data = await ec2Client.send(new DescribeInstancesCommand({}));
-      console.log('ec2 instances data', data.Reservations[0].Instances); //array of objects with all instances
-      console.log('ec2 data', data); //array of objects with all instances
+      // console.log('ec2 instances data', data.Reservations[0].Instances); //array of objects with all instances
+      // console.log('ec2 data', data); //array of objects with all instances
       const instances = data.Reservations;
       const instanceIds = instances.map((instance) => {
         return instance.Instances[0].InstanceId;
