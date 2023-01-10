@@ -17,26 +17,28 @@ const getMetrics = async (req, res, next) => {
 
   try {
     const EndTime = new Date();
-    //shows the EC2 CPU utilization of the past 7 days
-    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+    //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
+    const StartTime = new Date(EndTime.getTime() - 0.3 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
-    console.log('instances', instances);
+    // console.log('instances', instances);
 
     const queries = instances.map((instanceId, index) => ({
-      Id: `m-${index}`,
+      Id: `m${index + 1}`,
       Label: 'CPUUtilization',
       MetricStat: {
         Metric: {
           Namespace: 'AWS/EC2',
           MetricName: 'CPUUtilization',
-          Dimensions: {
-            Name: 'InstanceId',
-            Value: `${instanceId}`,
-          },
+          Dimensions: [
+            {
+              Name: 'InstanceId',
+              Value: instanceId,
+            },
+          ],
         },
-        Period: 300,
+        Period: 3600,
         Stat: 'Average',
       },
     }));
@@ -47,16 +49,26 @@ const getMetrics = async (req, res, next) => {
       LabelOptions: {
         Timezone: '-0400',
       },
-      MetricDataQueries: `${queries}`,
+      MetricDataQueries: queries,
     };
     const command = new GetMetricDataCommand(input);
-    const response = await cloudwatch.send(command);
+    const responses = await cloudwatch.send(command);
+    // console.log('responses: ', responses.MetricDataResults);
+    const values = responses.MetricDataResults.reduce((acc, curr) => {
+      acc.push(curr.Values);
+      return acc;
+    }, []);
+    // console.log('values', values);
+    const timestamps = responses.MetricDataResults[0].Timestamps;
+    // console.log('timestamps: ', timestamps);
 
-    console.log('response', response.MetricDataResults);
+    const chartData = {
+      values: values, // [[...], [...], [...]] as many arrays as there are instances
+      timestamps: timestamps, // [...] 1 array
+      instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
+    };
 
-    // console.log('responseData', response.MetricDataResults[0].Values);
-    // console.log('responseData', response.MetricDataResults[0].Timestamps);
-
+    res.locals.chartData = chartData;
     return next();
   } catch (error) {
     console.error(error);

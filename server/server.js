@@ -29,7 +29,7 @@ app.get(
   instancesController.getInstances,
   cloudWatchController.getMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.data);
+    return res.status(200).json(res.locals.chartData);
   }
 );
 
