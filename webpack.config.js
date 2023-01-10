@@ -22,7 +22,7 @@ module.exports = {
       directory: path.resolve(__dirname, 'public'),
       publicPath: '/',
     },
-    port: 8080,
+    port: 8000,
     host: 'localhost',
     open: true,
     hot: true,
