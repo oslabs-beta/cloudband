@@ -9,6 +9,8 @@ module.exports = {
         secretAccessKey: '0ScFoGftJ4XL3efKtcU//s1xY1vswpG7pLR3UYVl',
       },
     };
+
+    console.log('req.body', req.body);
     const ec2Client = new EC2Client(info);
     try {
       console.log('entered ec2 instances controller');
@@ -26,7 +28,7 @@ module.exports = {
       res.locals.ec2Instances = {
         instances: instanceIds,
       };
-      console.log('res.locals.ec2Instances', res.locals.ec2Instances);
+
       return next();
     } catch (err) {
       console.log('error in describeInstances', err);
