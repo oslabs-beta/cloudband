@@ -13,7 +13,7 @@ const MainContainer = () => {
   return (
     <div className="main-container-wrapper" id="cloud-intro">
       <InputToken setChartData={setChartData} />
-      {/* <Chart chartData={chartData} /> */}
+      <Chart chartData={chartData} setChartData={setChartData} />
     </div>
   );
 };

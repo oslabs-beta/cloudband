@@ -31,7 +31,7 @@ module.exports = {
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
       '/': {
-        target: 'http://localhost:8080/',
+        target: 'http://localhost:8000/',
         router: () => 'http://localhost:3000',
         secure: false,
       },

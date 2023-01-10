@@ -4,22 +4,7 @@ import { Line } from 'react-chartjs-2';
 import '../componentStyling/Chart.scss';
 
 const LineChart = (props) => {
-  const { chartData } = props;
-
-  // const [chartData, setChartData] = useState({
-  //   values: [],
-  //   timestamps: [],
-  //   instanceIds: [],
-  // });
-
-  useEffect(() => {
-    // const fetchData = async () => {
-    //   const response = await fetch('http://localhost:3000/test');
-    //   const data = await response.json();
-    //   const set = await setChartData(data);
-    // };
-    // fetchData();
-  }, []);
+  const { chartData, setChartData } = props;
 
   const labels = chartData.timestamps;
 

@@ -13,16 +13,19 @@ const InputToken = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(accessKey);
-    console.log(secretKey);
-    axios({
-      method: 'get',
-      url: 'http://localhost:3000/test',
-      data: [{ accessKey: accessKey, secretKey: secretKey }],
-      // withCredentials: true,
-    })
-      // .get('/test', { params: { accessKey: accessKey, secretKey: secretKey } })
-      .then((response) => setChartData(response));
+    // console.log(accessKey);
+    // console.log(secretKey);
+    axios
+      .get('http://localhost:3000/test', {
+        params: {
+          accessKey,
+          secretKey,
+        },
+      })
+      .then((response) => {
+        // console.log('request response: ', response);
+        setChartData(response.data);
+      });
   };
 
   return (
@@ -32,7 +35,7 @@ const InputToken = (props) => {
         <span>Input Your Details Here:</span>
         <label className="access-key-label">Enter Access Key</label>
         <input
-          type="text"
+          type="password"
           placeholder="access key"
           id="accessKey"
           onChange={(e) => {
@@ -44,7 +47,7 @@ const InputToken = (props) => {
           Enter Secret Access Key
         </label>
         <input
-          type="text"
+          type="password"
           placeholder="secret access key"
           id="secretKey"
           onChange={(e) => {
