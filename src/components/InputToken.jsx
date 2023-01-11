@@ -41,6 +41,7 @@ const InputToken = (props) => {
         >
           {'Create New Stack'}
         </a>
+        <h3>Step 2:</h3>
         <label className="access-key-label">Enter ARN Here</label>
         <input
           type="password"

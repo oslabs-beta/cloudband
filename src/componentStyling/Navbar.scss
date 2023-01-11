@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600&display=swap');
 
 .navbar {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  font-family: leto;
+  font-family: 'lato';
   //position: fixed;
   // top: 0;
   // left: 0;
@@ -81,7 +80,7 @@ a {
   // justify-content: space-between;
   width: 100%;
   color: #333; /* deep, dark grey */
-  font-family: 'Sky';
+  font-family: 'lato';
 }
 
 // .navbar nav {

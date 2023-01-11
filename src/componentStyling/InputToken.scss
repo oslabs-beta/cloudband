@@ -5,7 +5,6 @@
 
   h2,
   h3 {
-    padding-left: 20px;
     text-align: center;
   }
 }
@@ -38,21 +37,30 @@
   border: none;
   font-size: 16px;
   transition: background-color 0.2s ease-in-out;
+  &:hover {
+    color: #fff;
+    transform: translateY(-5px);
+    animation: bounce 0.5s ease-in-out;
+    }
 }
 
+
 .create-stack-link {
+  align-self: center;
   border-radius: 50px;
-  color: #ff9900;
+  color: #fff;
   text-decoration: none;
-  margin: 5px 0;
+  //margin: 5px 0;
   display: block;
   padding: 10px;
   font-size: 16px;
   transition: all 0.2s ease-in-out;
+  background: linear-gradient(to bottom, #ffa600 0%, #ff9900 100%);
 
   &:hover {
     color: #fff;
-    background-color: #ff9900;
     transform: translateY(-5px);
-  }
+    animation: bounce 0.5s ease-in-out;
+    }
 }
+
