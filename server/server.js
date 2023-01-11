@@ -24,19 +24,15 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
-// routes;
-// app.get(
-//   '/test',
-//   instancesController.getInstances,
-//   cloudWatchController.getMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.chartData);
-//   }
-// );
-
-app.get('/test', credentialController.getCredentials, (req, res) => {
-  return res.status(200).json('hello');
-});
+app.get(
+  '/metricsRequest',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
 
 // 404 error handler :)
 app.get('*', (req, res) => {
