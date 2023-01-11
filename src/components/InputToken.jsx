@@ -114,9 +114,6 @@ const InputToken = () => {
       <form action="" className="token-input-form">
         {/* <label htmlFor="token" className="token-input-label">Enter Token Here:</label>
           <input type="text" placeholder="token" id="token-input"/> */}
-        <span>
-          Input Your Details Here:
-        </span>
         <label className="access-key-label">Enter Access Key</label>
         <input
           type="text"

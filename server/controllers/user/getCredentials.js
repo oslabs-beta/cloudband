@@ -13,32 +13,32 @@ const queryString = require('queryString');
 
 // const sso = new AWS.SSO({apiVersion: '2019-06-10'});
 
-const getCredentials = async (req, res, next) => {
-  try {
-    const { ROLE_ARN } = process.env;
-    //create an STS client
-    const sts = new STSClient({
-      region: 'us-east-1',
-      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    });
+// const getCredentials = async (req, res, next) => {
+//   try {
+//     const { ROLE_ARN } = process.env;
+//     //create an STS client
+//     const sts = new STSClient({
+//       region: 'us-east-1',
+//       accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//       secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+//     });
 
-    //assume the IAM role
-    const { Credentials: credentials } = await sts.send(new AssumeRoleCommand({
-      RoleArn: ROLE_ARN,
-      RoleSessionName: 'sessionName'
-    }));
+//     //assume the IAM role
+//     const { Credentials: credentials } = await sts.send(new AssumeRoleCommand({
+//       RoleArn: ROLE_ARN,
+//       RoleSessionName: 'sessionName'
+//     }));
 
-    //set the AWS SDK credentials object
-    AWS.config.credentials = credentials;
+//     //set the AWS SDK credentials object
+//     AWS.config.credentials = credentials;
     
-    //continue with the rest of the middleware or route handling
-    next();
-  } catch (error) {
-    console.error(error);
-    res.status(500).send('Error assuming IAM role');
-  }
-}
+//     //continue with the rest of the middleware or route handling
+//     next();
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).send('Error assuming IAM role');
+//   }
+// }
 
 
 //const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
@@ -87,26 +87,26 @@ const getCredentials = async (req, res, next) => {
 // module.exports = { credentialController };
 
 
-const stsClient = new STSClient({
-  region: 'us-east-1',
-  credentials: credentials,
-});
+// const stsClient = new STSClient({
+//   region: 'us-east-1',
+//   credentials: credentials,
+// });
 
-const getCredentials = async (req, res, next) => {
-  const info = {
-    RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
-    RoleSessionName: 'CloudbandDelegationRole',
-  };
-  try {
-    const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
-    const accessKeyId = assumedRole.Credentials.AccessKeyId;
-    const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
-    const sessionToken = assumedRole.Credentials.SessionToken;
-  } catch (error) {
-    console.log(error);
-    next(error);
-  }
-};
+// const getCredentials = async (req, res, next) => {
+//   const info = {
+//     RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole',
+//     RoleSessionName: 'CloudbandDelegationRole',
+//   };
+//   try {
+//     const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
+//     const accessKeyId = assumedRole.Credentials.AccessKeyId;
+//     const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
+//     const sessionToken = assumedRole.Credentials.SessionToken;
+//   } catch (error) {
+//     console.log(error);
+//     next(error);
+//   }
+// };
 
 
 // const getCredentials = async (req, res, next, roleArn, roleSessionName, authorizationCode) => {

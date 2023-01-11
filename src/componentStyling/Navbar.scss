@@ -1,41 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Atma:wght@600&display=swap');
+
 .navbar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    //position: fixed;
-    // top: 0;
-    // left: 0;
-    // right: 0;
-    //background-color: white;
-    width: 100%;
-    // z-index: 1;
-    background: linear-gradient(to right, #D3D3D3, #87CEEB, #E6E6FA);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: leto;
+  //position: fixed;
+  // top: 0;
+  // left: 0;
+  // right: 0;
+  //background-color: white;
+  width: 100%;
+  // z-index: 1;
+  background: linear-gradient(to right, #d3d3d3, #87ceeb, #e6e6fa);
+}
+
+#navbar-links {
+  align-self: left;
 }
 
 // .nav {
 //     width: 100%;
 // }
 
+h1 {
+  display: flex;
+  position: relative;
+  font-family: 'lato';
+  color: white;
+  animation: glow 2.5s infinite alternate;
+  font-size: 48px;
+  margin-left: 20px;
+  align-self: center;
+}
 
+@keyframes glow {
+  0% {
+    text-shadow: 0px 0px 1px blue, 0px 0px 1px white;
+  }
+  50% {
+    text-shadow: 0px 0px 20px yellow, 0px 0px 20px white;
+  }
+  100% {
+    text-shadow: 0px 0px 20px salmon, 0px 0px 20px white;
+  }
+}
+
+h1::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: linear-gradient(to bottom, white, transparent);
+  animation: strike 0.5s linear 1s alternate;
+}
+
+@keyframes strike {
+  0% {
+    left: -10%;
+  }
+  100% {
+    left: 110%;
+  }
+}
 
 ul {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    // justify-content: flex-end space-between;
-    justify-content: space-between;
-    align-items: center;
-    width: 50%;
-    padding-right: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  // justify-content: flex-end space-between;
+  //justify-content: space-between;
+  align-items: center;
+  width: 50%;
+  padding-left: 100px;
 }
-    
 
 a {
-    // display: flex;
-    // justify-content: space-between;
-    width: 100%;
-    color: #333; /* deep, dark grey */
-    font-family: "Sky";
+  // display: flex;
+  // justify-content: space-between;
+  width: 100%;
+  color: #333; /* deep, dark grey */
+  font-family: 'Sky';
 }
 
 // .navbar nav {
