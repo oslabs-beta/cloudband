@@ -4,9 +4,9 @@ import { Line } from 'react-chartjs-2';
 import '../componentStyling/Chart.scss';
 
 const LineChart = (props) => {
-  const { chartData, setChartData } = props;
+  const { chartData } = props;
 
-  const labels = chartData.timestamps;
+  const labels = chartData.timestamps; //[timestamps]
 
   const CHART_COLORS = {
     0: 'rgb(255, 99, 132)',
@@ -29,8 +29,8 @@ const LineChart = (props) => {
   });
 
   const data = {
-    labels: labels,
-    datasets: datasets,
+    labels: labels, // [..]
+    datasets: datasets, // [{..}, {..}, {..}]
   };
 
   const options = {
