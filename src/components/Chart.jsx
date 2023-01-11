@@ -3,21 +3,8 @@ import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import '../componentStyling/Chart.scss';
 
-const LineChart = () => {
-  const [chartData, setChartData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch('http://localhost:3000/test');
-      const data = await response.json();
-      const set = await setChartData(data);
-    };
-    fetchData();
-  }, []);
+const LineChart = (props) => {
+  const { chartData, setChartData } = props;
 
   const labels = chartData.timestamps;
 
@@ -30,11 +17,6 @@ const LineChart = () => {
     5: 'rgb(153, 102, 255)',
     6: 'rgb(201, 203, 207)',
   };
-
-  // function transparentize(value, opacity) {
-  //   var alpha = opacity === undefined ? 0.5 : 1 - opacity;
-  //   return colorLib(value).alpha(alpha).rgbString();
-  // }
 
   const datasets = chartData.values.map((array, index) => {
     return {
@@ -61,7 +43,7 @@ const LineChart = () => {
     plugins: {
       title: {
         display: true,
-        text: 'Chart.js Line Chart - Multi Axis',
+        text: 'Multi Axis Line Chart',
       },
     },
     scales: {
@@ -70,14 +52,6 @@ const LineChart = () => {
         display: true,
         position: 'left',
       },
-      // y1: {
-      //   type: 'linear',
-      //   display: true,
-      //   position: 'right',
-      //   grid: {
-      //     drawOnChartArea: false,
-      //   },
-      // },
     },
   };
 

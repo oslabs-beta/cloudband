@@ -5,10 +5,23 @@ function Navbar() {
   return (
     <div className="navbar" id="cloud-intro">
       {/* <nav> */}
-      <div className="title">
-        <h1>Cloudband</h1>
-        </div>
+      <h1></h1>
       {/* <ul className="menu-items">
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>
+          <a href="#">About</a>
+        </li>
+        <li>
+          <a href="#">Contact</a>
+        </li>
+        <li>
+          <a href="#">Login</a>
+        </li>
+        <li>
+          <a href="#">Signup</a>
+        </li>
       </ul> */}
       {/* </nav> */}
     </div>

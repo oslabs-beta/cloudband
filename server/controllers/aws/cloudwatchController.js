@@ -6,11 +6,12 @@ const {
 const { ListInstancesCommand } = require('@aws-sdk/client-ec2');
 
 const getMetrics = async (req, res, next) => {
+  const { accessKey, secretKey } = req.query;
   const credentials = {
     region: 'us-east-1',
     credentials: {
-      accessKeyId: 'AKIAUE2Y2VULDWWSMOFO', //UPDATE THIS FROM FRONT END
-      secretAccessKey: '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', //UPDATE THIS FROM FRONT END
+      accessKeyId: accessKey, //UPDATE THIS FROM FRONT END
+      secretAccessKey: secretKey, //UPDATE THIS FROM FRONT END
     },
   };
   const cloudwatch = new CloudWatchClient(credentials);
