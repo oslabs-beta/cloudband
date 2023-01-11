@@ -6,13 +6,9 @@ const {
 const { ListInstancesCommand } = require('@aws-sdk/client-ec2');
 
 const getMetrics = async (req, res, next) => {
-  const { accessKey, secretKey } = req.query;
   const credentials = {
     region: 'us-east-1',
-    credentials: {
-      accessKeyId: accessKey, //UPDATE THIS FROM FRONT END
-      secretAccessKey: secretKey, //UPDATE THIS FROM FRONT END
-    },
+    credentials: res.locals.credentials,
   };
   const cloudwatch = new CloudWatchClient(credentials);
 
@@ -23,7 +19,7 @@ const getMetrics = async (req, res, next) => {
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
-    // console.log('instances', instances);
+    console.log('instances', instances);
 
     const queries = instances.map((instanceId, index) => ({
       Id: `m${index + 1}`,
@@ -54,7 +50,7 @@ const getMetrics = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    // console.log('responses: ', responses.MetricDataResults);
+    console.log('responses: ', responses);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
@@ -70,6 +66,7 @@ const getMetrics = async (req, res, next) => {
     };
 
     res.locals.chartData = chartData;
+    console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {
     console.error(error);

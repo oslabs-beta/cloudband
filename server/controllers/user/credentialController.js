@@ -11,8 +11,9 @@ const credentials = {
 };
 
 credentialController.getCredentials = async (req, res, next) => {
+  const { arn } = req.query;
   const info = {
-    RoleArn: 'arn:aws:iam::499611886771:role/CloudbandDelegationRole', //will receive from front end
+    RoleArn: arn, //will receive from front end
     RoleSessionName: 'CloudbandRoleSession',
     DurationSeconds: 900,
     ExternalId: '92a98196-9090-11ed-a1eb-0242ac120002',
@@ -25,7 +26,7 @@ credentialController.getCredentials = async (req, res, next) => {
   try {
     const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
     const accessKeyId = assumedRole.Credentials.AccessKeyId;
-    // console.log('accessKeyId', accessKeyId);
+    console.log('accessKeyId', accessKeyId);
     const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
     // console.log('secretAccessKey', secretAccessKey);
     const sessionToken = assumedRole.Credentials.SessionToken;

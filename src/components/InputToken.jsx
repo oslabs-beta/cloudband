@@ -8,18 +8,18 @@ AWS.config.update({ region: 'REGION' });
 
 const InputToken = (props) => {
   const { setChartData } = props;
-  const [accessKey, setAccessKey] = useState();
-  const [secretKey, setSecretKey] = useState();
+  const [arn, setArn] = useState();
+  //const [secretKey, setSecretKey] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(accessKey);
+    // console.log(arn);
     // console.log(secretKey);
     axios
-      .get('http://localhost:3000/test', {
+      .get('http://localhost:3000/metricsRequest', {
         params: {
-          accessKey,
-          secretKey,
+          arn,
+          // secretKey,
         },
       })
       .then((response) => {
@@ -31,19 +31,27 @@ const InputToken = (props) => {
   return (
     <div className="input-token-wrapper">
       <h2>Connect to Your Account</h2>
+      <h3>Step 1:</h3>
       <form action="" className="token-input-form">
-        <span>Input Your Details Here:</span>
-        <label className="access-key-label">Enter Access Key</label>
+        <a
+          href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=cloudband-permission&param_ExternalId=92a98196-9090-11ed-a1eb-0242ac120002&templateURL=https://cloudband.s3.amazonaws.com/cloudbandTemplate1.yml"
+          target="_blank"
+          className="create-stack-link"
+          rel="noopener noreferrer"
+        >
+          {'Create New Stack'}
+        </a>
+        <label className="access-key-label">Enter ARN Here</label>
         <input
           type="password"
-          placeholder="access key"
-          id="accessKey"
+          placeholder="ARN"
+          id="arn"
           onChange={(e) => {
-            setAccessKey(e.target.value);
-            // console.log('access key: ', accessKey);;
+            setArn(e.target.value);
+            // console.log('access key: ', arn);;
           }}
         />
-        <label className="secret-access-key-label">
+        {/* <label className="secret-access-key-label">
           Enter Secret Access Key
         </label>
         <input
@@ -54,7 +62,7 @@ const InputToken = (props) => {
             setSecretKey(e.target.value);
             // console.log('secret key: ', secretKey);;
           }}
-        />
+        /> */}
 
         <button id="credentials-button" onClick={handleSubmit}>
           Submit
