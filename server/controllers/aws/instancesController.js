@@ -2,16 +2,10 @@ const { EC2Client, DescribeInstancesCommand } = require('@aws-sdk/client-ec2');
 
 module.exports = {
   getInstances: async (req, res, next) => {
-    // console.log('req.query', req.query);
-    const { accessKey, secretKey } = req.query;
     const info = {
       region: 'us-east-1',
-      credentials: {
-        accessKeyId: accessKey,
-        secretAccessKey: secretKey,
-        // accessKeyId: 'AKIAUE2Y2VULDWWSMOFO',
-        // secretAccessKey: '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',
-      },
+      // res.locals.credentials = { accessKeyId, secretAccessKey, sessionToken };
+      credentials: res.locals.credentials,
     };
 
     const ec2Client = new EC2Client(info);
