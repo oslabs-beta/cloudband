@@ -20,7 +20,7 @@ const LineChart = (props) => {
 
   const datasets = chartData.values.map((array, index) => {
     return {
-      label: `EC2 Instance ${index + 1}`,
+      label: chartData.instanceIds[index],
       data: array,
       borderColor: CHART_COLORS[index],
       backgroundColor: 'rgba(255, 99, 132, 0.5)',

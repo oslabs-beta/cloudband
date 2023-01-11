@@ -19,7 +19,7 @@ const getMetrics = async (req, res, next) => {
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
-    console.log('instances', instances);
+    // console.log('instances', instances);
 
     const queries = instances.map((instanceId, index) => ({
       Id: `m${index + 1}`,
@@ -66,7 +66,7 @@ const getMetrics = async (req, res, next) => {
     };
 
     res.locals.chartData = chartData;
-    console.log('res.locals.chartData: ', res.locals.chartData);
+    // console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {
     console.error(error);
