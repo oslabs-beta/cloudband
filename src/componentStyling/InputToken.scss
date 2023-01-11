@@ -5,6 +5,7 @@
   
   h2 {
     padding-left: 20px;
+    text-align: center;
   }
 }
 
@@ -13,4 +14,33 @@
   flex-direction: column;
   width: 80%;
   padding-left: 20px;
+  text-align: center;
+  height: 25%;
 }
+
+.token-input-form input {
+  border-radius: 20px;
+  flex-basis: 100%;
+  margin: 8px;
+}
+
+#credentials-button {
+  //make the button narrower
+  height: 120%;
+  width: 70%;
+  align-self: center;
+  color: white;
+  box-shadow: 2px 2px 5px #ddd, 4px 4px 10px #ddd, 6px 6px 15px #ddd, 8px 8px 20px #ddd;
+  background-color: hsl(197, 53%, 45%);
+  border-radius: 50px;
+  border: none;
+  font-size: 15px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+
+
+
+
+
+
