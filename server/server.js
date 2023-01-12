@@ -5,6 +5,16 @@ const cloudWatchController = require('./controllers/aws/cloudWatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/user/credentialController');
 
+const mongoose = require('mongoose');
+
+mongoose
+  .connect(`${process.env.MONGO_URI_}`, {
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+    // useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB connected...'));
+
 // add cookie parser
 
 // import routers and controllers
