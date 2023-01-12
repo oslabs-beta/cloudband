@@ -8,6 +8,8 @@ AWS.config.update({ region: 'REGION' });
 
 const InputToken = (props) => {
   const { setChartData } = props;
+  const { setStatus } = props;
+  const { status } = props;
   const [arn, setArn] = useState();
   //const [secretKey, setSecretKey] = useState();
 
@@ -25,6 +27,9 @@ const InputToken = (props) => {
       .then((response) => {
         // console.log('request response: ', response);
         setChartData(response.data);
+        console.log('status: ', status);
+        setStatus('authorized');
+        console.log('status after being set: ', status);
       });
   };
 

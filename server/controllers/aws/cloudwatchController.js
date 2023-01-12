@@ -50,7 +50,7 @@ const getMetrics = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses);
+    // console.log('responses: ', responses);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
