@@ -1,5 +1,5 @@
-const { ExportClientVpnClientConfigurationCommand } = require('@aws-sdk/client-ec2');
-const { stsClient } = require('./stsClient');
+//const { ExportClientVpnClientConfigurationCommand } = require('@aws-sdk/client-ec2');
+const { stsClient } = require('../../server/controllers/user/stsClient');
 
 // This test is currently skipped because it requires a valid ARN to run.
 // describe the stsClient and the assumeRole function

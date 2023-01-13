@@ -1,6 +1,5 @@
-const { ProvisionByoipCidrResultFilterSensitiveLog } = require('@aws-sdk/client-ec2');
-const { describe, beforeEach } = require('node:test');
-const credentialController  = require('../controllers/credentialController');
+//const { describe, beforeEach } = require('node:test');
+const credentialController  = require('../../server/controllers/user/credentialController');
 const STSClient = require('@aws-sdk/client-sts').STSClient;
 
 // Mocking the AWS SDK
@@ -30,7 +29,7 @@ xdescribe('credentialController', () => {
     //describe the getCredentials function
     xdescribe('getCredentials', () => {
         //test that the stsClient is called and the credentials are returned
-        xit('should get credentials', async () => {
+        it('should get credentials', async () => {
             //mock the assumedRole variable
             const assumedRole = {
                 //mock the Credentials object
@@ -57,7 +56,7 @@ xdescribe('credentialController', () => {
         });
 
         //test that the stsClient is called and the credentials are returned
-        xit('should handle error', async () => {
+        it('should handle error', async () => {
             //mock the error variable
             const error = new Error('Error');
             //mock the stsClient.send function to return the error variable

@@ -1,7 +1,8 @@
-const { X509Certificate } = require('crypto');
-const { beforeEach, it } = require('node:test');
-const cloudwatchController = require('./cloudwatchController');
-const CloudWatchClient = require('@aws-sdk/client-cloudwatch').CloudWatchClient;
+//what the f is an X509 certificate??
+//const { X509Certificate } = require('crypto');
+//const { beforeEach, it } = require('node:test');
+const cloudwatchController = require('../../server/controllers/aws/cloudwatchController');
+const CloudWatchClient = require('@aws-sdk/client-cloudwatch');
 
 //describe the cloudwatchController test in order to 
 xdescribe('cloudwatchController', () => {
@@ -24,7 +25,7 @@ xdescribe('cloudwatchController', () => {
     //describe the getMetrics function
     xdescribe('getMetrics', () => {
         //test that the cloudwatchClient is called and the metrics are returned
-        xit('should get metrics', async () => {
+        it('should get metrics', async () => {
             //mock the responses variable
             const responses = { MetricDataResults: [{ Values: [1, 2, 3], Timestamps: ['Timestamp1', 'Timestamp2'] }] };
             cloudwatchClient.send = jest.fn().mockResolvedValue(responses);
@@ -42,7 +43,7 @@ xdescribe('cloudwatchController', () => {
             expect(next).toHaveBeenCalled();
         });
         //test that the cloudwatchClient is called and the metrics are returned
-        xit('should handle error', async () => {
+        it('should handle error', async () => {
             //declare a constant called error and set it to a new Error object
             const error = new Error('Error');
             //mock the cloudwatchClient.send function to return a rejected promise with the error
