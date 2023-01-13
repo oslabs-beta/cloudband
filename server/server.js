@@ -1,11 +1,12 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
 const instancesController = require('./controllers/aws/instancesController');
-const credentialController = require('./controllers/user/credentialController');
-
-// add cookie parser
+const credentialController = require('./controllers/aws/credentialController');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
 
 // import routers and controllers
 
@@ -13,6 +14,10 @@ const credentialController = require('./controllers/user/credentialController');
 const app = express();
 const PORT = 3000;
 console.log('server is running');
+
+// add cookie parser
+app.use(cookieParser());
+
 // use cors
 app.use(cors());
 
@@ -24,6 +29,7 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
+// get metrics
 app.get(
   '/metricsRequest',
   credentialController.getCredentials,
@@ -33,6 +39,11 @@ app.get(
     return res.status(200).json(res.locals.chartData);
   }
 );
+
+// sign in
+app.post('signin', userController.verifyUser, (req, res) => {
+  return res.status(200).json(res.locals); // need to send back token and cookie
+});
 
 // 404 error handler :)
 app.get('*', (req, res) => {

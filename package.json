@@ -51,6 +51,7 @@
     "aws-sdk": "^2.1287.0",
     "axios": "^1.2.2",
     "chart.js": "^4.1.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
