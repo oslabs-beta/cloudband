@@ -1,21 +1,54 @@
+const User = require('../models/userModel');
+
 const userController = {};
+
+// creates new user
+userController.createUser = async (req, res, next) => {
+  try {
+    // taking username and pw from body of request
+    const { email, password, RoleARN, region } = req.body;
+    // creating the user in the database
+    const newUser = await User.create({
+      email: email,
+      password: password,
+      RoleARN: RoleARN,
+      region: region,
+    });
+    // pass of the newUser data
+    res.locals.newUser = newUser;
+    // else throw new Error('Password is incorrect');
+  } catch (err) {
+    // send to global error handler
+    next({
+      log: `Error in userController.createUser. Details: ${err}`,
+      message: { err: 'An error occurred in userController.createUser' },
+    });
+  }
+};
 
 // confirms user has correct username and password
 userController.verifyUser = async (req, res, next) => {
   try {
-    // takeing username and pw from body of request
-    const { username, password } = req.body;
+    // taking username and pw from body of request
+    const { email, password } = req.body;
     // logic to find if the user is in the DB & has correct PW
-    const userData = await User.find({ username: username });
-    if (userData[0].password === password) {
-      return next();
-    }
+    const userData = await User.find({ email: email });
+    // if (userData[0].password === password) {
+    //   return next();
+    // }
+    const pwCheck = await bcrypt.compare(password, userData[0].password);
     // error handling for incorrect password
-    else throw new Error('Password is incorrect');
+    if (!pwCheck) {
+      throw new Error('Password is incorrect');
+    } else {
+      res.locals.userData = userData;
+      next();
+    }
+    // else throw new Error('Password is incorrect');
   } catch (err) {
     // send to global error handler
     next({
-      log: `Error in userController.verify. Details: ${err}`,
+      log: `Error in userController.verifyUser. Details: ${err}`,
       message: { err: 'An error occurred in userController.verifyUser' },
     });
   }

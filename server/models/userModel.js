@@ -30,13 +30,14 @@ userSchema.pre('save', async function (next) {
   }
 });
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  try {
-    await bcrypt.compare(candidatePassword, this.password);
-    return next();
-  } catch (err) {
-    return next('Passwords do not match: ' + JSON.stringify(err));
-  }
-};
+//MOVED THIS LOGIC TO THE USER CONTROLLER
+// userSchema.methods.comparePassword = async function (candidatePassword) {
+//   try {
+//     await bcrypt.compare(candidatePassword, this.password);
+//     return next();
+//   } catch (err) {
+//     return next('Passwords do not match: ' + JSON.stringify(err));
+//   }
+// };
 
 module.exports = mongoose.model('User', userSchema);

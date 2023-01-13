@@ -5,6 +5,9 @@ const cookieParser = require('cookie-parser');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/aws/credentialController');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
 
 const mongoose = require('mongoose');
 
@@ -15,9 +18,6 @@ mongoose
     // useUnifiedTopology: true,
   })
   .then(() => console.log('MongoDB connected...'));
-
-const userController = require('./controllers/userController');
-const cookieController = require('./controllers/cookieController');
 
 // import routers and controllers
 
@@ -51,10 +51,27 @@ app.get(
   }
 );
 
+// sign up
+app.post(
+  'signup',
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(200).json(res.locals); // need to send back token and cookie
+  }
+);
+
 // sign in
-app.post('signin', userController.verifyUser, (req, res) => {
-  return res.status(200).json(res.locals); // need to send back token and cookie
-});
+app.post(
+  'signin',
+  userController.verifyUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(200).json(res.locals); // need to send back token and cookie
+  }
+);
 
 // 404 error handler :)
 app.get('*', (req, res) => {
