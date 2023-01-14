@@ -3,27 +3,19 @@ import '../componentStyling/Navbar.scss';
 
 function Navbar() {
   return (
-    <div className="navbar" id="cloud-intro">
-      {/* <nav> */}
+    <div className="navbar-wrapper" id="cloud-intro">
       <h1>Cloudband</h1>
-      {/* <ul className="menu-items">
+      <ul className="menu-items">
         <li>
-          <a href="#">Home</a>
+          <a href="#">Team</a>
         </li>
         <li>
-          <a href="#">About</a>
-        </li>
-        <li>
-          <a href="#">Contact</a>
+          <a href="#">Github</a>
         </li>
         <li>
           <a href="#">Login</a>
         </li>
-        <li>
-          <a href="#">Signup</a>
-        </li>
-      </ul> */}
-      {/* </nav> */}
+      </ul>
     </div>
   );
 }
