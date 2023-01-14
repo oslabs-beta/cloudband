@@ -53,7 +53,7 @@ app.get(
 
 // sign up
 app.post(
-  'signup',
+  '/signup',
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
@@ -64,7 +64,7 @@ app.post(
 
 // sign in
 app.post(
-  'signin',
+  '/signin',
   userController.verifyUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,

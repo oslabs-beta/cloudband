@@ -5,6 +5,7 @@ const Session = require('../models/sessionModel');
 sessionController.startSession = async (req, res, next) => {
   try {
     await Session.create({ cookieId: res.locals.ssidCookie });
+    console.log('success creating session');
     return next();
   } catch (err) {
     // send to global error handler
