@@ -7,6 +7,7 @@ import {
   Legend,
 } from 'chart.js';
 import { PolarArea } from 'react-chartjs-2';
+import '../componentStyling/Chart.scss';
 
 const PolarChart = (props) => {
   ChartJS.register(RadialLinearScale, ArcElement, Tooltip, Legend);
@@ -39,7 +40,7 @@ const PolarChart = (props) => {
   };
 
   return (
-    <div>
+    <div className="chart-wrapper">
       <PolarArea data={data} />
     </div>
   );
