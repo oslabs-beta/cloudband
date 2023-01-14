@@ -56,19 +56,6 @@ const InputToken = (props) => {
             // console.log('access key: ', arn);;
           }}
         />
-        {/* <label className="secret-access-key-label">
-          Enter Secret Access Key
-        </label>
-        <input
-          type="password"
-          placeholder="secret access key"
-          id="secretKey"
-          onChange={(e) => {
-            setSecretKey(e.target.value);
-            // console.log('secret key: ', secretKey);;
-          }}
-        /> */}
-
         <button id="credentials-button" onClick={handleSubmit}>
           Submit
         </button>
