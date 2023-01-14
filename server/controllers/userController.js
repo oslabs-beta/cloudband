@@ -46,8 +46,8 @@ userController.verifyUser = async (req, res, next) => {
     if (!pwCheck) {
       throw new Error('Password is incorrect');
     } else {
-      res.locals.newUser = userData;
-      console.log('user data first:', userData);
+      res.locals.newUser = userData[0];
+      console.log('password for user correct: ', userData);
       // console.log('userdata[0]._id', userData[0]._id);
       // console.log(
       //   'THIS IS THE USER id in res locals: ',

@@ -4,6 +4,7 @@ const Session = require('../models/sessionModel');
 
 sessionController.startSession = async (req, res, next) => {
   try {
+    // create a session (will throw an error if you try to login while already having a session token)
     await Session.create({ cookieId: res.locals.ssidCookie });
     console.log('success creating session');
     return next();

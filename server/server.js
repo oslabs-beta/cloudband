@@ -54,6 +54,7 @@ app.get(
 // sign up
 app.post(
   '/signup',
+  (req, res) => console.log('entered route'),
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
