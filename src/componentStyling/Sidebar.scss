@@ -1,4 +1,5 @@
+@import '../variables';
+
 .sidebar-wrapper {
-  border: 1px solid blue;
-  border-radius: 20px;
+  background-color: var(--pale-blue);
 }
