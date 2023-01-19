@@ -1,6 +1,7 @@
 import React from 'react';
 import '../componentStyling/Settings.scss';
 
+const Settings = (props) => {
   const { ec2Metric, setEc2Metric } = props;
   const onChange = (event) => {
     setEc2Metric(event.target.value);
