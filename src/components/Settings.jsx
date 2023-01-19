@@ -1,4 +1,5 @@
 import React from 'react';
+import '../componentStyling/Settings.scss';
 
 const Settings = () => {
   return (
