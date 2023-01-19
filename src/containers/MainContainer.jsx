@@ -25,7 +25,7 @@ const MainContainer = () => {
         ec2Metric={ec2Metric}
         setEc2Metric={setEc2Metric}
       />
-      <ChartContainer chartData={chartData} />
+      <ChartContainer chartData={chartData} ec2Metric={ec2Metric} />
     </div>
   );
 };
