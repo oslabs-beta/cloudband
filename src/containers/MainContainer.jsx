@@ -22,6 +22,8 @@ const MainContainer = () => {
         setChartData={setChartData}
         setStatus={setStatus}
         status={status}
+        ec2Metric={ec2Metric}
+        setEc2Metric={setEc2Metric}
       />
       <ChartContainer chartData={chartData} />
     </div>
