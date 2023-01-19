@@ -17,7 +17,9 @@ const Footer = () => {
           <h2 className="col-header">Quick Links</h2>
           <ul className="quick-links-list">
             <li>
-              <a href="#">Privacy Policy</a>
+              <a href="#" target="_blank">
+                Privacy Policy
+              </a>
             </li>
           </ul>
         </div>
@@ -31,7 +33,9 @@ const Footer = () => {
       </div>
       <div className="row-2-wrapper">
         Cloudband is open source. Help us make our app better:&nbsp;
-        <a href="#">Github</a>
+        <a href="https://github.com/oslabs-beta/cloudband" target="_blank">
+          Github
+        </a>
       </div>
     </div>
   );
