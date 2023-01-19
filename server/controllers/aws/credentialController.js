@@ -10,6 +10,7 @@ const credentials = {
   secretAccessKey: process.env.AWS_SECRET_KEY,
 };
 
+console.log('credentials', credentials);
 credentialController.getCredentials = async (req, res, next) => {
   const { arn } = req.query;
   const info = {
