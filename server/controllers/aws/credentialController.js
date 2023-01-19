@@ -1,4 +1,3 @@
-console.log('entered CredentialController');
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -11,8 +10,9 @@ const credentials = {
   secretAccessKey: process.env.AWS_SECRET_KEY,
 };
 
-console.log('credentials', credentials);
 credentialController.getCredentials = async (req, res, next) => {
+  console.log('entered CredentialController');
+  console.log('credentials', credentials);
   const { arn } = req.query;
   const info = {
     RoleArn: arn, //will receive from front end
