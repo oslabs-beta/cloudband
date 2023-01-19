@@ -13,6 +13,8 @@ const MainContainer = () => {
     instanceIds: [],
   });
   const [status, setStatus] = useState('start');
+  const [ec2Metric, setEc2Metric] = useState('cpu-utilization');
+  console.log('ec2Metric from MainContainer: ', ec2Metric);
 
   return (
     <div className="main-container-wrapper" id="cloud-intro">
