@@ -1,7 +1,7 @@
 import React from 'react';
 import '../componentStyling/Settings.scss';
 
-const Settings = () => {
+  const { ec2Metric, setEc2Metric } = props;
   return (
     <div className="settings-wrapper">
       <h2>Settings</h2>
