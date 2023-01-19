@@ -1,10 +1,10 @@
 import React from 'react';
 import InputToken from '../components/InputToken.jsx';
 import Settings from '../components/Settings.jsx';
-import '../componentStyling/Sidebar.scss';
+import '../containerStyling/SidebarContainer.scss';
 
 const SidebarContainer = (props) => {
-  const { status, setChartData, setStatus } = props;
+  const { status, setChartData, setStatus, ec2Metric, setEc2Metric } = props;
 
   return (
     <div className="sidebar-wrapper">
@@ -21,7 +21,7 @@ const SidebarContainer = (props) => {
           case 'authorized':
             return (
               <div>
-                <Settings />
+                <Settings ec2Metric={ec2Metric} setEc2Metric={setEc2Metric} />
               </div>
             );
         }

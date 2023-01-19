@@ -116,7 +116,9 @@ const getMetrics = async (req, res, next) => {
             Period: 3600,
             Stat: 'Sum',
           },
-        }));
+        }
+      )
+    );
 
     const input = {
       StartTime,
@@ -238,7 +240,7 @@ const getMetrics = async (req, res, next) => {
 //   }
 // };
 
-// module.exports = {
-//   getMetrics,
-//   //getEC2MemoryMetrics
-// };
+module.exports = {
+  getMetrics,
+  //getEC2MemoryMetrics
+};
