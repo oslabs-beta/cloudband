@@ -240,7 +240,7 @@ const getMetrics = async (req, res, next) => {
 //   }
 // };
 
-// module.exports = {
-//   getMetrics,
-//   //getEC2MemoryMetrics
-// };
+module.exports = {
+  getMetrics,
+  //getEC2MemoryMetrics
+};
