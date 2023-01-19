@@ -4,12 +4,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 0 40px 0 40px;
 
   h1 {
     font-weight: 700;
     font-size: 32px;
     line-height: 50px;
-    padding: 0 0 0 20px;
+    // padding: 0 0 0 20px;
   }
 
   .menu-items {
@@ -18,7 +19,6 @@
     width: 25%;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px 0 0;
 
     li {
       list-style: none;
