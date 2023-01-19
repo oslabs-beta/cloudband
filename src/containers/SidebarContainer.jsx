@@ -4,7 +4,7 @@ import Settings from '../components/Settings.jsx';
 import '../componentStyling/Sidebar.scss';
 
 const SidebarContainer = (props) => {
-  const { status, setChartData, setStatus } = props;
+  const { status, setChartData, setStatus, ec2Metric, setEc2Metric } = props;
 
   return (
     <div className="sidebar-wrapper">
