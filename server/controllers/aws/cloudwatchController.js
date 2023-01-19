@@ -1,4 +1,8 @@
 //camille's cloudwatchController updates
+
+//tomas arn: arn:aws:iam::499611886771:role/CloudbandDelegationRole
+//john arn: arn:aws:iam::285264751894:role/CloudbandDelegationRole
+
 const {
   CloudWatchClient,
   GetMetricDataCommand,
