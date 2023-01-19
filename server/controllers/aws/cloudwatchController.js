@@ -27,98 +27,141 @@ const getMetrics = async (req, res, next) => {
 
     const queries = instances.map(
       (instanceId, index) => (
+      //   {
+      //     Id: `m${index + 1}`,
+      //     Label: 'CPUUtilization',
+      //     MetricStat: {
+      //       Metric: {
+      //         Namespace: 'AWS/EC2',
+      //         MetricName: 'CPUUtilization',
+      //         Dimensions: [
+      //           {
+      //             Name: 'InstanceId',
+      //             Value: instanceId,
+      //           },
+      //         ],
+      //       },
+      //       Period: 3600,
+      //       Stat: 'Average',
+      //     },
+      //  }));
+        // {
+        //   Id: `m${index + 2}`,
+        //   Label: 'MemoryUtilization',
+        //   MetricStat: {
+        //     Metric: {
+        //       Namespace: 'AWS/EC2',
+        //       MetricName: 'MemoryUtilization',
+        //       Dimensions: [
+        //         {
+        //           Name: 'ClusterName',
+        //           Value: instanceId,
+        //         },
+        //         {
+        //           Name: 'ServiceName',
+        //           Value: instanceId,
+        //         },
+        //       ],
+        //     },
+        //     Period: 3600,
+        //     Stat: 'Average',
+        //   },
+        // }));
+        // },
+      //   {
+      //     Id: `m${index + 3}`,
+      //     Label: 'NetworkIn',
+      //     MetricStat: {
+      //       Metric: {
+      //         Namespace: 'AWS/EC2',
+      //         MetricName: 'NetworkIn',
+      //         Dimensions: [
+      //           {
+      //             Name: 'InstanceId',
+      //             Value: instanceId,
+      //           },
+      //         ],
+      //       },
+      //       Period: 3600,
+      //       Stat: 'Sum',
+      //     },
+      // }));
+     
+        // {
+        //   Id: `m${index + 4}`,
+        //   Label: 'NetworkOut',
+        //   MetricStat: {
+        //     Metric: {
+        //       Namespace: 'AWS/EC2',
+        //       MetricName: 'NetworkOut',
+        //       Dimensions: [
+        //         {
+        //           Name: 'InstanceId',
+        //           Value: instanceId,
+        //         },
+        //       ],
+        //     },
+        //     Period: 3600,
+        //     Stat: 'Sum',
+        //   },
+        // }));
+        // },
+        // {
+        //   Id: `m${index + 5}`,
+        //   Label: 'CPUCreditUsage',
+        //   MetricStat: {
+        //     Metric: {
+        //       Namespace: 'AWS/EC2',
+        //       MetricName: 'CPUCreditUsage',
+        //       Dimensions: [
+        //         {
+        //           Name: 'InstanceId',
+        //           Value: instanceId,
+        //         },
+        //       ],
+        //     },
+        //     Period: 3600,
+        //     Stat: 'Sum',
+        //   },
+        // }));
+        // {
+        //     Id: `m${index + 6}`,
+        //     Label: 'CPUCreditBalance',
+        //     MetricStat: {
+        //       Metric: {
+        //         Namespace: 'AWS/EC2',
+        //         MetricName: 'CPUCreditBalance',
+        //         Dimensions: [
+        //           {
+        //             Name: 'InstanceId',
+        //             Value: instanceId,
+        //           },
+        //         ],
+        //       },
+        //       Period: 3600,
+        //       Stat: 'Sum',
+        //     },
+        //   }));
+        // // }
         {
-          Id: `m${index + 1}`,
-          Label: 'CPUUtilization',
-          MetricStat: {
-            Metric: {
-              Namespace: 'AWS/EC2',
-              MetricName: 'CPUUtilization',
-              Dimensions: [
-                {
-                  Name: 'InstanceId',
-                  Value: instanceId,
-                },
-              ],
+            Id: `m${index + 7}`,
+            Label: 'CPUSurplusCreditBalance',
+            MetricStat: {
+              Metric: {
+                Namespace: 'AWS/EC2',
+                MetricName: 'CPUSurplusCreditBalance',
+                Dimensions: [
+                  {
+                    Name: 'InstanceId',
+                    Value: instanceId,
+                  },
+                ],
+              },
+              Period: 3600,
+              Stat: 'Sum',
             },
-            Period: 3600,
-            Stat: 'Average',
-          },
-        },
-        {
-          Id: `m${index + 2}`,
-          Label: 'MemoryUtilization',
-          MetricStat: {
-            Metric: {
-              Namespace: 'AWS/EC2',
-              MetricName: 'MemoryUtilization',
-              Dimensions: [
-                {
-                  Name: 'InstanceId',
-                  Value: instanceId,
-                },
-              ],
-            },
-            Period: 3600,
-            Stat: 'Average',
-          },
-        },
-        {
-          Id: `m${index + 3}`,
-          Label: 'NetworkIn',
-          MetricStat: {
-            Metric: {
-              Namespace: 'AWS/EC2',
-              MetricName: 'NetworkIn',
-              Dimensions: [
-                {
-                  Name: 'InstanceId',
-                  Value: instanceId,
-                },
-              ],
-            },
-            Period: 3600,
-            Stat: 'Sum',
-          },
-        },
-        {
-          Id: `m${index + 4}`,
-          Label: 'NetworkOut',
-          MetricStat: {
-            Metric: {
-              Namespace: 'AWS/EC2',
-              MetricName: 'NetworkOut',
-              Dimensions: [
-                {
-                  Name: 'InstanceId',
-                  Value: instanceId,
-                },
-              ],
-            },
-            Period: 3600,
-            Stat: 'Sum',
-          },
-        },
-        {
-          Id: `m${index + 5}`,
-          Label: 'CPUCredits',
-          MetricStat: {
-            Metric: {
-              Namespace: 'AWS/EC2',
-              MetricName: 'CPUCredits',
-              Dimensions: [
-                {
-                  Name: 'InstanceId',
-                  Value: instanceId,
-                },
-              ],
-            },
-            Period: 3600,
-            Stat: 'Sum',
-          },
-        }
-      )
-    );
+          }));
+    
 
     const input = {
       StartTime,
@@ -130,7 +173,7 @@ const getMetrics = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses);
+    console.log('responses: ', responses.MetricDataResults[0].Values);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
