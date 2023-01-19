@@ -8,7 +8,7 @@ const SidebarContainer = (props) => {
 
   return (
     <div className="sidebar-wrapper">
-      {(() => {
+      {/* {(() => {
         switch (status) {
           case 'start':
             return (
@@ -20,12 +20,12 @@ const SidebarContainer = (props) => {
             );
           case 'authorized':
             return (
-              <div>
-                <Settings />
-              </div>
+              <div> */}
+      <Settings ec2Metric={ec2Metric} setEc2Metric={setEc2Metric} />
+      {/* </div>
             );
         }
-      })()}
+      })()} */}
     </div>
   );
 };
