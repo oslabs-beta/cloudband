@@ -30,15 +30,24 @@ console.log('server is running');
 app.use(cookieParser());
 
 // use cors
+// const corsOptions = {
+//   origin: 'http://0.0.0.0:8080',
+//   credentials: true,
+// };
 app.use(cors());
 
 // use express json
 app.use(express.json());
 
-// user cookie parser
-
 // handle static files
-app.use(express.static('src'));
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('this is the production environment');
+//   app.use(express.static('dist'));
+// } else if (process.env.NODE_ENV === 'development') {
+//   console.log('this is the development environment');
+//   app.use(express.static('src'));
+// }
+app.use(express.static('dist'));
 
 // get metrics
 app.get(
