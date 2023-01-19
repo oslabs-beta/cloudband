@@ -8,6 +8,8 @@ const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
+const listLambdasController = require('./controllers/lambda/listLambdasController');
+const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
 
 const mongoose = require('mongoose');
 
@@ -41,11 +43,22 @@ app.use(express.json());
 app.use(express.static('src'));
 
 // get metrics
+// app.get(
+//   '/metricsRequest',
+//   credentialController.getCredentials,
+//   instancesController.getInstances,
+//   cloudWatchController.getMetrics,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.chartData);
+//   }
+// );
+
+// get Lambda functions
 app.get(
   '/metricsRequest',
   credentialController.getCredentials,
-  instancesController.getInstances,
-  cloudWatchController.getMetrics,
+  listLambdasController.getLambdas,
+  lambdaMetricsController.getMetricsLambdaFuncs,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }

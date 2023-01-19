@@ -20,7 +20,6 @@ credentialController.getCredentials = async (req, res, next) => {
     ExternalId: '92a98196-9090-11ed-a1eb-0242ac120002',
   };
 
-  console.log('entered credentialController.getCredentials');
   //1st Step: Send ARN, RoleSessionName, and ExternalId to AWS STS
   const stsClient = new STSClient({ region: region, credentials: credentials });
 
@@ -33,7 +32,7 @@ credentialController.getCredentials = async (req, res, next) => {
     const sessionToken = assumedRole.Credentials.SessionToken;
     // console.log('sessionToken', sessionToken);
     res.locals.credentials = { accessKeyId, secretAccessKey, sessionToken };
-    console.log('res.locals.credentials', res.locals.credentials);
+
     return next();
   } catch (error) {
     console.log(error);
