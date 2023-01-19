@@ -23,6 +23,3 @@ const credentialController = {
 };
 
 module.exports = credentialController;
-
-//create a new mock object of the credentials controller with the same properties and methods as the original credentialController object.
-//then, override the getCredentials method to return a predefined set of credentials instead of making an actual request to the AWS STS service.
