@@ -1,3 +1,4 @@
+console.log('entered CredentialController');
 const { STSClient, AssumeRoleCommand } = require('@aws-sdk/client-sts');
 const dotenv = require('dotenv');
 dotenv.config();
