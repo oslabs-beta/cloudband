@@ -52,19 +52,23 @@ const getMetricsLambdaFuncs = async (req, res, next) => {
     const metricByFuncData = metricData.MetricDataResults.map(
       (eachFuncMetric) => {
         let values = eachFuncMetric.Values;
-        let metricData = eachFuncMetric.Timestamps.map((time, index) => {
+        let funcMetrics = eachFuncMetric.Timestamps.map((time, index) => {
           return {
             x: time,
             y: values[index],
           };
+          //this returns [ { x: 2023-01-19T21:30:00.000Z, y: 76 },{ x: 2023-01-19T20:12:00.000Z, y: 41 } ]
         });
-        console.log('metricData', metricData);
+        console.log('funcMetrics', funcMetrics);
         return {
           name: eachFuncMetric.Label,
-          data: metricData,
+          data: funcMetrics,
         };
       }
     );
+    /* metricByFuncData returns
+    [{name: 'Lambda Function return-200-code Invocations', data: [ [{ x: 2023-01-19T21:30:00.000Z, y: 76 },{ x: 2023-01-19T20:12:00.000Z, y: 41 }],
+    */
 
     console.log('metricByFuncData', metricByFuncData);
 
