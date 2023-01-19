@@ -74,6 +74,75 @@ const getMetrics = async (req, res, next) => {
   }
 };
 
+// const getEC2MemoryMetrics = async (req, res, next) => {
+//   const credentials = {
+//     region: 'us-east-1',
+//     credentials: res.locals.credentials,
+//   };
+
+//   const cloudwatch = new CloudWatchClient(credentials);
+
+//   try {
+//     const EndTime = new Date();
+//     const StartTime = new Date(EndTime.getTime() - 0.3 * 24 * 60 * 60 * 1000);
+    
+//     const { instances } = res.locals.ec2Instances;
+//     const queries = instances.map((instanceId, index) => ({
+//       Id: `m${index + 1}`,
+//       Label: 'MemoryUtilization',
+//       MetricStat: {
+//         Metric: {
+//           Namespace: 'AWS/EC2',
+//           MetricName: 'MemoryUtilization',
+//           Dimensions: [
+//             {
+//               Name: 'InstanceId',
+//               Value: instanceId,
+//             },
+//           ],
+//         },
+//         Period: 3600,
+//         Stat: 'Average',
+//       },
+//     }))
+//     const input = {
+//       StartTime,
+//       EndTime,
+//       LabelOptions: {
+//         Timezone: '-0400',
+//       },
+//       MetricDataQueries: queries,
+//     };
+//     const command = new GetMetricDataCommand(input);
+//     const responses = await cloudwatch.send(command);
+//     // console.log('responses: ', responses);
+//     const values = responses.MetricDataResults.reduce((acc, curr) => {
+//       acc.push(curr.Values);
+//       return acc;
+//     }, []);
+//     // console.log('values', values);
+//     const timestamps = responses.MetricDataResults[0].Timestamps;
+//     // console.log('timestamps: ', timestamps);
+
+//     const chartData = {
+//       values: values, // [[...], [...], [...]] as many arrays as there are instances
+//       timestamps: timestamps, // [...] 1 array
+//       instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
+//     };
+
+//     res.locals.chartData = chartData;
+//     // console.log('res.locals.chartData: ', res.locals.chartData);
+//     return next();
+//   } catch (error) {
+//     console.error(error);
+//     throw error;
+//   }
+// };
+
+
+
+
 module.exports = {
   getMetrics,
+  //getEC2MemoryMetrics
 };
