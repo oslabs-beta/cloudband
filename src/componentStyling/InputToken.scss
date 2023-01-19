@@ -1,66 +1,58 @@
-.input-token-wrapper {
-  border: 1px solid black;
-  // border-radius: 20px;
-  width: 30%;
+// .input-token-wrapper {
+//   border: 1px solid black;
+//   // border-radius: 20px;
+//   width: 30%;
 
-  h2,
-  h3 {
-    text-align: center;
-  }
-}
+//   h2,
+//   h3 {
+//     padding-left: 20px;
+//     text-align: center;
+//   }
+// }
 
-.token-input-form {
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  padding-left: 20px;
-  text-align: center;
-  height: 25%;
-}
+// .token-input-form {
+//   display: flex;
+//   flex-direction: column;
+//   width: 80%;
+//   padding-left: 20px;
+//   text-align: center;
+//   height: 25%;
+// }
 
-.token-input-form input {
-  border-radius: 20px;
-  flex-basis: 100%;
-  margin: 8px;
-}
+// .token-input-form input {
+//   border-radius: 20px;
+//   flex-basis: 100%;
+//   margin: 8px;
+// }
 
-#credentials-button {
-  //make the button narrower
-  height: 120%;
-  width: 70%;
-  align-self: center;
-  color: white;
-  box-shadow: 2px 2px 5px #ddd, 4px 4px 10px #ddd, 6px 6px 15px #ddd,
-    8px 8px 20px #ddd;
-  background-color: hsl(197, 53%, 45%);
-  border-radius: 50px;
-  border: none;
-  font-size: 16px;
-  transition: background-color 0.2s ease-in-out;
-  &:hover {
-    color: #fff;
-    transform: translateY(-5px);
-    animation: bounce 0.5s ease-in-out;
-    }
-}
+// #credentials-button {
+//   //make the button narrower
+//   height: 120%;
+//   width: 70%;
+//   align-self: center;
+//   color: white;
+//   box-shadow: 2px 2px 5px #ddd, 4px 4px 10px #ddd, 6px 6px 15px #ddd,
+//     8px 8px 20px #ddd;
+//   background-color: hsl(197, 53%, 45%);
+//   border-radius: 50px;
+//   border: none;
+//   font-size: 16px;
+//   transition: background-color 0.2s ease-in-out;
+// }
 
+// .create-stack-link {
+//   border-radius: 50px;
+//   color: #ff9900;
+//   text-decoration: none;
+//   margin: 5px 0;
+//   display: block;
+//   padding: 10px;
+//   font-size: 16px;
+//   transition: all 0.2s ease-in-out;
 
-.create-stack-link {
-  align-self: center;
-  border-radius: 50px;
-  color: #fff;
-  text-decoration: none;
-  //margin: 5px 0;
-  display: block;
-  padding: 10px;
-  font-size: 16px;
-  transition: all 0.2s ease-in-out;
-  background: linear-gradient(to bottom, #ffa600 0%, #ff9900 100%);
-
-  &:hover {
-    color: #fff;
-    transform: translateY(-5px);
-    animation: bounce 0.5s ease-in-out;
-    }
-}
-
+//   &:hover {
+//     color: #fff;
+//     background-color: #ff9900;
+//     transform: translateY(-5px);
+//   }
+// }

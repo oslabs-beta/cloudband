@@ -8,6 +8,8 @@ AWS.config.update({ region: 'REGION' });
 
 const InputToken = (props) => {
   const { setChartData } = props;
+  const { setStatus } = props;
+  const { status } = props;
   const [arn, setArn] = useState();
   //const [secretKey, setSecretKey] = useState();
 
@@ -25,6 +27,9 @@ const InputToken = (props) => {
       .then((response) => {
         // console.log('request response: ', response);
         setChartData(response.data);
+        console.log('status: ', status);
+        setStatus('authorized');
+        console.log('status after being set: ', status);
       });
   };
 
@@ -52,19 +57,6 @@ const InputToken = (props) => {
             // console.log('access key: ', arn);;
           }}
         />
-        {/* <label className="secret-access-key-label">
-          Enter Secret Access Key
-        </label>
-        <input
-          type="password"
-          placeholder="secret access key"
-          id="secretKey"
-          onChange={(e) => {
-            setSecretKey(e.target.value);
-            // console.log('secret key: ', secretKey);;
-          }}
-        /> */}
-
         <button id="credentials-button" onClick={handleSubmit}>
           Submit
         </button>

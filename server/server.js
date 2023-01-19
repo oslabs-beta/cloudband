@@ -1,11 +1,23 @@
 const path = require('path');
 const express = require('express');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const cloudWatchController = require('./controllers/aws/cloudWatchController');
 const instancesController = require('./controllers/aws/instancesController');
-const credentialController = require('./controllers/user/credentialController');
+const credentialController = require('./controllers/aws/credentialController');
+const userController = require('./controllers/userController');
+const cookieController = require('./controllers/cookieController');
+const sessionController = require('./controllers/sessionController');
 
-// add cookie parser
+const mongoose = require('mongoose');
+
+mongoose
+  .connect(`${process.env.MONGO_URI_}`, {
+    useNewUrlParser: true,
+    // useFindAndModify: false,
+    // useUnifiedTopology: true,
+  })
+  .then(() => console.log('MongoDB connected...'));
 
 // import routers and controllers
 
@@ -13,6 +25,10 @@ const credentialController = require('./controllers/user/credentialController');
 const app = express();
 const PORT = 3000;
 console.log('server is running');
+
+// add cookie parser
+app.use(cookieParser());
+
 // use cors
 app.use(cors());
 
@@ -24,6 +40,7 @@ app.use(express.json());
 // handle static files
 app.use(express.static('src'));
 
+// get metrics
 app.get(
   '/metricsRequest',
   credentialController.getCredentials,
@@ -31,6 +48,29 @@ app.get(
   cloudWatchController.getMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
+  }
+);
+
+// sign up
+app.post(
+  '/signup',
+  (req, res) => console.log('entered route'),
+  userController.createUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(200).json(res.locals); // need to send back token and cookie
+  }
+);
+
+// sign in
+app.post(
+  '/signin',
+  userController.verifyUser,
+  cookieController.setSSIDCookie,
+  sessionController.startSession,
+  (req, res) => {
+    return res.status(200).json(res.locals); // need to send back token and cookie
   }
 );
 

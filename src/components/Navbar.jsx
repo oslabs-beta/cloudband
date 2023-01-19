@@ -4,33 +4,20 @@ import '../componentStyling/Navbar.scss';
 function Navbar() {
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  
-
   return (
-    <div className="navbar" id="cloud-intro">
-      {/* <nav> */}
+    <div className="navbar-wrapper" id="cloud-intro">
       <h1>Cloudband</h1>
-        <div className="theme-switch-wrapper">
-          <label class="theme-switch" for="checkbox">
-            <input type="checkbox" id="checkbox" />
-              <div class="slider-round"></div>
-            </label>
-            <b>Enable Dark Mode</b>
-        {/* <li>
-          <a href="#">About</a>
+      <ul className="menu-items">
+        <li>
+          <a href="#">Team</a>
         </li>
         <li>
-          <a href="#">Contact</a>
+          <a href="#">Github</a>
         </li>
         <li>
           <a href="#">Login</a>
         </li>
-        <li>
-          <a href="#">Signup</a>
-        </li>
-      </ul> */}
-      {/* </nav> */}
-      </div>
+      </ul>
     </div>
   );
 }
