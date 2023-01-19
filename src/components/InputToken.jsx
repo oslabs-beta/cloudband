@@ -15,7 +15,7 @@ const InputToken = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // console.log(arn);
+    console.log('arn from InputToken :', arn);
     // console.log(secretKey);
     axios
       .get('http://localhost:3000/metricsRequest', {
@@ -30,6 +30,9 @@ const InputToken = (props) => {
         console.log('status: ', status);
         setStatus('authorized');
         console.log('status after being set: ', status);
+      })
+      .catch((err) => {
+        console.log(err);
       });
   };
 
