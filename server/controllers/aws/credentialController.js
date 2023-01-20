@@ -12,7 +12,7 @@ const credentials = {
 
 credentialController.getCredentials = async (req, res, next) => {
   console.log('entered CredentialController');
-  console.log('credentials', credentials);
+  // console.log('credentials', credentials);
   const { arn } = req.query;
   const info = {
     RoleArn: arn, //will receive from front end
@@ -21,20 +21,20 @@ credentialController.getCredentials = async (req, res, next) => {
     ExternalId: '92a98196-9090-11ed-a1eb-0242ac120002',
   };
 
-  console.log('entered credentialController.getCredentials');
+  // console.log('entered credentialController.getCredentials');
   //1st Step: Send ARN, RoleSessionName, and ExternalId to AWS STS
   const stsClient = new STSClient({ region: region, credentials: credentials });
 
   try {
     const assumedRole = await stsClient.send(new AssumeRoleCommand(info));
     const accessKeyId = assumedRole.Credentials.AccessKeyId;
-    console.log('accessKeyId', accessKeyId);
+    // console.log('accessKeyId', accessKeyId);
     const secretAccessKey = assumedRole.Credentials.SecretAccessKey;
     // console.log('secretAccessKey', secretAccessKey);
     const sessionToken = assumedRole.Credentials.SessionToken;
     // console.log('sessionToken', sessionToken);
     res.locals.credentials = { accessKeyId, secretAccessKey, sessionToken };
-    console.log('res.locals.credentials', res.locals.credentials);
+    // console.log('res.locals.credentials', res.locals.credentials);
     return next();
   } catch (error) {
     console.log(error);
