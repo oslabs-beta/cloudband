@@ -8,7 +8,10 @@ const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
-
+const listLambdasController = require('./controllers/lambda/listLambdasController');
+const invocationController = require('./controllers/lambda/invocationController');
+const throttleController = require('./controllers/lambda/throttleController');
+const errorsController = require('./controllers/lambda/errorsController');
 const mongoose = require('mongoose');
 
 mongoose
@@ -69,6 +72,15 @@ app.get(
   cloudWatchController.getCPUSurplusCreditBalance,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/cpu-credits',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.errors);
   }
 );
 
