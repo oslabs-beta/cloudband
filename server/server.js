@@ -42,7 +42,7 @@ app.use(express.static('src'));
 
 // get metrics
 app.get(
-  '/metricsRequest/cupUtilization',
+  '/metricsRequest/cpuUtilization',
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudWatchController.getCPUUtilization,
