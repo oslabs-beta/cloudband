@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-// import '../componentStyling/NetworkPacketsChart.scss';
+import '../componentStyling/LineChartStyling.scss';
 
 const NetworkOutChart = (props) => {
   const { chartData } = props;

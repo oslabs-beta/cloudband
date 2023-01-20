@@ -44,19 +44,39 @@ app.use(express.json());
 app.use(express.static('src'));
 
 // get metrics
-// app.get(
-//   '/metricsRequest',
-//   credentialController.getCredentials,
-//   instancesController.getInstances,
-//   cloudWatchController.getMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.chartData);
-//   }
-// );
-
-// get invocation metrics
 app.get(
-  '/metricsRequest',
+  '/cpu-utilization',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getCPUUtilization,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/network-in-out',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getNetworkIn,
+  cloudWatchController.getNetworkOut,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/cpu-credits',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getCPUCreditUsage,
+  cloudWatchController.getCPUCreditBalance,
+  cloudWatchController.getCPUSurplusCreditBalance,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+// get Lambda functions metrics
+app.get(
+  '/invocations',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   invocationController.getInvocationMetrics,
@@ -64,26 +84,26 @@ app.get(
     return res.status(200).json(res.locals.invocations);
   }
 );
-// get throttle metrics
-// app.get(
-//   '/metricsRequest',
-//   credentialController.getCredentials,
-//   listLambdasController.getLambdas,
-//   throttleController.getThrottleMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.throttles);
-//   }
-// );
-// get errors metrics
-// app.get(
-//   '/metricsRequest',
-//   credentialController.getCredentials,
-//   listLambdasController.getLambdas,
-//   errorsController.getErrorMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.errors);
-//   }
-// );
+
+app.get(
+  '/throttles',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  throttleController.getThrottleMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.throttles);
+  }
+);
+
+app.get(
+  '/errors',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  errorsController.getErrorMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.errors);
+  }
+);
 
 // sign up
 app.post(
@@ -131,3 +151,13 @@ app.listen(PORT, () => {
 
 // exports (express app)
 module.exports = app;
+
+app.get(
+  '/metricsRequest',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  errorsController.getErrorMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.errors);
+  }
+);

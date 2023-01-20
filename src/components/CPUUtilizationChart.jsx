@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-// import '../componentStyling/CPUUtilizationChart.scss';
+import '../componentStyling/LineChartStyling.scss';
 
 const CPUUtilizationChart = (props) => {
   const { chartData } = props;
-
   const labels = chartData.timestamps
     .map((timestamp) => {
       const date = new Date(timestamp);
@@ -13,11 +12,9 @@ const CPUUtilizationChart = (props) => {
       // const day = date.getDate();
       const hour = date.getHours();
       const minute = date.getMinutes();
-
       return `${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
-
   const CHART_COLORS = {
     0: 'rgb(255, 99, 132)',
     1: 'rgb(255, 159, 64)',
@@ -27,7 +24,6 @@ const CPUUtilizationChart = (props) => {
     5: 'rgb(153, 102, 255)',
     6: 'rgb(201, 203, 207)',
   };
-
   const datasets = chartData.values
     .map((array, index) => {
       return {
@@ -39,12 +35,10 @@ const CPUUtilizationChart = (props) => {
       };
     })
     .reverse();
-
   const data = {
     labels: labels, // [..]
     datasets: datasets, // [{..}, {..}, {..}]
   };
-
   const options = {
     responsive: true,
     interaction: {
@@ -66,7 +60,6 @@ const CPUUtilizationChart = (props) => {
       },
     },
   };
-
   return (
     <div className="chart-wrapper">
       <Line data={data} options={options} className="chart-content" />
