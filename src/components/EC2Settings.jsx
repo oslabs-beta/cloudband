@@ -1,7 +1,7 @@
 import React from 'react';
-import '../componentStyling/Settings.scss';
+import '../componentStyling/EC2Settings.scss';
 
-const Settings = (props) => {
+const EC2Settings = (props) => {
   const { ec2Metric, setEc2Metric } = props;
 
   const onChange = (event) => {
@@ -20,13 +20,11 @@ const Settings = (props) => {
         >
           <option value="cpu-credits">CPU Credits</option>
           <option value="cpu-utilization">CPU Utilization</option>
-          <option value="memory-utilization">Memory Utilization</option>
           <option value="network-in-out">Network In/Out</option>
-          <option value="network-packets">Network Packets</option>
         </select>
       </section>
     </div>
   );
 };
 
-export default Settings;
+export default EC2Settings;
