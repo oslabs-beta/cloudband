@@ -53,22 +53,21 @@ const ChartContainer = (props) => {
       })
       .then((response) => {
         if (ec2Metric === 'cpu-utilization') {
-          const { CPUUtilization } = response.data;
-          setCpuUtilizationData(CPUUtilization);
-          console.log('response.data: ', CPUUtilization);
+          // const { CPUUtilization } = response.data;
+          setCpuUtilizationData(response.data.CPUUtilization);
+          console.log('response.data: ', response.data.CPUUtilization);
           console.log('cpuUtilizationData: ', cpuUtilizationData);
         } else if (ec2Metric === 'network-in-out') {
+          console.log(response.data);
           setNetworkInData(response.data.NetworkIn);
-          console.log(networkInData);
           setNetworkOutData(response.data.NetworkOut);
-          console.log(networkOutData);
         } else if (ec2Metric === 'cpu-credits') {
           setCpuCreditUsageData(response.data.CPUCreditUsage);
-          console.log(cpuCreditUsageData);
+          // console.log(cpuCreditUsageData);
           setCpuCreditBalanceData(response.data.CPUCreditBalance);
-          console.log(cpuCreditBalanceData);
+          // console.log(cpuCreditBalanceData);
           setCpuSurplusCreditBalanceData(response.data.CPUSurplusCreditBalance);
-          console.log(cpuSurplusCreditBalanceData);
+          // console.log(cpuSurplusCreditBalanceData);
         }
       })
       // .then((response) => {
