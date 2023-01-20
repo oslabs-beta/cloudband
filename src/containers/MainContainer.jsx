@@ -13,8 +13,8 @@ const MainContainer = () => {
     instanceIds: [],
   });
   const [status, setStatus] = useState('start');
-  const [ec2Metric, setEc2Metric] = useState('cpu-utilization');
-  console.log('ec2Metric from MainContainer: ', ec2Metric);
+  const [ec2Metric, setEc2Metric] = useState('');
+  const [arn, setArn] = useState();
 
   return (
     <div className="main-container-wrapper" id="cloud-intro">
@@ -24,8 +24,10 @@ const MainContainer = () => {
         status={status}
         ec2Metric={ec2Metric}
         setEc2Metric={setEc2Metric}
+        arn={arn}
+        setArn={setArn}
       />
-      <ChartContainer chartData={chartData} ec2Metric={ec2Metric} />
+      <ChartContainer chartData={chartData} ec2Metric={ec2Metric} arn={arn} />
     </div>
   );
 };

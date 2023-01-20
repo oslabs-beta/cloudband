@@ -4,7 +4,15 @@ import EC2Settings from '../components/EC2Settings.jsx';
 import '../containerStyling/SidebarContainer.scss';
 
 const SidebarContainer = (props) => {
-  const { status, setChartData, setStatus, ec2Metric, setEc2Metric } = props;
+  const {
+    status,
+    setChartData,
+    setStatus,
+    ec2Metric,
+    setEc2Metric,
+    arn,
+    setArn,
+  } = props;
 
   return (
     <div className="sidebar-wrapper">
@@ -16,6 +24,8 @@ const SidebarContainer = (props) => {
                 setChartData={setChartData}
                 setStatus={setStatus}
                 status={status}
+                arn={arn}
+                setArn={setArn}
               />
             );
           case 'authorized':
