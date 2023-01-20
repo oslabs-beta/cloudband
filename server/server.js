@@ -74,8 +74,29 @@ app.get(
     return res.status(200).json(res.locals.chartData);
   }
 );
+// get Lambda functions metrics
 app.get(
-  '/metricsRequest',
+  '/invocations',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  invocationController.getInvocationMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.invocations);
+  }
+);
+
+app.get(
+  '/throttles',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  throttleController.getThrottleMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.throttles);
+  }
+);
+
+app.get(
+  '/errors',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   errorsController.getErrorMetrics,
