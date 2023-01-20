@@ -42,7 +42,7 @@ app.use(express.static('src'));
 
 // get metrics
 app.get(
-  '/metricsRequest/cpuUtilization',
+  '/cpu-utilization',
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudWatchController.getCPUUtilization,
@@ -51,7 +51,7 @@ app.get(
   }
 );
 app.get(
-  '/metricsRequest/networkInOut',
+  '/network-in-out',
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudWatchController.getNetworkIn,
@@ -61,7 +61,7 @@ app.get(
   }
 );
 app.get(
-  '/metricsRequest/cpuCredits',
+  '/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudWatchController.getCPUCreditUsage,

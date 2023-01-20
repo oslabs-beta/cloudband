@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import CPUUtilizationChart from '../components/CPUUtilizationChart.jsx';
 import NetworkInChart from '../components/NetworkInChart.jsx';
 import NetworkOutChart from '../components/NetworkOutChart.jsx';
@@ -8,27 +9,95 @@ import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceC
 import '../containerStyling/ChartContainer.scss';
 
 const ChartContainer = (props) => {
-  const { ec2Metric, chartData } = props;
+  const { ec2Metric, arn } = props;
+  const [cpuUtilizationData, setCpuUtilizationData] = useState({
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+  });
 
-  // fetch
-  //   ec2Metric => network-in-out -> run two queries and return
+  const [networkInData, setNetworkInData] = useState({
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+  });
+  const [networkOutData, setNetworkOutData] = useState({
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+  });
+  const [cpuCreditUsageData, setCpuCreditUsageData] = useState({
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+  });
+
+  const [cpuCreditBalanceData, setCpuCreditBalanceData] = useState({
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+  });
+  const [cpuSurplusCreditBalanceData, setCpuSurplusCreditBalanceData] =
+    useState({
+      values: [],
+      timestamps: [],
+      instanceIds: [],
+    });
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/${ec2Metric}`, {
+        params: {
+          arn,
+        },
+      })
+      .then((response) => {
+        if (ec2Metric === 'cpu-utilization') {
+          const { CPUUtilization } = response.data;
+          setCpuUtilizationData(CPUUtilization);
+          console.log('response.data: ', CPUUtilization);
+          console.log('cpuUtilizationData: ', cpuUtilizationData);
+        } else if (ec2Metric === 'network-in-out') {
+          setNetworkInData(response.data.NetworkIn);
+          console.log(networkInData);
+          setNetworkOutData(response.data.NetworkOut);
+          console.log(networkOutData);
+        } else if (ec2Metric === 'cpu-credits') {
+          setCpuCreditUsageData(response.data.CPUCreditUsage);
+          console.log(cpuCreditUsageData);
+          setCpuCreditBalanceData(response.data.CPUCreditBalance);
+          console.log(cpuCreditBalanceData);
+          setCpuSurplusCreditBalanceData(response.data.CPUSurplusCreditBalance);
+          console.log(cpuSurplusCreditBalanceData);
+        }
+      })
+      // .then((response) => {
+      //   console.log('response data --> ', response.data);
+      // })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [ec2Metric]);
 
   function switchCharts() {
     if (ec2Metric === 'cpu-utilization') {
-      return <CPUUtilizationChart chartData={chartData} />;
+      return <CPUUtilizationChart chartData={cpuUtilizationData} />;
     } else if (ec2Metric === 'network-in-out') {
       return (
         <div>
-          <NetworkInChart chartData={chartData} />;
-          <NetworkOutChart chartData={chartData} />;
+          <NetworkInChart chartData={networkInData} />;
+          <NetworkOutChart chartData={networkOutData} />;
         </div>
       );
     } else if (ec2Metric === 'cpu-credits') {
       return (
         <div>
-          <CPUCreditUsageChart chartData={chartData} />;
-          <CPUCreditBalanceChart chartData={chartData} />;
-          <CPUSurplusCreditBalanceChart chartData={chartData} />;
+          <CPUCreditUsageChart chartData={cpuCreditUsageData} />;
+          <CPUCreditBalanceChart chartData={cpuCreditBalanceData} />;
+          <CPUSurplusCreditBalanceChart
+            chartData={cpuSurplusCreditBalanceData}
+          />
+          ;
         </div>
       );
     }

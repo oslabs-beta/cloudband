@@ -71,7 +71,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
       instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
     };
 
-    res.locals.chartData.CPUUtilization = chartData;
+    res.locals.chartData = { CPUUtilization: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {
@@ -281,7 +281,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
       instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
     };
 
-    res.locals.chartData.CPUCreditUsage = chartData;
+    res.locals.chartData = { CPUCreditUsage: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {
@@ -430,7 +430,4 @@ cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  cloudwatchController,
-  //getEC2MemoryMetrics
-};
+module.exports = cloudwatchController;
