@@ -75,10 +75,10 @@ app.get(
   }
 );
 app.get(
-  '/cpu-credits',
+  '/metricsRequest',
   credentialController.getCredentials,
-  instancesController.getInstances,
-  cloudWatchController.getMetrics,
+  listLambdasController.getLambdas,
+  errorsController.getErrorMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.errors);
   }
