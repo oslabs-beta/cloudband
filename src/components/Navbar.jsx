@@ -1,7 +1,8 @@
-import React from 'react';
 import '../componentStyling/Navbar.scss';
 
 function Navbar() {
+  
+
   return (
     <div className="navbar-wrapper" id="cloud-intro">
       <h1>Cloudband</h1>
