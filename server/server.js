@@ -42,10 +42,31 @@ app.use(express.static('src'));
 
 // get metrics
 app.get(
-  '/metricsRequest',
+  '/metricsRequest/cupUtilization',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getMetrics,
+  cloudWatchController.getCPUUtilization,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/metricsRequest/networkInOut',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getNetworkIn,
+  cloudWatchController.getNetworkOut,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/metricsRequest/cpuCredits',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getCPUCreditUsage,
+  cloudWatchController.getCPUCreditBalance,
+  cloudWatchController.getCPUSurplusCreditBalance,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
