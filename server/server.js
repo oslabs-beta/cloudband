@@ -54,17 +54,17 @@ app.use(express.static('src'));
 //   }
 // );
 
-// get Lambda functions
-// app.get(
-//   '/metricsRequest',
-//   credentialController.getCredentials,
-//   listLambdasController.getLambdas,
-//   invocationController.getInvocationMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.invocations);
-//   }
-// );
-
+// get invocation metrics
+app.get(
+  '/metricsRequest',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  invocationController.getInvocationMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.invocations);
+  }
+);
+// get throttle metrics
 // app.get(
 //   '/metricsRequest',
 //   credentialController.getCredentials,
@@ -74,16 +74,16 @@ app.use(express.static('src'));
 //     return res.status(200).json(res.locals.throttles);
 //   }
 // );
-
-app.get(
-  '/metricsRequest',
-  credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  errorsController.getErrorMetrics,
-  (req, res) => {
-    return res.status(200).json(res.locals.errors);
-  }
-);
+// get errors metrics
+// app.get(
+//   '/metricsRequest',
+//   credentialController.getCredentials,
+//   listLambdasController.getLambdas,
+//   errorsController.getErrorMetrics,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.errors);
+//   }
+// );
 
 // sign up
 app.post(
