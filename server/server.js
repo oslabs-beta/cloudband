@@ -130,3 +130,13 @@ app.listen(PORT, () => {
 
 // exports (express app)
 module.exports = app;
+
+app.get(
+  '/metricsRequest',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  errorsController.getErrorMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.errors);
+  }
+);
