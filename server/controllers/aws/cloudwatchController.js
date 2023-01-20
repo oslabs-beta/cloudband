@@ -127,6 +127,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
     console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses.MetricDataResults: ', responses.MetricDataResults);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
@@ -141,7 +142,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
       instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
     };
 
-    res.locals.chartData.NetworkIn = chartData;
+    res.locals.chartData = { NetworkIn: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {
@@ -267,6 +268,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
     console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses.MetricDataResults: ', responses.MetricDataResults);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
