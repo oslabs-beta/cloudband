@@ -1,17 +1,20 @@
 import React from 'react';
 import InputToken from '../components/InputToken.jsx';
-import EC2Settings from '../components/EC2Settings.jsx';
+import Settings from '../components/Settings.jsx';
 import '../containerStyling/SidebarContainer.scss';
 
 const SidebarContainer = (props) => {
   const {
     status,
-    setChartData,
     setStatus,
     ec2Metric,
     setEc2Metric,
     arn,
     setArn,
+    tool,
+    setTool,
+    funcNames,
+    setFuncNames,
   } = props;
 
   return (
@@ -21,7 +24,6 @@ const SidebarContainer = (props) => {
           case 'start':
             return (
               <InputToken
-                setChartData={setChartData}
                 setStatus={setStatus}
                 status={status}
                 arn={arn}
@@ -31,9 +33,13 @@ const SidebarContainer = (props) => {
           case 'authorized':
             return (
               <div>
-                <EC2Settings
+                <Settings
                   ec2Metric={ec2Metric}
                   setEc2Metric={setEc2Metric}
+                  tool={tool}
+                  setTool={setTool}
+                  funcNames={funcNames}
+                  setFuncNames={setFuncNames}
                 />
               </div>
             );
