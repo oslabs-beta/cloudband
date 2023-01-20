@@ -4,7 +4,7 @@ const {
 } = require('@aws-sdk/client-lambda');
 
 const listLambdasController = {};
-//retrieve lambda functions
+//retrieve lambda function names
 listLambdasController.getLambdas = async (req, res, next) => {
   const lambdaClient = new LambdaClient({
     region: 'us-east-1',
@@ -18,11 +18,11 @@ listLambdasController.getLambdas = async (req, res, next) => {
         FunctionVersion: 'ALL',
       })
     );
-    // console.log('allFuncs', allFuncs);
+
     const funcList = allFuncs.Functions.map((func) => func.FunctionName);
-    // console.log('funcList', funcList);
-    res.locals.funcs = funcList;
-    console.log('res.locals.funcs', res.locals.funcs);
+
+    res.locals.lambdaNames = funcList;
+
     return next();
   } catch (err) {
     console.log('Error in listLambdas', err);

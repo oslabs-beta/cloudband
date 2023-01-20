@@ -9,9 +9,8 @@ const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
-const invocationController = require('./controllers/lambda/invocationController');
-const throttleController = require('./controllers/lambda/throttleController');
-const errorsController = require('./controllers/lambda/errorsController');
+const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
+
 const mongoose = require('mongoose');
 
 mongoose
@@ -74,34 +73,24 @@ app.get(
     return res.status(200).json(res.locals.chartData);
   }
 );
-// get Lambda functions metrics
-app.get(
-  '/invocations',
-  credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  invocationController.getInvocationMetrics,
-  (req, res) => {
-    return res.status(200).json(res.locals.invocations);
-  }
-);
+
+//get Lambda function names
 
 app.get(
-  '/throttles',
+  '/getLambdaNames',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  throttleController.getThrottleMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.throttles);
+    return res.status(200).json(res.locals.lambdaNames);
   }
 );
-
+// get Lambda metrics by Each Function
 app.get(
-  '/errors',
+  '/getLambdaMetrics',
   credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  errorsController.getErrorMetrics,
+  lambdaMetricsController.getLambdaMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.errors);
+    return res.status(200).json(res.locals.lambdaMetrics);
   }
 );
 
@@ -151,13 +140,3 @@ app.listen(PORT, () => {
 
 // exports (express app)
 module.exports = app;
-
-app.get(
-  '/metricsRequest',
-  credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  errorsController.getErrorMetrics,
-  (req, res) => {
-    return res.status(200).json(res.locals.errors);
-  }
-);
