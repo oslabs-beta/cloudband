@@ -1,16 +1,12 @@
 import '../componentStyling/Navbar.scss';
 import React from 'react';
 
-function Navbar(props) {
-  const { setShowPage } = props;
-
-  const handleClick = (event) => {
-    setShowPage(event.target.value);
-  };
-
+function Navbar() {
   return (
     <div className="navbar-wrapper" id="cloud-intro">
-      <h1>Cloudband</h1>
+      <a href="/" className="logo">
+        Cloudband
+      </a>
       <ul className="menu-items">
         <li>
           <a href="#">Team</a>
@@ -24,7 +20,7 @@ function Navbar(props) {
           </a>
         </li>
         <li>
-          <a href="/" onClick={handleClick} value="login">
+          <a href="/login" value="login">
             Login
           </a>
         </li>
