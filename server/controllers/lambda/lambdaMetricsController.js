@@ -11,9 +11,7 @@ const getLambdaMetrics = async (req, res, next) => {
   const cloudwatch = new CloudWatchClient(credentials);
   const EndTime = new Date();
   const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
-  //   console.log('start time', StartTime);
-  console.log('end time', EndTime);
-  console.log('req.query in getLambdaMetrics: ', req.query);
+
   const { currFunc } = req.query;
 
   const params = {

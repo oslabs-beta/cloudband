@@ -46,6 +46,7 @@
   "dependencies": {
     "@aws-cdk/aws-cloudformation": "^1.187.0",
     "@aws-sdk/client-cloudwatch": "^3.254.0",
+    "@aws-sdk/client-cloudwatch-logs": "^3.254.0",
     "@aws-sdk/client-ec2": "^3.245.0",
     "@aws-sdk/client-lambda": "^3.252.0",
     "@aws-sdk/client-sts": "^3.245.0",
