@@ -10,6 +10,7 @@ const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
 const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
+const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
 
 const mongoose = require('mongoose');
 
@@ -88,9 +89,10 @@ app.get(
 app.get(
   '/getLambdaMetrics',
   credentialController.getCredentials,
+  lambdaLogsController.getLambdaLogs,
   lambdaMetricsController.getLambdaMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.lambdaMetrics);
+    return res.status(200).json(res.locals.lambdaMetricsLogs);
   }
 );
 

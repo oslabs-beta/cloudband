@@ -13,6 +13,7 @@ const getLambdaMetrics = async (req, res, next) => {
   const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
 
   const { currFunc } = req.query;
+  const { functionLogs } = res.locals;
 
   const params = {
     StartTime,
@@ -99,13 +100,13 @@ const getLambdaMetrics = async (req, res, next) => {
   try {
     const command = new GetMetricDataCommand(params);
     const metricData = await cloudwatch.send(command);
-    console.log('data', metricData);
+
     const metricByFuncData = metricData.MetricDataResults.map(
       (eachFuncMetric) => {
         let values = eachFuncMetric.Values;
         let timeStamps = eachFuncMetric.Timestamps;
         let metricName = eachFuncMetric.Label;
-        console.log('metricName', metricName);
+
         return {
           metricName: metricName,
           values: values,
@@ -113,8 +114,8 @@ const getLambdaMetrics = async (req, res, next) => {
         };
       }
     );
-    res.locals.lambdaMetrics = metricByFuncData;
-    console.log('res.locals.lambdaMetrics', res.locals.lambdaMetrics);
+    res.locals.lambdaMetricsLogs = [...metricByFuncData, functionLogs];
+    console.log('res.locals.lambdaMetricsLogs', res.locals.lambdaMetricsLogs);
     return next();
   } catch (error) {
     console.error(error);
