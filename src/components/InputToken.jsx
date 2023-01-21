@@ -7,7 +7,7 @@ const AWS = require('aws-sdk');
 AWS.config.update({ region: 'REGION' });
 
 const InputToken = (props) => {
-  const { setStatus, status, setArn, arn } = props;
+  const { setStatus, setArn, setEc2Metric } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault();
