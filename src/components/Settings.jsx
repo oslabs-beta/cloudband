@@ -13,6 +13,29 @@ const EC2Settings = (props) => {
     setTool(event.target.value);
   };
 
+  const onFuncNameChange = (event) => {
+    setFuncName(event.target.value);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/getLambdaNames`, {
+        params: {
+          arn,
+        },
+      })
+      .then((response) => {
+        console.log(
+          'lambda names response from Settings component axios call: ',
+          response
+        );
+        setFuncNames(response.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [tool]);
+
   function switchSettings() {
     if (tool === 'ec2') {
       return (
@@ -34,7 +57,25 @@ const EC2Settings = (props) => {
         </div>
       );
     } else if (tool === 'lambda') {
-      return <div>Lambda function name selection goes here</div>;
+      const lambdaDropdownOptions = funcNames.map((funcName) => {
+        return <option value={funcName}>{funcName}</option>;
+      });
+
+      return (
+        <div className="settings-wrapper">
+          <label htmlFor="func-name">Choose a Lambda function:</label>
+          <section className="dropdown-wrapper">
+            <select
+              name="func-name"
+              id="func-name"
+              onChange={onFuncNameChange}
+              value={funcName}
+            >
+              {lambdaDropdownOptions}
+            </select>
+          </section>
+        </div>
+      );
     }
   }
 
