@@ -11,17 +11,17 @@ import './styles.scss';
 const App = () => {
   return (
     <div className="router">
-      <Navbar setShowPage={setShowPage} />
+      <Navbar />
       <hr />
       <div className="routerMain" id="content">
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/get-started" element={<Signup />} />
           <Route path="/visualizer" element={<MainContainer />} />
         </Routes>
       </div>
-      {/* <LandingPage /> */}
+      <hr />
       <Footer />
     </div>
   );
