@@ -5,7 +5,7 @@
   "main": "webpack.config.js",
   "scripts": {
     "frontend": "NODE_ENV=development webpack-dev-server --open",
-    "start": "NODE_ENV=production node server/server.js",
+    "start": "NODE_ENV=production nodemon server/server.js",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot --progress --color \" \"nodemon ./server/server.js\"",
     "build": "NODE_ENV=production webpack",
     "test": "jest --silent --detectOpenHandles --forceExit"
@@ -21,9 +21,18 @@
     "url": "https://github.com/oslabs-beta/cloudband/issues"
   },
   "homepage": "https://github.com/oslabs-beta/cloudband#readme",
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js",
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
+    "@shelf/jest-mongodb": "^4.1.6",
     "babel-loader": "^9.1.0",
     "concurrently": "^7.6.0",
     "css-loader": "^6.7.3",

@@ -33,40 +33,4 @@ userSchema.pre('save', function (next) {
   });
 });
 
-// userSchema.methods.comparePassword = function (candidatePassword, cb) {
-//   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
-//     if (err) return cb(err);
-//     cb(null, isMatch);
-//   });
-// };
-// any time we save a document to our users collection (by calling User.save(...))
-// run this function BEFORE saving the document
-// userSchema.pre('save', async function (next) {
-//   // try {
-//   //   console.log('inside userSchema');
-//   //   if (this.password) {
-//   //     await bcrypt.genSaltSync(SALT_WORK_FACTOR, function (err, salt) {
-//   //       bcrypt.hash(this.password, salt, function (err, hash) {
-//   //         if (err) return next(err);
-//   //         this.password = hash;
-//   //         console.log('hashedPW ', hash);
-//   //         return next();
-//   //       });
-//   //     });
-//   //   }
-//   // } catch (err) {
-//   //   return next('Error hashing password: ' + JSON.stringify(err));
-//   // }
-// });
-
-//MOVED THIS LOGIC TO THE USER CONTROLLER
-// userSchema.methods.comparePassword = async function (candidatePassword) {
-//   try {
-//     await bcrypt.compare(candidatePassword, this.password);
-//     return next();
-//   } catch (err) {
-//     return next('Passwords do not match: ' + JSON.stringify(err));
-//   }
-// };
-
 module.exports = mongoose.model('User', userSchema);
