@@ -71,7 +71,11 @@ const EC2ChartContainer = (props) => {
 
   function switchCharts() {
     if (ec2Metric === 'cpu-utilization') {
-      return <CPUUtilizationChart chartData={cpuUtilizationData} />;
+      return (
+        <div>
+          <CPUUtilizationChart chartData={cpuUtilizationData} />
+        </div>
+      );
     } else if (ec2Metric === 'network-in-out') {
       return (
         <div>

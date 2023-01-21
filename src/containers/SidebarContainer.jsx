@@ -30,6 +30,7 @@ const SidebarContainer = (props) => {
                 status={status}
                 arn={arn}
                 setArn={setArn}
+                setEc2Metric={setEc2Metric}
               />
             );
           case 'authorized':
