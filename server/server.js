@@ -8,6 +8,8 @@ const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
+const listLambdasController = require('./controllers/lambda/listLambdasController');
+const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
 
 const mongoose = require('mongoose');
 
@@ -51,12 +53,53 @@ app.use(express.static('dist'));
 
 // get metrics
 app.get(
-  '/metricsRequest',
+  '/cpu-utilization',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getMetrics,
+  cloudWatchController.getCPUUtilization,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/network-in-out',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getNetworkIn,
+  cloudWatchController.getNetworkOut,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+app.get(
+  '/cpu-credits',
+  credentialController.getCredentials,
+  instancesController.getInstances,
+  cloudWatchController.getCPUCreditUsage,
+  cloudWatchController.getCPUCreditBalance,
+  cloudWatchController.getCPUSurplusCreditBalance,
+  (req, res) => {
+    return res.status(200).json(res.locals.chartData);
+  }
+);
+
+//get Lambda function names
+
+app.get(
+  '/getLambdaNames',
+  credentialController.getCredentials,
+  listLambdasController.getLambdas,
+  (req, res) => {
+    return res.status(200).json(res.locals.lambdaNames);
+  }
+);
+// get Lambda metrics by Each Function
+app.get(
+  '/getLambdaMetrics',
+  credentialController.getCredentials,
+  lambdaMetricsController.getLambdaMetrics,
+  (req, res) => {
+    return res.status(200).json(res.locals.lambdaMetrics);
   }
 );
 

@@ -18,8 +18,6 @@ const PolarChart = (props) => {
     return Math.max(...array);
   });
 
-  console.log('maxValues: ', maxValues);
-
   const data = {
     labels: chartData.instanceIds,
     datasets: [

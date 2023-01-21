@@ -1,0 +1,31 @@
+@import '../variables';
+
+.settings-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 40px 0 40px;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  label {
+    padding-bottom: 5px;
+  }
+
+  .dropdown-wrapper {
+    select {
+      border-radius: 40px;
+      border: 1px solid var(--mid-blue);
+      color: var(--mid-blue);
+      font-size: 16px;
+      padding: 5px;
+      width: 190px;
+    }
+  }
+
+  .dropdown-wrapper:after {
+    color: red;
+  }
+}

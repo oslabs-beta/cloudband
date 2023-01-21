@@ -25,7 +25,7 @@ module.exports = {
       res.locals.ec2Instances = {
         instances: instanceIds,
       };
-
+      // console.log(res.locals.ec2Instances);
       return next();
     } catch (err) {
       console.log('error in describeInstances', err);
