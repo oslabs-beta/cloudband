@@ -25,6 +25,9 @@ const LambdaChartContainer = (props) => {
     timestamps: [],
   });
 
+  const [logs, setLogs] = useState([]); // TO DO w/ Tomas
+  //logs = [{message: string, timestamp: Unix time}, {}. {}]
+
   useEffect(() => {
     axios
       .get(`http://localhost:3000/getLambdaMetrics`, {
@@ -42,6 +45,7 @@ const LambdaChartContainer = (props) => {
         setThrottleData(response.data[1]);
         setErrorData(response.data[2]);
         setDurationData(response.data[3]);
+        // setLogs(response.data[4]); --> TO DO w/ Tomas
       })
       .catch((err) => {
         console.log(err);

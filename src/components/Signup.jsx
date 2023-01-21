@@ -6,7 +6,7 @@ const AWS = require('aws-sdk');
 //set the region
 AWS.config.update({ region: 'REGION' });
 
-const InputToken = (props) => {
+const Signup = (props) => {
   const { setStatus, setArn, setEc2Metric } = props;
 
   const handleSubmit = (event) => {
@@ -46,4 +46,4 @@ const InputToken = (props) => {
   );
 };
 
-export default InputToken;
+export default Signup;
