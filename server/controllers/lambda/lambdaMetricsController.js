@@ -10,11 +10,11 @@ const getLambdaMetrics = async (req, res, next) => {
   };
   const cloudwatch = new CloudWatchClient(credentials);
   const EndTime = new Date();
-  const StartTime = new Date(EndTime.getTime() - 0.3 * 24 * 60 * 60 * 1000);
+  const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
   //   console.log('start time', StartTime);
   console.log('end time', EndTime);
-
-  const { funcName } = req.query;
+  console.log('req.query in getLambdaMetrics: ', req.query);
+  const { currFunc } = req.query;
 
   const params = {
     StartTime,
@@ -33,7 +33,7 @@ const getLambdaMetrics = async (req, res, next) => {
             Dimensions: [
               {
                 Name: 'FunctionName',
-                Value: funcName,
+                Value: currFunc,
               },
             ],
           },
@@ -51,7 +51,7 @@ const getLambdaMetrics = async (req, res, next) => {
             Dimensions: [
               {
                 Name: 'FunctionName',
-                Value: funcName,
+                Value: currFunc,
               },
             ],
           },
@@ -69,7 +69,7 @@ const getLambdaMetrics = async (req, res, next) => {
             Dimensions: [
               {
                 Name: 'FunctionName',
-                Value: funcName,
+                Value: currFunc,
               },
             ],
           },
@@ -87,7 +87,7 @@ const getLambdaMetrics = async (req, res, next) => {
             Dimensions: [
               {
                 Name: 'FunctionName',
-                Value: funcName,
+                Value: currFunc,
               },
             ],
           },

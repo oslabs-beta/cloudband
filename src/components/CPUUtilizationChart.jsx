@@ -5,6 +5,7 @@ import '../componentStyling/LineChartStyling.scss';
 
 const CPUUtilizationChart = (props) => {
   const { chartData } = props;
+  console.log('cpu utilization data: ', chartData);
   const labels = chartData.timestamps
     .map((timestamp) => {
       const date = new Date(timestamp);

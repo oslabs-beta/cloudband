@@ -8,7 +8,7 @@ import CPUCreditBalanceChart from '../components/CPUCreditBalanceChart.jsx';
 import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceChart.jsx';
 import '../containerStyling/ChartContainer.scss';
 
-const ChartContainer = (props) => {
+const EC2ChartContainer = (props) => {
   const { ec2Metric, arn } = props;
   const [cpuUtilizationData, setCpuUtilizationData] = useState({
     values: [],
@@ -55,24 +55,15 @@ const ChartContainer = (props) => {
         if (ec2Metric === 'cpu-utilization') {
           // const { CPUUtilization } = response.data;
           setCpuUtilizationData(response.data.CPUUtilization);
-          console.log('response.data: ', response.data.CPUUtilization);
-          console.log('cpuUtilizationData: ', cpuUtilizationData);
         } else if (ec2Metric === 'network-in-out') {
-          console.log(response.data);
           setNetworkInData(response.data.NetworkIn);
           setNetworkOutData(response.data.NetworkOut);
         } else if (ec2Metric === 'cpu-credits') {
           setCpuCreditUsageData(response.data.CPUCreditUsage);
-          // console.log(cpuCreditUsageData);
           setCpuCreditBalanceData(response.data.CPUCreditBalance);
-          // console.log(cpuCreditBalanceData);
           setCpuSurplusCreditBalanceData(response.data.CPUSurplusCreditBalance);
-          // console.log(cpuSurplusCreditBalanceData);
         }
       })
-      // .then((response) => {
-      //   console.log('response data --> ', response.data);
-      // })
       .catch((err) => {
         console.log(err);
       });
@@ -105,4 +96,4 @@ const ChartContainer = (props) => {
   return <div className="chart-container-wrapper">{switchCharts()}</div>;
 };
 
-export default ChartContainer;
+export default EC2ChartContainer;
