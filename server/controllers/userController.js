@@ -5,6 +5,7 @@ const userController = {};
 
 // creates new user
 userController.createUser = async (req, res, next) => {
+  console.log('entered Create User');
   try {
     console.log(req.body);
     // taking username and pw from body of request
@@ -20,6 +21,9 @@ userController.createUser = async (req, res, next) => {
     // pass of the newUser data
     res.locals.newUser = newUser;
     console.log('res.locals.newUser: ', res.locals.newUser);
+    // TEMPORARY - checking to make sure i can find the user in the db
+    const userData = await User.find({ email: email });
+    console.log('FOUND USER IN DB: ', userData);
     return next();
     // else throw new Error('Password is incorrect');
   } catch (err) {
