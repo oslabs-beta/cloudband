@@ -12,8 +12,8 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-const InvocationChart = (props) => {
-  const {} = props;
+const InvocationsChart = (props) => {
+  const { chartData } = props;
 
   const options = {
     responsive: true,
@@ -23,28 +23,20 @@ const InvocationChart = (props) => {
       },
       title: {
         display: true,
-        text: 'Chart.js Line Chart',
+        text: 'Lambda Area Chart',
       },
     },
   };
 
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-  ];
+  const labels = chartData.timeStamps;
 
   const data = {
     labels,
     datasets: [
       {
         fill: true,
-        label: 'Dataset 2',
-        data: [7, 12, 22, 9, 4, 90, 50],
+        label: 'Invocations',
+        data: chartData.values,
         borderColor: 'rgb(53, 162, 235)',
         backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
@@ -54,4 +46,4 @@ const InvocationChart = (props) => {
   return <Line options={options} data={data} />;
 };
 
-export default InvocationChart;
+export default InvocationsChart;
