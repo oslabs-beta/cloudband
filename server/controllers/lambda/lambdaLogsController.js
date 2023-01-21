@@ -14,9 +14,6 @@ const getLambdaLogs = async (req, res, next) => {
     credentials: res.locals.credentials,
   });
 
-  // StartTime and EndTime for CloudWatchLogsClient need to be in millisecond format so need to find what the provided time period equates to
-  let StartTime;
-
   // if a nextToken exists (meaning there are more logs to fetch), helperFunc provides a recursive way to get all the logs
   async function helperFunc(nextToken, data = []) {
     // once we run out of nextTokens, return data
@@ -27,7 +24,9 @@ const getLambdaLogs = async (req, res, next) => {
       new FilterLogEventsCommand({
         logGroupName,
         endTime: new Date().valueOf(),
-        startTime: StartTime,
+        startTime: new Date(
+          new Date().getTime() - 1 * 24 * 60 * 60 * 1000
+        ).valueOf(),
         nextToken,
         filterPattern: '- START - END - REPORT',
       })
@@ -42,7 +41,9 @@ const getLambdaLogs = async (req, res, next) => {
       new FilterLogEventsCommand({
         logGroupName,
         endTime: new Date().valueOf(),
-        startTime: StartTime,
+        startTime: new Date(
+          new Date().getTime() - 1 * 24 * 60 * 60 * 1000
+        ).valueOf(),
         filterPattern: '- START - END - REPORT',
       })
     );
@@ -111,41 +112,6 @@ const getLambdaLogs = async (req, res, next) => {
       streams.push(dataArr);
     }
     eventLog.streams = streams;
-
-    // grab just the ERROR logs
-    try {
-      const errorEvents = await cloudWatchLogs.send(
-        new FilterLogEventsCommand({
-          logGroupName,
-          endTime: new Date().valueOf(),
-          startTime: StartTime,
-          filterPattern: 'ERROR',
-        })
-      );
-      const errorStreams = [];
-      // grab from the end to sort the most recent first
-      for (let i = errorEvents.events.length - 1; i >= 0; i -= 1) {
-        let errorObj = errorEvents.events[i];
-        const rowArr = [];
-        // just cut off the last five characters for the log stream name as an identifier
-        rowArr.push('...' + errorObj.logStreamName.slice(-5));
-        // format the date of the log timestamp to be more readable
-        rowArr.push(moment(errorObj.timestamp).format('lll'));
-        // remove the first 67 characters as it's all just metadata/a string of timestamps and unnecessary info
-        rowArr.push(errorObj.message.slice(67));
-        errorStreams.push(rowArr);
-      }
-      eventLog.errors = errorStreams;
-      // send entire object back to frontend
-      res.locals.functionLogs = eventLog;
-      return next();
-    } catch (err) {
-      if (err) {
-        console.error(err);
-
-        return next(err);
-      }
-    }
   } catch (err) {
     if (err) console.error(err);
     return next(err);
