@@ -26,6 +26,7 @@ mongoose
 
 // invoke express
 const app = express();
+//to do = this should be in the ENV file
 const PORT = 3000;
 console.log('server is running');
 
@@ -108,7 +109,7 @@ app.get(
 // sign up
 app.post(
   '/signup',
-  (req, res) => console.log('entered route'),
+  // (req, res) => console.log('entered route'),
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,

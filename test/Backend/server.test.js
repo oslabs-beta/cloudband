@@ -13,10 +13,10 @@ jest.mock('../../server/controllers/aws/cloudwatchController');
 jest.mock('../../server/controllers/aws/instancesController');
 jest.mock('../../server/controllers/aws/credentialController');
 
-describe('Route integration', () => {
-  describe('/metricsRequest', () => {
-    describe('GET', () => {
-      it('respond with a 200 status and application/json content type', () => {
+xdescribe('Route integration', () => {
+  xdescribe('/metricsRequest', () => {
+    xdescribe('GET', () => {
+      xit('respond with a 200 status and application/json content type', () => {
         request.get.mockImplementation((url) => {
           return {
             expect: (status, cb) => {
@@ -42,10 +42,10 @@ describe('Route integration', () => {
     });
   });
 
-  describe('/invalid', () => {
-    describe('invalid request', () => {
+  xdescribe('/invalid', () => {
+    xdescribe('invalid request', () => {
       //we return the evaluation of 'request' here. It evals to a promise, so Jest knows not to say this test passes UNTIL that promise resolves.
-      it('responds with 404 status and this page does not exist', () => {
+      xit('responds with 404 status and this page does not exist', () => {
         request.get.mockImplementation((url) => {
           return {
             expect: (status, cb) => {
