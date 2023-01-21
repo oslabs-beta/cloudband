@@ -6,11 +6,10 @@ const AWS = require('aws-sdk');
 //set the region
 AWS.config.update({ region: 'REGION' });
 
-const Signup = (props) => {
-  const { setStatus, setArn, setEc2Metric } = props;
-
+const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
+    //create post req here to send info to server and build user in db ---> TO DO
   };
 
   return (
@@ -100,8 +99,6 @@ const Signup = (props) => {
             Submit
           </button>
         </div>
-
-        {/* <form action="" className="token-input-form"></form> */}
       </div>
     </div>
   );
