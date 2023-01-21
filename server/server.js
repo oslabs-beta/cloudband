@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cloudWatchController = require('./controllers/aws/cloudWatchController');
+const cloudWatchController = require('./controllers/aws/cloudwatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
@@ -26,23 +26,31 @@ mongoose
 
 // invoke express
 const app = express();
-//to do = this should be in the ENV file
-const PORT = 3000;
+const PORT = 3000; // put in ENV file
 console.log('server is running');
 
 // add cookie parser
 app.use(cookieParser());
 
 // use cors
+// const corsOptions = {
+//   origin: 'http://0.0.0.0:8080',
+//   credentials: true,
+// };
 app.use(cors());
 
 // use express json
 app.use(express.json());
 
-// user cookie parser
-
 // handle static files
-app.use(express.static('src'));
+// if (process.env.NODE_ENV === 'production') {
+//   console.log('this is the production environment');
+//   app.use(express.static('dist'));
+// } else if (process.env.NODE_ENV === 'development') {
+//   console.log('this is the development environment');
+//   app.use(express.static('src'));
+// }
+app.use(express.static('dist'));
 
 // get metrics
 app.get(
@@ -109,7 +117,6 @@ app.get(
 // sign up
 app.post(
   '/signup',
-  // (req, res) => console.log('entered route'),
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
