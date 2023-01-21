@@ -15,6 +15,8 @@ const SidebarContainer = (props) => {
     setTool,
     funcNames,
     setFuncNames,
+    currFunc,
+    setCurrFunc,
   } = props;
 
   return (
@@ -40,6 +42,9 @@ const SidebarContainer = (props) => {
                   setTool={setTool}
                   funcNames={funcNames}
                   setFuncNames={setFuncNames}
+                  arn={arn}
+                  currFunc={currFunc}
+                  setCurrFunc={setCurrFunc}
                 />
               </div>
             );

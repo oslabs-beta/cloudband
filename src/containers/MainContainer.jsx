@@ -40,6 +40,8 @@ const MainContainer = () => {
         setTool={setTool}
         funcNames={funcNames}
         setFuncNames={setFuncNames}
+        currFunc={currFunc}
+        setCurrFunc={setCurrFunc}
       />
       {/* <ChartContainer
         chartData={chartData}

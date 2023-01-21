@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import '../componentStyling/EC2Settings.scss';
 
-const EC2Settings = (props) => {
-  const { ec2Metric, setEc2Metric, tool, setTool, funcNames, setFuncNames } =
-    props;
+const Settings = (props) => {
+  const {
+    ec2Metric,
+    setEc2Metric,
+    tool,
+    setTool,
+    funcNames,
+    setFuncNames,
+    arn,
+    currFunc,
+    setCurrFunc,
+  } = props;
 
   const onEC2MetricChange = (event) => {
     setEc2Metric(event.target.value);
@@ -13,8 +23,8 @@ const EC2Settings = (props) => {
     setTool(event.target.value);
   };
 
-  const onFuncNameChange = (event) => {
-    setFuncName(event.target.value);
+  const onCurrFuncChange = (event) => {
+    setCurrFunc(event.target.value);
   };
 
   useEffect(() => {
@@ -30,6 +40,7 @@ const EC2Settings = (props) => {
           response
         );
         setFuncNames(response.data);
+        setCurrFunc(response.data[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -57,19 +68,23 @@ const EC2Settings = (props) => {
         </div>
       );
     } else if (tool === 'lambda') {
-      const lambdaDropdownOptions = funcNames.map((funcName) => {
-        return <option value={funcName}>{funcName}</option>;
+      const lambdaDropdownOptions = funcNames.map((funcName, index) => {
+        return (
+          <option value={funcName} key={index}>
+            {funcName}
+          </option>
+        );
       });
 
       return (
         <div className="settings-wrapper">
-          <label htmlFor="func-name">Choose a Lambda function:</label>
+          <label htmlFor="curr-func">Choose a Lambda function:</label>
           <section className="dropdown-wrapper">
             <select
-              name="func-name"
-              id="func-name"
-              onChange={onFuncNameChange}
-              value={funcName}
+              name="curr-func"
+              id="curr-func"
+              onChange={onCurrFuncChange}
+              value={currFunc}
             >
               {lambdaDropdownOptions}
             </select>
@@ -93,4 +108,4 @@ const EC2Settings = (props) => {
   );
 };
 
-export default EC2Settings;
+export default Settings;
