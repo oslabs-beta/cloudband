@@ -12,6 +12,7 @@ const InputToken = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     setStatus('authorized');
+    setEc2Metric('cpu-credits');
   };
 
   return (
