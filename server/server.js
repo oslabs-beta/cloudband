@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cloudWatchController = require('./controllers/aws/cloudWatchController');
+const cloudWatchController = require('./controllers/aws/cloudwatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
@@ -23,7 +23,7 @@ mongoose
 
 // invoke express
 const app = express();
-const PORT = 3000;
+const PORT = 3000; // put in ENV file
 console.log('server is running');
 
 // add cookie parser
@@ -63,7 +63,6 @@ app.get(
 // sign up
 app.post(
   '/signup',
-  (req, res) => console.log('entered route'),
   userController.createUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
