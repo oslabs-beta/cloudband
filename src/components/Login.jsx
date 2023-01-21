@@ -3,6 +3,7 @@ import React from 'react';
 const Login = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
+    //add get req to get user info and validate ----> TO DO
   };
 
   return (
