@@ -7,33 +7,11 @@ const AWS = require('aws-sdk');
 AWS.config.update({ region: 'REGION' });
 
 const InputToken = (props) => {
-  const { setChartData } = props;
-  const { setStatus } = props;
-  const { status } = props;
-  const [arn, setArn] = useState();
-  //const [secretKey, setSecretKey] = useState();
+  const { setStatus, status, setArn, arn } = props;
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('arn from InputToken :', arn);
-    // console.log(secretKey);
-    axios
-      .get('http://localhost:3000/metricsRequest', {
-        params: {
-          arn,
-          // secretKey,
-        },
-      })
-      .then((response) => {
-        // console.log('request response: ', response);
-        setChartData(response.data);
-        console.log('status: ', status);
-        setStatus('authorized');
-        console.log('status after being set: ', status);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    setStatus('authorized');
   };
 
   return (
@@ -57,7 +35,6 @@ const InputToken = (props) => {
           id="arn"
           onChange={(e) => {
             setArn(e.target.value);
-            // console.log('access key: ', arn);;
           }}
         />
         <button id="credentials-button" onClick={handleSubmit}>

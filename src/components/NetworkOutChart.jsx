@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import '../componentStyling/Chart.scss';
+import '../componentStyling/LineChartStyling.scss';
 
-const LineChart = (props) => {
+const NetworkOutChart = (props) => {
   const { chartData } = props;
 
   const labels = chartData.timestamps
@@ -55,7 +55,7 @@ const LineChart = (props) => {
     plugins: {
       title: {
         display: true,
-        text: 'Multi Axis Line Chart',
+        text: 'Network Out Chart',
       },
     },
     scales: {
@@ -74,4 +74,4 @@ const LineChart = (props) => {
   );
 };
 
-export default LineChart;
+export default NetworkOutChart;
