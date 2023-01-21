@@ -11,26 +11,37 @@ import './styles.scss';
 const App = () => {
   const [showPage, setShowPage] = useState('landing-page');
 
-  const switchPage = () => {
-    if (showPage === 'landing-page') {
-      return <LandingPage />;
-    } else if (showPage === 'signup') {
-      return <Signup />;
-    } else if (showPage === 'login') {
-      console.log('showPage in App: ', showPage);
-      return <MainContainer />;
-    }
-  };
+  // const switchPage = () => {
+  //   if (showPage === 'landing-page') {
+  //     return <LandingPage />;
+  //   } else if (showPage === 'signup') {
+  //     return <Signup />;
+  //   } else if (showPage === 'login') {
+  //     console.log('showPage in App: ', showPage);
+  //     return <MainContainer />;
+  //   }
+  // };
 
-  useEffect(() => {
-    switchPage();
-  }, [showPage]);
+  // useEffect(() => {
+  //   switchPage();
+  // }, [showPage]);
+
+  // return (
+  //   <div className="app">
+  //     <Navbar setShowPage={setShowPage} />
+  //     <hr />
+  //     {switchPage}
+  //     <Footer />
+  //   </div>
+  // );
 
   return (
     <div className="app">
-      <Navbar setShowPage={setShowPage} />
+      <Navbar />
       <hr />
-      {switchPage}
+      {/* <Signup /> */}
+      <Login />
+      <hr />
       <Footer />
     </div>
   );
