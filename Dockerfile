@@ -1,7 +1,15 @@
-FROM node:16.13
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-RUN npm run build
+FROM node:19.4.0
+
+WORKDIR /cloudband
+
+COPY package.json /cloudband/
+COPY package-lock.json /cloudband/
+
+RUN npm ci 
+
+COPY .env /cloudband/
+COPY server /cloudband/server/
+
 EXPOSE 3000
-ENTRYPOINT node ./server/server.js
+
+CMD ["npm", "run", "dev:server"]
