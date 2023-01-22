@@ -99,12 +99,16 @@ app.get(
 // sign up
 app.post(
   '/signup',
-  (req, res) => console.log('entered route'),
-  userController.createUser,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  (req, res, next) => {
+    console.log('req.body', req.body);
+    return next();
+  },
+  // userController.createUser,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
-    return res.status(200).json(res.locals); // need to send back token and cookie
+    return res.status(200).json('successful request'); // need to send back token and cookie
+    // return res.status(200).json(res.locals); // need to send back token and cookie
   }
 );
 
