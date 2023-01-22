@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputToken from '../components/InputToken.jsx';
+import InputToken from '../components/Signup.jsx';
 // import Chart from '../components/LineChart.jsx';
 // import PolarChart from '../components/PolarChart.jsx';
 import EC2ChartContainer from './EC2ChartContainer.jsx';

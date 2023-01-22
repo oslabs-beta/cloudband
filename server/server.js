@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cloudWatchController = require('./controllers/aws/cloudWatchController');
+const cloudwatchController = require('./controllers/aws/cloudwatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
@@ -10,6 +10,7 @@ const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
 const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
+const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
 
 const mongoose = require('mongoose');
 
@@ -40,14 +41,14 @@ app.use(express.json());
 // user cookie parser
 
 // handle static files
-app.use(express.static('src'));
+// app.use(express.static('src'));
 
 // get metrics
 app.get(
   '/cpu-utilization',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getCPUUtilization,
+  cloudwatchController.getCPUUtilization,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
@@ -56,8 +57,8 @@ app.get(
   '/network-in-out',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getNetworkIn,
-  cloudWatchController.getNetworkOut,
+  cloudwatchController.getNetworkIn,
+  cloudwatchController.getNetworkOut,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
@@ -66,9 +67,9 @@ app.get(
   '/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getCPUCreditUsage,
-  cloudWatchController.getCPUCreditBalance,
-  cloudWatchController.getCPUSurplusCreditBalance,
+  cloudwatchController.getCPUCreditUsage,
+  cloudwatchController.getCPUCreditBalance,
+  cloudwatchController.getCPUSurplusCreditBalance,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
@@ -88,9 +89,10 @@ app.get(
 app.get(
   '/getLambdaMetrics',
   credentialController.getCredentials,
+  lambdaLogsController.getLambdaLogs,
   lambdaMetricsController.getLambdaMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.lambdaMetrics);
+    return res.status(200).json(res.locals.lambdaMetricsLogs);
   }
 );
 

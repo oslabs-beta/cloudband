@@ -12,7 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
-const ThrottlesChart = (props) => {
+const InvocationsChart = (props) => {
   const { chartData } = props;
 
   const options = {
@@ -35,10 +35,10 @@ const ThrottlesChart = (props) => {
     datasets: [
       {
         fill: true,
-        label: 'Throttles',
+        label: 'Invocations',
         data: chartData.values,
-        borderColor: 'rgb(201, 203, 207)',
-        backgroundColor: 'rgba(201, 203, 207, 0.5)',
+        borderColor: 'rgb(53, 162, 235)',
+        backgroundColor: 'rgba(53, 162, 235, 0.5)',
       },
     ],
   };
@@ -46,4 +46,4 @@ const ThrottlesChart = (props) => {
   return <Line options={options} data={data} />;
 };
 
-export default ThrottlesChart;
+export default InvocationsChart;
