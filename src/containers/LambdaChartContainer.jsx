@@ -5,6 +5,7 @@ import InvocationsChart from '../components/InvocationsChart.jsx';
 import ThrottlesChart from '../components/ThrottlesChart.jsx';
 import ErrorsChart from '../components/ErrorsChart.jsx';
 import DurationChart from '../components/DurationChart.jsx';
+import LambdaLogs from '../components/LambdaLogs.jsx';
 
 const LambdaChartContainer = (props) => {
   const { arn, currFunc } = props;
@@ -24,9 +25,7 @@ const LambdaChartContainer = (props) => {
     values: [],
     timestamps: [],
   });
-
-  const [logs, setLogs] = useState([]); // TO DO w/ Tomas
-  //logs = [{message: string, timestamp: Unix time}, {}. {}]
+  const [lambdaLogs, setLambdaLogs] = useState([]);
 
   useEffect(() => {
     axios
@@ -45,7 +44,7 @@ const LambdaChartContainer = (props) => {
         setThrottleData(response.data[1]);
         setErrorData(response.data[2]);
         setDurationData(response.data[3]);
-        // setLogs(response.data[4]); --> TO DO w/ Tomas
+        setLambdaLogs(response.data[4]);
       })
       .catch((err) => {
         console.log(err);
@@ -58,6 +57,7 @@ const LambdaChartContainer = (props) => {
       <ThrottlesChart chartData={throttleData} />
       <ErrorsChart chartData={errorData} />
       <DurationChart chartData={durationData} />
+      <LambdaLogs logs={lambdaLogs} />
     </div>
   );
 };

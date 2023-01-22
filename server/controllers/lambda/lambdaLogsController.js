@@ -13,18 +13,45 @@ const getLambdaLogs = async (req, res, next) => {
     credentials: res.locals.credentials,
   });
 
+  const nextTokenHelper = async (nextToken, data = []) => {
+    if (!nextToken) {
+      return data;
+    }
+    const nextLogEvents = await cloudWatchLogs.send(
+      new FilterLogEventsCommand({
+        logGroupName,
+        endTime: new Date().valueOf(),
+        startTime: 1674335894,
+        nextToken,
+        filterPattern: '- START - END ',
+      })
+    );
+    // console.log('nextLogEvents', nextLogEvents);
+    data.push(nextLogEvents.events);
+    return nextTokenHelper(nextLogEvents.nextToken, data);
+  };
+
   try {
     const logEvents = await cloudWatchLogs.send(
       new FilterLogEventsCommand({
         logGroupName,
         endTime: new Date().valueOf(),
-        startTime: new Date(
-          new Date().getTime() - 1 * 24 * 60 * 60 * 1000
-        ).valueOf(),
-        filterPattern: '- START - END - REPORT',
+        startTime: 1674335894,
+        filterPattern: '- START - END ',
       })
     );
     // console.log('logEvents', logEvents);
+    if (!logEvents) {
+      return next();
+    }
+
+    if (logEvents.nextToken) {
+      const nextTokenData = await nextTokenHelper(logEvents.nextToken);
+      logEvents.events = logEvents.events.concat(...nextTokenData);
+      // console.log('nextTokenData', nextTokenData);
+      // console.log('logEvents.events', logEvents.events);
+    }
+
     const fiftyLogEvents = logEvents.events.slice(0, 50);
     // console.log('fiftyLogEvents', fiftyLogEvents);
 

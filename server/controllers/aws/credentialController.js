@@ -11,7 +11,7 @@ const credentials = {
 };
 
 credentialController.getCredentials = async (req, res, next) => {
-  console.log('entered CredentialController');
+  // console.log('entered CredentialController');
   // console.log('credentials', credentials);
   // const { arn } = req.query;
   const { arn } = req.body; //testing artillery

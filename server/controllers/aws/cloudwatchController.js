@@ -11,7 +11,7 @@ const { ListInstancesCommand } = require('@aws-sdk/client-ec2');
 const cloudwatchController = {};
 
 cloudwatchController.getCPUUtilization = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getCPUUtilization');
+  // console.log('Entered cloudwatchController.getCPUUtilization');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -25,7 +25,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
-    console.log('instances', instances);
+    // console.log('instances', instances);
 
     const queries = instances.map((instanceId, index) => ({
       Id: `m${index + 1}`,
@@ -56,7 +56,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
@@ -126,7 +126,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     // console.log('responses.MetricDataResults: ', responses.MetricDataResults);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
@@ -152,7 +152,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
 };
 
 cloudwatchController.getNetworkOut = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getNetworkOut');
+  // console.log('Entered cloudwatchController.getNetworkOut');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -197,7 +197,7 @@ cloudwatchController.getNetworkOut = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
@@ -222,7 +222,7 @@ cloudwatchController.getNetworkOut = async (req, res, next) => {
 };
 
 cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getCPUCreditUsage');
+  // console.log('Entered cloudwatchController.getCPUCreditUsage');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -267,7 +267,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     // console.log('responses.MetricDataResults: ', responses.MetricDataResults);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
@@ -293,7 +293,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
 };
 
 cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getCPUCreditBalance');
+  // console.log('Entered cloudwatchController.getCPUCreditBalance');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -338,7 +338,7 @@ cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
@@ -363,7 +363,7 @@ cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
 };
 
 cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getCPUSurplusCreditBalance');
+  // console.log('Entered cloudwatchController.getCPUSurplusCreditBalance');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -408,7 +408,7 @@ cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
     };
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    console.log('responses: ', responses.MetricDataResults[0].Values);
+    // console.log('responses: ', responses.MetricDataResults[0].Values);
     const values = responses.MetricDataResults.reduce((acc, curr) => {
       acc.push(curr.Values);
       return acc;
