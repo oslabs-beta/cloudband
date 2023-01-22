@@ -31,13 +31,15 @@ const Signup = () => {
          */}
         <div id="video-wrapper">
           <iframe
-            src="https://www.loom.com/embed/05c81bb14b964b73994bb41ae64e5043"
-            // frameborder="0"
-            // webkitallowfullscreen="true"
-            // mozallowfullscreen
-            // allowfullscreen
-            // style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+            src="https://cloudband.s3.amazonaws.com/CloudFormation+-+Stack+creation.mp4"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
           ></iframe>
+          {/* <img
+            src="https://cloudband.s3.amazonaws.com/ezgif.com-gif-maker.gif"
+            alt="stack-creation-gif"
+          /> */}
         </div>
       </div>
 
