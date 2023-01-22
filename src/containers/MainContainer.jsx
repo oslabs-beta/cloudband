@@ -8,7 +8,7 @@ import SidebarContainer from '../containers/SidebarContainer.jsx';
 import '../containerStyling/MainContainer.scss';
 
 const MainContainer = () => {
-  const [status, setStatus] = useState('start');
+  const [status, setStatus] = useState('authorized');
   const [ec2Metric, setEc2Metric] = useState('');
   const [arn, setArn] = useState();
   const [tool, setTool] = useState('ec2');
