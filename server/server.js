@@ -12,6 +12,20 @@ const listLambdasController = require('./controllers/lambda/listLambdasControlle
 const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
 const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
 
+const redis = require('redis');
+const redisClient = redis.createClient(6379);
+
+(async () => {
+  redisClient.on('error', (err) => {
+    console.log('Redis Client Error', err);
+  });
+  redisClient.on('ready', () => console.log('Redis is ready'));
+
+  await redisClient.connect();
+
+  await redisClient.ping();
+})();
+
 const mongoose = require('mongoose');
 
 mongoose
@@ -85,8 +99,19 @@ app.get(
     return res.status(200).json(res.locals.lambdaNames);
   }
 );
+
 // get Lambda metrics by Each Function
-app.get(
+// app.get(
+//   '/getLambdaMetrics',
+//   credentialController.getCredentials,
+//   lambdaLogsController.getLambdaLogs,
+//   lambdaMetricsController.getLambdaMetrics,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.lambdaMetricsLogs);
+//   }
+// );
+// testing artillery
+app.post(
   '/getLambdaMetrics',
   credentialController.getCredentials,
   lambdaLogsController.getLambdaLogs,

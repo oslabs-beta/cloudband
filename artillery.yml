@@ -1,0 +1,19 @@
+config:
+  target: 'http://localhost:3000'
+  phases:
+    - duration: 30
+      arrivalRate: 1
+  payload:
+    path: './auth.csv'
+    fields:
+      - 'arn'
+      - 'currFunc'
+
+scenarios:
+  - name: 'Fetch Lambda logs and Metrics'
+    flow:
+      - post:
+          url: '/getLambdaMetrics'
+          json:
+            arn: '{{ arn }}'
+            currFunc: '{{ currFunc }}'
