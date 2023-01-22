@@ -5,6 +5,7 @@ cookieController.setSSIDCookie = async (req, res, next) => {
   try {
     // assigning the newUserID data to a var - DOES THE MANGO GENERATED ID COME WITH THIS?
     const userId = res.locals.newUser._id;
+    console.log('THIS IS THE RES OBJECT:', res.locals.newUser._id);
     // IF I CANT GET THE ID LIKE THIS I WILL USE THIS METHOD (maybe need exec):
     // const user = await User.find({ email: req.body.email });
     // const userId = newUser[0]._id;
