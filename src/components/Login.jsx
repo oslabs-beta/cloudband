@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Navigate } from 'react-router-dom';
 
 const Login = (props) => {
-  const { loggedIn, setLoggedIn } = props;
+  const { loggedIn, setLoggedIn, setArn, setRegion } = props;
   const handleSubmit = (event) => {
     event.preventDefault();
     //add get req to get user info and validate ----> TO DO
@@ -17,7 +17,9 @@ const Login = (props) => {
         // setLoggedIn(true);
         setLoggedIn(true);
         // set arn to response.data.newUser.RoleARN
+        setArn(response.data.newUser.RoleARN);
         // set region to response.data.newUser.region
+        setRegion(response.data.newUser.region);
       })
       .catch((err) => {
         console.log('error in sign up request: ', err);

@@ -7,21 +7,23 @@ import '../containerStyling/MainContainer.scss';
 import { Navigate } from 'react-router-dom';
 
 const MainContainer = (props) => {
-  const { loggedIn } = props;
+  const { loggedIn, arn, region } = props;
 
   const [ec2Metric, setEc2Metric] = useState('');
-  const [arn, setArn] = useState();
+  // const [arn, setArn] = useState();
   const [tool, setTool] = useState('ec2');
   const [funcNames, setFuncNames] = useState([]);
   const [currFunc, setCurrFunc] = useState('');
 
   function switchChartContainers() {
     if (tool === 'ec2') {
-      return <EC2ChartContainer ec2Metric={ec2Metric} arn={arn} />;
+      return (
+        <EC2ChartContainer ec2Metric={ec2Metric} arn={arn} region={region} />
+      );
     } else if (tool === 'lambda') {
       return (
         <div>
-          <LambdaChartContainer currFunc={currFunc} arn={arn} />
+          <LambdaChartContainer currFunc={currFunc} arn={arn} region={region} />
         </div>
       );
     }
@@ -36,7 +38,8 @@ const MainContainer = (props) => {
           ec2Metric={ec2Metric}
           setEc2Metric={setEc2Metric}
           arn={arn}
-          setArn={setArn}
+          // setArn={setArn}
+          region={region}
           tool={tool}
           setTool={setTool}
           funcNames={funcNames}

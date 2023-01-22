@@ -10,6 +10,8 @@ import './styles.scss';
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [arn, setArn] = useState();
+  const [region, setRegion] = useState();
   return (
     <div className="router">
       <Navbar />
@@ -19,12 +21,21 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route
             path="/login"
-            element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}
+            element={
+              <Login
+                setLoggedIn={setLoggedIn}
+                loggedIn={loggedIn}
+                setArn={setArn}
+                setRegion={setRegion}
+              />
+            }
           />
           <Route path="/get-started" element={<Signup />} />
           <Route
             path="/visualizer"
-            element={<MainContainer loggedIn={loggedIn} />}
+            element={
+              <MainContainer loggedIn={loggedIn} arn={arn} region={region} />
+            }
           />
         </Routes>
       </div>

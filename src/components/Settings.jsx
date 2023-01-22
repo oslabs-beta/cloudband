@@ -11,6 +11,7 @@ const Settings = (props) => {
     funcNames,
     setFuncNames,
     arn,
+    region,
     currFunc,
     setCurrFunc,
   } = props;
@@ -32,6 +33,7 @@ const Settings = (props) => {
       .get(`http://localhost:3000/getLambdaNames`, {
         params: {
           arn,
+          region,
         },
       })
       .then((response) => {

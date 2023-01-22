@@ -9,7 +9,7 @@ import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceC
 import '../containerStyling/ChartContainer.scss';
 
 const EC2ChartContainer = (props) => {
-  const { ec2Metric, arn } = props;
+  const { ec2Metric, arn, region } = props;
   const [cpuUtilizationData, setCpuUtilizationData] = useState({
     values: [],
     timestamps: [],
@@ -49,6 +49,7 @@ const EC2ChartContainer = (props) => {
       .get(`http://localhost:3000/${ec2Metric}`, {
         params: {
           arn,
+          region,
         },
       })
       .then((response) => {
