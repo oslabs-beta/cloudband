@@ -9,6 +9,7 @@ import LandingPage from './components/LandingPage.jsx';
 import './styles.scss';
 
 const App = () => {
+  const [loggedIn, setLoggedIn] = useState(false);
   return (
     <div className="router">
       <Navbar />
@@ -16,9 +17,15 @@ const App = () => {
       <div className="routerMain" id="content">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />}
+          />
           <Route path="/get-started" element={<Signup />} />
-          <Route path="/visualizer" element={<MainContainer />} />
+          <Route
+            path="/visualizer"
+            element={<MainContainer loggedIn={loggedIn} />}
+          />
         </Routes>
       </div>
       <hr />

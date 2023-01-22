@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import '../componentStyling/EC2Settings.scss';
+import '../componentStyling/Settings.scss';
 
 const Settings = (props) => {
   const {
