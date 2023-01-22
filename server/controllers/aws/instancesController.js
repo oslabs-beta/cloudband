@@ -10,7 +10,7 @@ module.exports = {
 
     const ec2Client = new EC2Client(info);
     try {
-      console.log('entered ec2 instances controller');
+      // console.log('entered ec2 instances controller');
       //const { Reservations } = await ec2.describeInstances();
       //const Instances = Reservations.flatMap(reservation => reservation.Instances);
 
