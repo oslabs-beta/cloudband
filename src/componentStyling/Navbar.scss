@@ -12,7 +12,9 @@
     font-weight: 700;
     font-size: 32px;
     text-decoration: none;
-    color: var(--mid-blue);
+    // color: var(--mid-blue);
+
+    color: var(--light-color);
     // padding: 0 0 0 20px;
   }
 
@@ -29,7 +31,9 @@
 
     a {
       text-decoration: none;
-      color: var(--mid-blue);
+      // color: var(--mid-blue);
+
+      color: var(--light-color);
     }
   }
 }
