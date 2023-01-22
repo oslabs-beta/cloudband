@@ -47,7 +47,11 @@ const LambdaLogsTable = (props) => {
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Typography
-          sx={{ flex: '1 1 100%', textAlign: 'center', marginTop: '10px' }}
+          sx={{
+            flex: '1 1 100%',
+            textAlign: 'center',
+            marginTop: '10px',
+          }}
           variant="h4"
           id="tableTitle"
           component="h4"
