@@ -52,7 +52,7 @@ const getLambdaLogs = async (req, res, next) => {
       // console.log('logEvents.events', logEvents.events);
     }
 
-    const fiftyLogEvents = logEvents.events.slice(0, 50);
+    const fiftyLogEvents = logEvents.events.slice(0, 2);
     // console.log('fiftyLogEvents', fiftyLogEvents);
 
     const logEventsMessages = [];
@@ -77,6 +77,8 @@ const getLambdaLogs = async (req, res, next) => {
 
     res.locals.functionLogs = eventLog;
     console.log('res.locals.functionLogs', res.locals.functionLogs);
+
+    res.locals.toBeCached = res.locals.functionLogs;
     return next();
   } catch (err) {
     if (err) console.error(err);

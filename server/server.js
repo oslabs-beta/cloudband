@@ -11,20 +11,21 @@ const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
 const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
 const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
+const cacheController = require('./controllers/cacheController');
 
-const redis = require('redis');
-const redisClient = redis.createClient(6379);
+// const redis = require('redis');
+// const redisClient = redis.createClient(6379);
 
-(async () => {
-  redisClient.on('error', (err) => {
-    console.log('Redis Client Error', err);
-  });
-  redisClient.on('ready', () => console.log('Redis is ready'));
+// (async () => {
+//   redisClient.on('error', (err) => {
+//     console.log('Redis Client Error', err);
+//   });
+//   redisClient.on('ready', () => console.log('Redis is ready'));
 
-  await redisClient.connect();
+//   await redisClient.connect();
 
-  await redisClient.ping();
-})();
+//   await redisClient.ping();
+// })();
 
 const mongoose = require('mongoose');
 
@@ -111,15 +112,29 @@ app.get(
 //   }
 // );
 // testing artillery
+
 app.post(
   '/getLambdaMetrics',
+  cacheController.cacheGet,
   credentialController.getCredentials,
   lambdaLogsController.getLambdaLogs,
   lambdaMetricsController.getLambdaMetrics,
+  cacheController.cacheSet,
   (req, res) => {
     return res.status(200).json(res.locals.lambdaMetricsLogs);
   }
 );
+// app.get(
+//   '/getLambdaMetrics',
+//   cacheController.cacheGet,
+//   credentialController.getCredentials,
+//   lambdaLogsController.getLambdaLogs,
+//   lambdaMetricsController.getLambdaMetrics,
+//   cacheController.cacheSet,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.lambdaMetricsLogs);
+//   }
+// );
 
 // sign up
 app.post(

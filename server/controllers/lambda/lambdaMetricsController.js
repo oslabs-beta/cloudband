@@ -117,6 +117,8 @@ const getLambdaMetrics = async (req, res, next) => {
     );
     res.locals.lambdaMetricsLogs = [...metricByFuncData, functionLogs];
     // console.log('res.locals.lambdaMetricsLogs', res.locals.lambdaMetricsLogs);
+
+    res.locals.toBeCached = res.locals.lambdaMetricsLogs;
     return next();
   } catch (error) {
     console.error(error);

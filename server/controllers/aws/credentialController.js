@@ -36,6 +36,7 @@ credentialController.getCredentials = async (req, res, next) => {
     // console.log('sessionToken', sessionToken);
     res.locals.credentials = { accessKeyId, secretAccessKey, sessionToken };
     // console.log('res.locals.credentials', res.locals.credentials);
+    res.locals.toBeCached = res.locals.credentials;
     return next();
   } catch (error) {
     console.log(error);
