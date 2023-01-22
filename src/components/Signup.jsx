@@ -94,7 +94,7 @@ const Signup = () => {
               }}
             />
             <label className="region-label">Enter Region:</label>
-            {/* make a drop down?? */}
+            {/* make a drop down https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html */}
             <input
               type="text"
               placeholder="REGION"
