@@ -4,6 +4,7 @@ const Session = require('../models/sessionModel');
 
 sessionController.startSession = async (req, res, next) => {
   try {
+    console.log('res.locals.ssidCookie: ', res.locals.ssidCookie);
     // create a session (will throw an error if you try to login while already having a session token)
     await Session.create({ cookieId: res.locals.ssidCookie });
     console.log('success creating session');
@@ -19,7 +20,11 @@ sessionController.startSession = async (req, res, next) => {
 
 sessionController.isLoggedIn = async (req, res, next) => {
   try {
-    return next();
+    const loggedInStatus = await Session.findOne({
+      cookieId: res.locals.ssidCookie,
+    });
+    if (loggedInStatus) return next();
+    else return sessionController.startSession(req, res, next);
   } catch (err) {
     // send to global error handler
     next({
