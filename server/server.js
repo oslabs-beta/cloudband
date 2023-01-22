@@ -121,7 +121,8 @@ app.post(
   },
   userController.verifyUser,
   cookieController.setSSIDCookie,
-  sessionController.startSession,
+  sessionController.isLoggedIn,
+  // sessionController.startSession,
   (req, res) => {
     return res.status(200).json(res.locals); // need to send back token and cookie
     // return res.status(200).json('successful request'); // need to send back token and cookie
