@@ -1,5 +1,5 @@
 import React from 'react';
-import InputToken from '../components/InputToken.jsx';
+import InputToken from '../components/Signup.jsx';
 import Settings from '../components/Settings.jsx';
 import '../containerStyling/SidebarContainer.scss';
 

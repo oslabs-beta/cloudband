@@ -41,7 +41,7 @@ app.use(express.json());
 // user cookie parser
 
 // handle static files
-app.use(express.static('src'));
+// app.use(express.static('src'));
 
 // get metrics
 app.get(
