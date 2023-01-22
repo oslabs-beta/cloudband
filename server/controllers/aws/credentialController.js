@@ -4,7 +4,7 @@ dotenv.config();
 
 const credentialController = {};
 
-const region = 'us-east-1';
+// const region = 'us-east-1';
 const credentials = {
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY,
@@ -14,7 +14,7 @@ credentialController.getCredentials = async (req, res, next) => {
   // console.log('entered CredentialController');
   // console.log('credentials', credentials);
   console.log('req.query in credential ', req.query);
-  const { arn } = req.query;
+  const { arn, region } = req.query;
   const info = {
     RoleArn: arn, //will receive from front end
     RoleSessionName: 'CloudbandRoleSession',

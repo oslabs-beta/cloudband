@@ -8,7 +8,7 @@ import DurationChart from '../components/DurationChart.jsx';
 import LambdaLogs from '../components/LambdaLogs.jsx';
 
 const LambdaChartContainer = (props) => {
-  const { arn, currFunc } = props;
+  const { arn, currFunc, region } = props;
   const [invocationData, setInvocationData] = useState({
     values: [],
     timestamps: [],
@@ -33,6 +33,7 @@ const LambdaChartContainer = (props) => {
         params: {
           arn,
           currFunc,
+          region,
         },
       })
       .then((response) => {

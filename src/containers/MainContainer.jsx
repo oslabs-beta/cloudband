@@ -1,57 +1,56 @@
 import React, { useState } from 'react';
 import InputToken from '../components/Signup.jsx';
-// import Chart from '../components/LineChart.jsx';
-// import PolarChart from '../components/PolarChart.jsx';
 import EC2ChartContainer from './EC2ChartContainer.jsx';
 import LambdaChartContainer from './LambdaChartContainer.jsx';
-import SidebarContainer from '../containers/SidebarContainer.jsx';
+import Settings from '../components/Settings.jsx';
 import '../containerStyling/MainContainer.scss';
+import { Navigate } from 'react-router-dom';
 
-const MainContainer = () => {
-  const [status, setStatus] = useState('authorized');
+const MainContainer = (props) => {
+  const { loggedIn, arn, region } = props;
+
   const [ec2Metric, setEc2Metric] = useState('');
-  const [arn, setArn] = useState();
+  // const [arn, setArn] = useState();
   const [tool, setTool] = useState('ec2');
   const [funcNames, setFuncNames] = useState([]);
   const [currFunc, setCurrFunc] = useState('');
 
   function switchChartContainers() {
     if (tool === 'ec2') {
-      return <EC2ChartContainer ec2Metric={ec2Metric} arn={arn} />;
+      return (
+        <EC2ChartContainer ec2Metric={ec2Metric} arn={arn} region={region} />
+      );
     } else if (tool === 'lambda') {
       return (
         <div>
-          <LambdaChartContainer currFunc={currFunc} arn={arn} />
+          <LambdaChartContainer currFunc={currFunc} arn={arn} region={region} />
         </div>
       );
     }
   }
 
-  return (
-    <div className="main-container-wrapper" id="cloud-intro">
-      <SidebarContainer
-        setStatus={setStatus}
-        status={status}
-        ec2Metric={ec2Metric}
-        setEc2Metric={setEc2Metric}
-        arn={arn}
-        setArn={setArn}
-        tool={tool}
-        setTool={setTool}
-        funcNames={funcNames}
-        setFuncNames={setFuncNames}
-        currFunc={currFunc}
-        setCurrFunc={setCurrFunc}
-      />
-      {/* <ChartContainer
-        chartData={chartData}
-        ec2Metric={ec2Metric}
-        arn={arn}
-        tool={tool}
-      /> */}
-      <div>{switchChartContainers()}</div>
-    </div>
-  );
+  if (!loggedIn) {
+    return <Navigate to="/login" />;
+  } else {
+    return (
+      <div className="main-container-wrapper" id="cloud-intro">
+        <Settings
+          ec2Metric={ec2Metric}
+          setEc2Metric={setEc2Metric}
+          arn={arn}
+          // setArn={setArn}
+          region={region}
+          tool={tool}
+          setTool={setTool}
+          funcNames={funcNames}
+          setFuncNames={setFuncNames}
+          currFunc={currFunc}
+          setCurrFunc={setCurrFunc}
+        />
+        <div>{switchChartContainers()}</div>
+      </div>
+    );
+  }
 };
 
 export default MainContainer;
