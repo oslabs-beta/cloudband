@@ -12,10 +12,7 @@ function Navbar() {
           <a href="#">Team</a>
         </li>
         <li>
-          <a
-            href="https://github.com/orgs/oslabs-beta/teams/cloudband"
-            target="_blank"
-          >
+          <a href="https://github.com/oslabs-beta/cloudband" target="_blank">
             Github
           </a>
         </li>
