@@ -44,15 +44,15 @@ app.use(express.json());
 // app.use(express.static('src'));
 
 // get metrics
-app.get(
-  '/cpu-utilization',
-  credentialController.getCredentials,
-  instancesController.getInstances,
-  cloudwatchController.getCPUUtilization,
-  (req, res) => {
-    return res.status(200).json(res.locals.chartData);
-  }
-);
+// app.get(
+//   '/cpu-utilization',
+//   credentialController.getCredentials,
+//   instancesController.getInstances,
+//   cloudwatchController.getCPUUtilization,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.chartData);
+//   }
+// );
 app.get(
   '/network-in-out',
   credentialController.getCredentials,
@@ -67,6 +67,7 @@ app.get(
   '/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
+  cloudwatchController.getCPUUtilization,
   cloudwatchController.getCPUCreditUsage,
   cloudwatchController.getCPUCreditBalance,
   cloudwatchController.getCPUSurplusCreditBalance,
