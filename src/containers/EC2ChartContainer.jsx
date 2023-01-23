@@ -30,29 +30,49 @@ const EC2ChartContainer = (props) => {
     useState(defaultDataStructure);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/${ec2Metric}`, {
+    const fetchCloudwatchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3000/${ec2Metric}`, {
         params: {
           arn,
           region,
         },
-      })
-      .then((response) => {
-        if (ec2Metric === 'cpu-utilization') {
-          // const { CPUUtilization } = response.data;
-          setCpuUtilizationData(response.data.CPUUtilization);
-        } else if (ec2Metric === 'network-in-out') {
-          setNetworkInData(response.data.NetworkIn);
-          setNetworkOutData(response.data.NetworkOut);
-        } else if (ec2Metric === 'cpu-credits') {
-          setCpuCreditUsageData(response.data.CPUCreditUsage);
-          setCpuCreditBalanceData(response.data.CPUCreditBalance);
-          setCpuSurplusCreditBalanceData(response.data.CPUSurplusCreditBalance);
+        });
+
+        if (ec2Metric === 'network-in-out') {
+          setNetworkInData({
+            ...defaultDataStructure,
+            ...(response?.data?.NetworkIn ?? {}),
+          });
+          setNetworkOutData({
+            ...defaultDataStructure,
+            ...(response?.data?.NetworkOut ?? {}),
+          });
         }
-      })
-      .catch((err) => {
-        console.log(err);
+
+        if (ec2Metric === 'cpu-credits') {
+          setCpuUtilizationData({
+            ...defaultDataStructure,
+            ...(response?.data?.CPUUtilization ?? {}),
+          });
+          setCpuCreditUsageData({
+            ...defaultDataStructure,
+            ...(response?.data?.CPUCreditUsage ?? {}),
+          });
+          setCpuCreditBalanceData({
+            ...defaultDataStructure,
+            ...(response?.data?.CPUCreditBalance ?? {}),
+          });
+          setCpuSurplusCreditBalanceData({
+            ...defaultDataStructure,
+            ...(response?.data?.CPUSurplusCreditBalance ?? {}),
       });
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchCloudwatchData();
   }, [ec2Metric]);
 
   function switchCharts() {
