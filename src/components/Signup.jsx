@@ -9,16 +9,20 @@ AWS.config.update({ region: 'REGION' });
 
 const Signup = () => {
   const [signedUp, setSignedUp] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [arn, setArn] = useState('');
+  const [region, setRegion] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     //create post req here to send info to server and build user in db ---> TO DO
     axios
       .post('/signup', {
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value,
-        RoleARN: document.getElementById('arn').value,
-        region: document.getElementById('region').value,
+        email: email,
+        password: password,
+        RoleARN: arn,
+        region: region,
       })
       .then((response) => {
         console.log(response);
@@ -91,7 +95,7 @@ const Signup = () => {
               placeholder="ARN"
               id="arn"
               onChange={(e) => {
-                // setArn(e.target.value);
+                setArn(e.target.value);
                 console.log('arn: ', e.target.value);
               }}
             />
@@ -102,7 +106,7 @@ const Signup = () => {
               placeholder="REGION"
               id="region"
               onChange={(e) => {
-                // setArn(e.target.value);
+                setRegion(e.target.value);
                 console.log('region: ', e.target.value);
               }}
             />
@@ -115,7 +119,7 @@ const Signup = () => {
               placeholder="email"
               id="email"
               onChange={(e) => {
-                // setUsername(e.target.value);
+                setEmail(e.target.value);
                 console.log('email: ', e.target.value);
               }}
             />
@@ -125,7 +129,7 @@ const Signup = () => {
               placeholder="password"
               id="password"
               onChange={(e) => {
-                // setPassword(e.target.value);
+                setPassword(e.target.value);
                 console.log('password: ', e.target.value);
               }}
             />
