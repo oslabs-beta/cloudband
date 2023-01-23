@@ -56,9 +56,9 @@ const Signup = () => {
           <div id="video-wrapper">
             <iframe
               src="https://cloudband.s3.amazonaws.com/CloudFormation+-+Stack+creation.mp4"
-              frameborder="0"
+              // frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              // allowfullscreen
             ></iframe>
             {/* <img
             src="https://cloudband.s3.amazonaws.com/ezgif.com-gif-maker.gif"
