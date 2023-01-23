@@ -5,6 +5,9 @@ const {
 
 const getLambdaLogs = async (req, res, next) => {
   const { currFunc } = req.query;
+  const end = new Date();
+  const EndTime = end.valueOf();
+  const StartTime = new Date(end.getTime() - 7 * 24 * 60 * 60 * 1000).valueOf();
 
   const logGroupName = '/aws/lambda/' + currFunc;
 
@@ -20,10 +23,8 @@ const getLambdaLogs = async (req, res, next) => {
     const nextLogEvents = await cloudWatchLogs.send(
       new FilterLogEventsCommand({
         logGroupName,
-        endTime: new Date().valueOf(),
-        startTime: new Date(
-          EndTime.getTime() - 7 * 24 * 60 * 60 * 1000
-        ).valueOf(),
+        endTime: EndTime,
+        startTime: StartTime,
         nextToken,
         filterPattern: '- START - END ',
       })
@@ -37,8 +38,8 @@ const getLambdaLogs = async (req, res, next) => {
     const logEvents = await cloudWatchLogs.send(
       new FilterLogEventsCommand({
         logGroupName,
-        endTime: new Date().valueOf(),
-        startTime: 1674335894,
+        endTime: EndTime,
+        startTime: StartTime,
         filterPattern: '- START - END ',
       })
     );
@@ -54,7 +55,7 @@ const getLambdaLogs = async (req, res, next) => {
       // console.log('logEvents.events', logEvents.events);
     }
 
-    const fiftyLogEvents = logEvents.events.slice(0, 2);
+    const fiftyLogEvents = logEvents.events.slice(0, 50);
     // console.log('fiftyLogEvents', fiftyLogEvents);
 
     const logEventsMessages = [];
