@@ -35,11 +35,23 @@ const LambdaChartContainer = (props) => {
           'response from LambdaChartContainer getLambdaMetrics: ',
           response
         );
-        setInvocationData(response.data[0]);
-        setThrottleData(response.data[1]);
-        setErrorData(response.data[2]);
-        setDurationData(response.data[3]);
-        setLambdaLogs(response.data[4]);
+        setInvocationData({
+          ...defaultDataStructure,
+          ...(response?.data[0] ?? {}),
+        });
+        setThrottleData({
+          ...defaultDataStructure,
+          ...(response?.data[1] ?? {}),
+        });
+        setErrorData({ ...defaultDataStructure, ...(response?.data[2] ?? {}) });
+        setDurationData({
+          ...defaultDataStructure,
+          ...(response?.data[3] ?? {}),
+        });
+        setLambdaLogs(response?.data[4] ?? []);
+      })
+      .then(() => {
+        console.log('durationData: ', durationData);
       })
       .catch((err) => {
         console.log(err);
