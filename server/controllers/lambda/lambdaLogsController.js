@@ -4,9 +4,7 @@ const {
 } = require('@aws-sdk/client-cloudwatch-logs');
 
 const getLambdaLogs = async (req, res, next) => {
-  console.log('req.query in logs', req.query);
   const { currFunc } = req.query;
-  console.log('currFunc inside lambdalogs', currFunc);
 
   const logGroupName = '/aws/lambda/' + currFunc;
 
@@ -50,12 +48,9 @@ const getLambdaLogs = async (req, res, next) => {
     if (logEvents.nextToken) {
       const nextTokenData = await nextTokenHelper(logEvents.nextToken);
       logEvents.events = logEvents.events.concat(...nextTokenData);
-      // console.log('nextTokenData', nextTokenData);
-      // console.log('logEvents.events', logEvents.events);
     }
 
     const fiftyLogEvents = logEvents.events.slice(0, 50);
-    // console.log('fiftyLogEvents', fiftyLogEvents);
 
     const logEventsMessages = [];
     fiftyLogEvents.forEach((event) => {
@@ -78,7 +73,6 @@ const getLambdaLogs = async (req, res, next) => {
     const eventLog = logEventsMessages;
 
     res.locals.functionLogs = eventLog;
-    console.log('res.locals.functionLogs', res.locals.functionLogs);
     return next();
   } catch (err) {
     if (err) console.error(err);
