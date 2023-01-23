@@ -103,7 +103,7 @@ const EC2ChartContainer = (props) => {
     }
   }
 
-  return <div className="chart-container-wrapper">{switchCharts()}</div>;
+  return <div>{switchCharts()}</div>;
 };
 
 export default EC2ChartContainer;
