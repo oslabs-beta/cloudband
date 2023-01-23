@@ -22,7 +22,7 @@ listLambdasController.getLambdas = async (req, res, next) => {
     const funcList = allFuncs.Functions.map((func) => func.FunctionName);
 
     res.locals.lambdaNames = funcList;
-    console.log('res.locals.lambdaNames', res.locals.lambdaNames);
+    res.locals.toBeCached = res.locals.lambdaNames;
 
     return next();
   } catch (err) {

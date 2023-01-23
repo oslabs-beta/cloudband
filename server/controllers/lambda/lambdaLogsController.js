@@ -5,7 +5,7 @@ const {
 
 const getLambdaLogs = async (req, res, next) => {
   const { currFunc } = req.query;
-  // const { currFunc } = req.body; //testing artillery
+
   const logGroupName = '/aws/lambda/' + currFunc;
 
   const cloudWatchLogs = new CloudWatchLogsClient({
@@ -21,7 +21,9 @@ const getLambdaLogs = async (req, res, next) => {
       new FilterLogEventsCommand({
         logGroupName,
         endTime: new Date().valueOf(),
-        startTime: 1674335894,
+        startTime: new Date(
+          EndTime.getTime() - 7 * 24 * 60 * 60 * 1000
+        ).valueOf(),
         nextToken,
         filterPattern: '- START - END ',
       })

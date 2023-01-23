@@ -13,20 +13,6 @@ const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsContr
 const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
 const cacheController = require('./controllers/cacheController');
 
-// const redis = require('redis');
-// const redisClient = redis.createClient(6379);
-
-// (async () => {
-//   redisClient.on('error', (err) => {
-//     console.log('Redis Client Error', err);
-//   });
-//   redisClient.on('ready', () => console.log('Redis is ready'));
-
-//   await redisClient.connect();
-
-//   await redisClient.ping();
-// })();
-
 const mongoose = require('mongoose');
 
 mongoose
@@ -61,30 +47,36 @@ app.use(express.json());
 // get metrics
 app.get(
   '/cpu-utilization',
+  cacheController.cacheGet,
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudwatchController.getCPUUtilization,
+  cacheController.cacheSet,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
 );
 app.get(
   '/network-in-out',
+  cacheController.cacheGet,
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudwatchController.getNetworkIn,
   cloudwatchController.getNetworkOut,
+  cacheController.cacheSet,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
 );
 app.get(
   '/cpu-credits',
+  cacheController.cacheGet,
   credentialController.getCredentials,
   instancesController.getInstances,
   cloudwatchController.getCPUCreditUsage,
   cloudwatchController.getCPUCreditBalance,
   cloudwatchController.getCPUSurplusCreditBalance,
+  cacheController.cacheSet,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
@@ -94,36 +86,15 @@ app.get(
 
 app.get(
   '/getLambdaNames',
+  cacheController.cacheGet,
   credentialController.getCredentials,
   listLambdasController.getLambdas,
+  cacheController.cacheSet,
   (req, res) => {
     return res.status(200).json(res.locals.lambdaNames);
   }
 );
 
-// get Lambda metrics by Each Function
-// app.get(
-//   '/getLambdaMetrics',
-//   credentialController.getCredentials,
-//   lambdaLogsController.getLambdaLogs,
-//   lambdaMetricsController.getLambdaMetrics,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.lambdaMetricsLogs);
-//   }
-// );
-// testing artillery
-
-// app.post(
-//   '/getLambdaMetrics',
-//   cacheController.cacheGet,
-//   credentialController.getCredentials,
-//   lambdaLogsController.getLambdaLogs,
-//   lambdaMetricsController.getLambdaMetrics,
-//   cacheController.cacheSet,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.lambdaMetricsLogs);
-//   }
-// );
 app.get(
   '/getLambdaMetrics',
   cacheController.cacheGet,

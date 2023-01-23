@@ -73,6 +73,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
 
     res.locals.chartData = { CPUUtilization: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);
@@ -144,6 +145,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
 
     res.locals.chartData = { NetworkIn: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);
@@ -214,6 +216,7 @@ cloudwatchController.getNetworkOut = async (req, res, next) => {
 
     res.locals.chartData.NetworkOut = chartData;
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);
@@ -285,6 +288,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
 
     res.locals.chartData = { CPUCreditUsage: chartData };
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);
@@ -355,6 +359,7 @@ cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
 
     res.locals.chartData.CPUCreditBalance = chartData;
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);
@@ -425,6 +430,7 @@ cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
 
     res.locals.chartData.CPUSurplusCreditBalance = chartData;
     // console.log('res.locals.chartData: ', res.locals.chartData);
+    res.locals.toBeCached = res.locals.chartData;
     return next();
   } catch (error) {
     console.error(error);

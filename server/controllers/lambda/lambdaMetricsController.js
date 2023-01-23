@@ -10,7 +10,7 @@ const getLambdaMetrics = async (req, res, next) => {
   };
   const cloudwatch = new CloudWatchClient(credentials);
   const EndTime = new Date();
-  const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+  const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   const { currFunc } = req.query;
   // const { currFunc } = req.body; //testing artillery

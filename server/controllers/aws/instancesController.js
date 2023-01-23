@@ -25,6 +25,7 @@ module.exports = {
       res.locals.ec2Instances = {
         instances: instanceIds,
       };
+      res.locals.toBeCached = res.locals.ec2Instances;
       // console.log(res.locals.ec2Instances);
       return next();
     } catch (err) {
