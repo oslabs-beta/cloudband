@@ -7,24 +7,17 @@ import ErrorsChart from '../components/ErrorsChart.jsx';
 import DurationChart from '../components/DurationChart.jsx';
 import LambdaLogs from '../components/LambdaLogs.jsx';
 
+const defaultDataStructure = {
+  values: [],
+  timestamps: [],
+};
+
 const LambdaChartContainer = (props) => {
   const { arn, currFunc, region } = props;
-  const [invocationData, setInvocationData] = useState({
-    values: [],
-    timestamps: [],
-  });
-  const [throttleData, setThrottleData] = useState({
-    values: [],
-    timestamps: [],
-  });
-  const [errorData, setErrorData] = useState({
-    values: [],
-    timestamps: [],
-  });
-  const [durationData, setDurationData] = useState({
-    values: [],
-    timestamps: [],
-  });
+  const [invocationData, setInvocationData] = useState(defaultDataStructure);
+  const [throttleData, setThrottleData] = useState(defaultDataStructure);
+  const [errorData, setErrorData] = useState(defaultDataStructure);
+  const [durationData, setDurationData] = useState(defaultDataStructure);
   const [lambdaLogs, setLambdaLogs] = useState([]);
 
   useEffect(() => {
