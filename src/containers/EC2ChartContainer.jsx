@@ -6,7 +6,7 @@ import NetworkOutChart from '../components/NetworkOutChart.jsx';
 import CPUCreditUsageChart from '../components/CPUCreditUsageChart.jsx';
 import CPUCreditBalanceChart from '../components/CPUCreditBalanceChart.jsx';
 import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceChart.jsx';
-import '../containerStyling/ChartContainer.scss';
+import '../containerStyling/EC2ChartContainer.scss';
 
 const EC2ChartContainer = (props) => {
   const { ec2Metric, arn, region } = props;
