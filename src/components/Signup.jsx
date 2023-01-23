@@ -69,10 +69,14 @@ const Signup = () => {
         <div className="row-2">
           <div className="column">
             <h3>Step 1:</h3>
-            <p>
-              "I acknowledge that AWS CloudFormation might create IAM
+            {/* "I acknowledge that AWS CloudFormation might create IAM resources." */}
+            <div>
+              <input type="checkbox" id="scales" name="scales" />
+              <label for="scales">
+                &nbsp; "I acknowledge that AWS CloudFormation might create IAM
               resources."
-            </p>
+              </label>
+            </div>
             <a
               href="https://us-east-1.console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/quickcreate?stackName=cloudband-permission&param_ExternalId=92a98196-9090-11ed-a1eb-0242ac120002&templateURL=https://cloudband.s3.amazonaws.com/cloudbandTemplate1.yml"
               target="_blank"
