@@ -9,9 +9,9 @@ import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceC
 import '../containerStyling/EC2ChartContainer.scss';
 
 const defaultDataStructure = {
-    values: [],
-    timestamps: [],
-    instanceIds: [],
+  values: [],
+  timestamps: [],
+  instanceIds: [],
 };
 
 const EC2ChartContainer = (props) => {
@@ -33,10 +33,10 @@ const EC2ChartContainer = (props) => {
     const fetchCloudwatchData = async () => {
       try {
         const response = await axios.get(`http://localhost:3000/${ec2Metric}`, {
-        params: {
-          arn,
-          region,
-        },
+          params: {
+            arn,
+            region,
+          },
         });
 
         if (ec2Metric === 'network-in-out') {
@@ -66,7 +66,7 @@ const EC2ChartContainer = (props) => {
           setCpuSurplusCreditBalanceData({
             ...defaultDataStructure,
             ...(response?.data?.CPUSurplusCreditBalance ?? {}),
-      });
+          });
         }
       } catch (error) {
         console.error(error);
@@ -76,28 +76,22 @@ const EC2ChartContainer = (props) => {
   }, [ec2Metric]);
 
   function switchCharts() {
-    if (ec2Metric === 'cpu-utilization') {
+    if (ec2Metric === 'network-in-out') {
       return (
-        <div>
-          <CPUUtilizationChart chartData={cpuUtilizationData} />
-        </div>
-      );
-    } else if (ec2Metric === 'network-in-out') {
-      return (
-        <div>
-          <NetworkInChart chartData={networkInData} />;
-          <NetworkOutChart chartData={networkOutData} />;
+        <div className="chart-container-wrapper">
+          <NetworkInChart chartData={networkInData} />
+          <NetworkOutChart chartData={networkOutData} />
         </div>
       );
     } else if (ec2Metric === 'cpu-credits') {
       return (
-        <div>
-          <CPUCreditUsageChart chartData={cpuCreditUsageData} />;
-          <CPUCreditBalanceChart chartData={cpuCreditBalanceData} />;
+        <div className="chart-container-wrapper">
+          <CPUUtilizationChart chartData={cpuUtilizationData} />
+          <CPUCreditUsageChart chartData={cpuCreditUsageData} />
+          <CPUCreditBalanceChart chartData={cpuCreditBalanceData} />
           <CPUSurplusCreditBalanceChart
             chartData={cpuSurplusCreditBalanceData}
           />
-          ;
         </div>
       );
     }
