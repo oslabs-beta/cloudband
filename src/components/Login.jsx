@@ -13,7 +13,6 @@ const Login = (props) => {
         password: document.getElementById('password').value,
       })
       .then((response) => {
-        console.log(response);
         // setLoggedIn(true);
         setLoggedIn(true);
         // set arn to response.data.newUser.RoleARN
@@ -21,8 +20,8 @@ const Login = (props) => {
         // set region to response.data.newUser.region
         setRegion(response.data.newUser.region);
       })
-      .catch((err) => {
-        console.log('error in sign up request: ', err);
+      .catch((error) => {
+        console.error('error in sign up request: ', error);
       });
   };
   if (loggedIn) {
