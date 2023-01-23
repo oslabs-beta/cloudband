@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router-dom';
+import '../componentStyling/Login.scss';
 
 const Login = (props) => {
   const { loggedIn, setLoggedIn, setArn, setRegion } = props;
@@ -30,7 +31,7 @@ const Login = (props) => {
     return <Navigate to="/visualizer" />;
   } else {
     return (
-      <div>
+      <div className="login-form-wrapper">
         <h2>Login</h2>
         <label className="email-label">Enter Email:</label>
         <input
