@@ -1,9 +1,9 @@
 .chart-wrapper {
-  width: 100%;
-  // background-color: grey;
-}
-
-canvas {
+  background-color: var(--light-color);
+  border-radius: 40px;
+  // width: 40%;
+  padding: 20px;
+  margin: 20px;
   width: 600px;
-  height: auto;
+  height: 300px;
 }
