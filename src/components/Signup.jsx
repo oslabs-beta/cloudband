@@ -74,7 +74,7 @@ const Signup = () => {
               <input type="checkbox" id="scales" name="scales" />
               <label for="scales">
                 &nbsp; "I acknowledge that AWS CloudFormation might create IAM
-              resources."
+                resources."
               </label>
             </div>
             <a
@@ -106,11 +106,11 @@ const Signup = () => {
             <section className="dropdown-wrapper">
               <select
                 name="region"
-              id="region"
-              onChange={(e) => {
-                setRegion(e.target.value);
-                console.log('region: ', e.target.value);
-              }}
+                id="region"
+                onChange={(e) => {
+                  setRegion(e.target.value);
+                  console.log('region: ', e.target.value);
+                }}
                 value={region}
               >
                 <option value="us-east-1">us-east-1</option>
@@ -173,7 +173,11 @@ const Signup = () => {
                 console.log('password: ', e.target.value);
               }}
             />
-            <button id="credentials-button" onClick={handleSubmit}>
+            <button
+              className="primary-btn"
+              id="credentials-button"
+              onClick={handleSubmit}
+            >
               Submit
             </button>
           </div>
