@@ -12,7 +12,7 @@ const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [arn, setArn] = useState('');
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState('us-east-1');
 
   const handleSubmit = (event) => {
     event.preventDefault();
