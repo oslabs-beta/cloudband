@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../containerStyling/ChartContainer.scss';
 import InvocationsChart from '../components/InvocationsChart.jsx';
 import ThrottlesChart from '../components/ThrottlesChart.jsx';
 import ErrorsChart from '../components/ErrorsChart.jsx';
@@ -59,7 +58,7 @@ const LambdaChartContainer = (props) => {
   }, [currFunc]);
 
   return (
-    <div>
+    <div className="lambda-chart-container">
       <InvocationsChart chartData={invocationData} />
       <ThrottlesChart chartData={throttleData} />
       <ErrorsChart chartData={errorData} />
