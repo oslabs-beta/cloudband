@@ -28,7 +28,31 @@ const columns = [
 const LambdaLogsTable = (props) => {
   const { logs } = props;
 
-  const rows = logs;
+  // const labels = chartData.timestamps
+  //   .map((timestamp) => {
+  //     const date = new Date(timestamp);
+  //     // const month = date.getMonth() + 1;
+  //     // const day = date.getDate();
+  //     const hour = date.getHours();
+  //     const minute = date.getMinutes();
+
+  //     return `${hour}:${minute}`;
+  //   })
+  //   .reverse(); //[timestamps]
+  const formattedLogs = logs.map((log) => {
+    const message = log.message;
+    const date = new Date(log.timestamp);
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
+
+    return {
+      message,
+      timestamp: `${month}/${day} ${hour}:${minute}`,
+    };
+  });
+  const rows = formattedLogs;
 
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
