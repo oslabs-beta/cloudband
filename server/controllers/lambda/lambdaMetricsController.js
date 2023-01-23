@@ -8,12 +8,14 @@ const getLambdaMetrics = async (req, res, next) => {
     region: 'us-east-1',
     credentials: res.locals.credentials,
   };
+
   const cloudwatch = new CloudWatchClient(credentials);
   const EndTime = new Date();
-  const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+  const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
   const { currFunc } = req.query;
   const { functionLogs } = res.locals;
+  // console.log('functionLogs: ', functionLogs);
 
   const params = {
     StartTime,
@@ -114,6 +116,7 @@ const getLambdaMetrics = async (req, res, next) => {
         };
       }
     );
+
     res.locals.lambdaMetricsLogs = [...metricByFuncData, functionLogs];
     return next();
   } catch (error) {
