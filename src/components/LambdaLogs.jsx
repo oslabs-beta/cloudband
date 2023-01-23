@@ -27,7 +27,6 @@ const columns = [
 
 const LambdaLogsTable = (props) => {
   const { logs } = props;
-  console.log('logs', logs);
 
   const rows = logs;
 
