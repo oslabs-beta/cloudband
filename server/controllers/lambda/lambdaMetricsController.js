@@ -104,13 +104,13 @@ const getLambdaMetrics = async (req, res, next) => {
     const metricByFuncData = metricData.MetricDataResults.map(
       (eachFuncMetric) => {
         let values = eachFuncMetric.Values;
-        let timeStamps = eachFuncMetric.Timestamps;
+        let timestamps = eachFuncMetric.Timestamps;
         let metricName = eachFuncMetric.Label;
 
         return {
           metricName: metricName,
           values: values,
-          timeStamps: timeStamps,
+          timestamps: timestamps,
         };
       }
     );
