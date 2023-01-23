@@ -156,7 +156,7 @@ const Signup = () => {
             <label className="email-label">Enter Email:</label>
             <input
               type="email"
-              placeholder="email"
+              placeholder="EMAIL"
               id="email"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -166,7 +166,7 @@ const Signup = () => {
             <label className="password-label">Enter Password:</label>
             <input
               type="password"
-              placeholder="password"
+              placeholder="PASSWORD"
               id="password"
               onChange={(e) => {
                 setPassword(e.target.value);
