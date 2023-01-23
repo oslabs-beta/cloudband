@@ -8,41 +8,26 @@ import CPUCreditBalanceChart from '../components/CPUCreditBalanceChart.jsx';
 import CPUSurplusCreditBalanceChart from '../components/CPUSurplusCreditBalanceChart.jsx';
 import '../containerStyling/EC2ChartContainer.scss';
 
+const defaultDataStructure = {
+    values: [],
+    timestamps: [],
+    instanceIds: [],
+};
+
 const EC2ChartContainer = (props) => {
   const { ec2Metric, arn, region } = props;
-  const [cpuUtilizationData, setCpuUtilizationData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
+  const [cpuUtilizationData, setCpuUtilizationData] =
+    useState(defaultDataStructure);
 
-  const [networkInData, setNetworkInData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
-  const [networkOutData, setNetworkOutData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
-  const [cpuCreditUsageData, setCpuCreditUsageData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
+  const [networkInData, setNetworkInData] = useState(defaultDataStructure);
+  const [networkOutData, setNetworkOutData] = useState(defaultDataStructure);
+  const [cpuCreditUsageData, setCpuCreditUsageData] =
+    useState(defaultDataStructure);
 
-  const [cpuCreditBalanceData, setCpuCreditBalanceData] = useState({
-    values: [],
-    timestamps: [],
-    instanceIds: [],
-  });
+  const [cpuCreditBalanceData, setCpuCreditBalanceData] =
+    useState(defaultDataStructure);
   const [cpuSurplusCreditBalanceData, setCpuSurplusCreditBalanceData] =
-    useState({
-      values: [],
-      timestamps: [],
-      instanceIds: [],
-    });
+    useState(defaultDataStructure);
 
   useEffect(() => {
     axios
