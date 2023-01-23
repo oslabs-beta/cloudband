@@ -6,6 +6,7 @@ import ThrottlesChart from '../components/ThrottlesChart.jsx';
 import ErrorsChart from '../components/ErrorsChart.jsx';
 import DurationChart from '../components/DurationChart.jsx';
 import LambdaLogs from '../components/LambdaLogs.jsx';
+import '../containerStyling/LambdaChartContainer.scss';
 
 const defaultDataStructure = {
   values: [],
