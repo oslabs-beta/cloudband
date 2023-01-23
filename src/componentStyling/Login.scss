@@ -1,0 +1,23 @@
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 800px;
+
+  button {
+    width: 200px;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 10px;
+    border: none;
+    color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
+  }
+
+  input {
+    // border-radius: 40px;
+    padding: 5px;
+    margin: 10px 0px;
+    // border: none;
+    border-bottom: 1px solid var(--mid-blue);
+  }
+}

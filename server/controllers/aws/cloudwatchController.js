@@ -81,7 +81,6 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
 };
 
 cloudwatchController.getNetworkIn = async (req, res, next) => {
-  console.log('Entered cloudwatchController.getNetworkIn');
   const credentials = {
     region: 'us-east-1',
     credentials: res.locals.credentials,
@@ -283,7 +282,8 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
       instanceIds: instances, // ['string', 'string', 'string'] as many strings as there are instances
     };
 
-    res.locals.chartData = { CPUCreditUsage: chartData };
+    // res.locals.chartData = { CPUCreditUsage: chartData };
+    res.locals.chartData.CPUCreditUsage = chartData;
     // console.log('res.locals.chartData: ', res.locals.chartData);
     return next();
   } catch (error) {

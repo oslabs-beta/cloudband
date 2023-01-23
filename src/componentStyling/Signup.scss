@@ -1,5 +1,37 @@
 .signup-wrapper {
   padding-bottom: 40px;
+
+  button {
+    width: 100%;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 20px 0;
+    border: none;
+    color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
+  }
+
+  .primary-btn {
+    background-color: var(--deep-yellow);
+  }
+  .primary-btn:hover {
+    background-color: var(--light-color);
+    color: var(--mid-blue);
+    transition: all 0.5s ease-in-out;
+  }
+
+  .secondary-btn {
+    border: 1px solid var(--light-color);
+    color: var(--light-color);
+    background-color: transparent;
+  }
+  .secondary-btn:hover {
+    border: none;
+    color: var(--light-color);
+    background-color: var(--mid-blue);
+    transition: all 0.5s ease-in-out;
+  }
+
   .row-1 {
     display: flex;
     flex-direction: row;
@@ -11,6 +43,7 @@
       display: flex;
       flex-direction: column;
       width: 30%;
+      margin-right: 20px;
 
       h2 {
         margin-top: 0;
@@ -43,11 +76,34 @@
       padding-right: 10px;
       width: 30%;
     }
-    input {
-      border-radius: 40px;
+
+    select {
+      width: 100%;
       padding: 5px;
-      margin: 10px 0px;
+      margin: 20px 0px;
       border: none;
+      border-bottom: 1px solid var(--mid-blue);
+      background: transparent;
+      color: white;
+    }
+    input {
+      padding: 5px;
+      margin: 20px 0px;
+      border: none;
+      border-bottom: 1px solid var(--mid-blue);
+      background: transparent;
+      color: white;
+    }
+
+    input:active {
+      background: transparent;
+      border-bottom: 1px solid var(--mid-blue);
+      color: white;
+    }
+
+    ::placeholder {
+      color: white;
+      opacity: 50%;
     }
     p {
       margin-top: 0;

@@ -27,7 +27,6 @@ userSchema.pre('save', function (next) {
 
       // override the cleartext password with the hashed one
       user.password = hash;
-      console.log('user.password', user.password);
       next();
     });
   });

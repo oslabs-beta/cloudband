@@ -9,7 +9,7 @@ import { Navigate } from 'react-router-dom';
 const MainContainer = (props) => {
   const { loggedIn, arn, region } = props;
 
-  const [ec2Metric, setEc2Metric] = useState('');
+  const [ec2Metric, setEc2Metric] = useState('cpu-credits');
   // const [arn, setArn] = useState();
   const [tool, setTool] = useState('ec2');
   const [funcNames, setFuncNames] = useState([]);

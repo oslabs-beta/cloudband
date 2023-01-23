@@ -11,9 +11,6 @@ const credentials = {
 };
 
 credentialController.getCredentials = async (req, res, next) => {
-  // console.log('entered CredentialController');
-  // console.log('credentials', credentials);
-  console.log('req.query in credential ', req.query);
   const { arn, region } = req.query;
   const info = {
     RoleArn: arn, //will receive from front end

@@ -63,7 +63,7 @@ const CPUUtilizationChart = (props) => {
   };
   return (
     <div className="chart-wrapper">
-      <Line data={data} options={options} className="chart-content" />
+      <Line data={data} options={options} />
     </div>
   );
 };

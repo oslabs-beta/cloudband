@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import '../componentStyling/LambdaChartStyling.scss';
 
 const InvocationsChart = (props) => {
   const { chartData } = props;
@@ -28,7 +29,18 @@ const InvocationsChart = (props) => {
     },
   };
 
-  const labels = chartData.timeStamps;
+  // const labels = chartData.timeStamps;
+  const labels = chartData.timestamps
+    .map((timestamp) => {
+      const date = new Date(timestamp);
+      // const month = date.getMonth() + 1;
+      // const day = date.getDate();
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+
+      return `${hour}:${minute}`;
+    })
+    .reverse(); //[timestamps]
 
   const data = {
     labels,
@@ -43,7 +55,11 @@ const InvocationsChart = (props) => {
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return (
+    <div className="lambda-chart-wrapper">
+      <Line options={options} data={data} />
+    </div>
+  );
 };
 
 export default InvocationsChart;

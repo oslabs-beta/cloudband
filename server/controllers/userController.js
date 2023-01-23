@@ -6,7 +6,6 @@ const userController = {};
 // creates new user
 userController.createUser = async (req, res, next) => {
   try {
-    console.log(req.body);
     // taking username and pw from body of request
     const { email, password, RoleARN, region } = req.body;
     // creating the user in the database
@@ -19,7 +18,6 @@ userController.createUser = async (req, res, next) => {
     });
     // pass of the newUser data
     res.locals.newUser = newUser;
-    console.log('res.locals.newUser: ', res.locals.newUser);
     return next();
     // else throw new Error('Password is incorrect');
   } catch (err) {
@@ -48,7 +46,6 @@ userController.verifyUser = async (req, res, next) => {
     } else {
       const { RoleARN, region, _id } = userData[0];
       res.locals.newUser = { RoleARN, region, _id };
-      console.log('res.locals.user: ', res.locals.newUser);
       // console.log('userdata[0]._id', userData[0]._id);
       // console.log(
       //   'THIS IS THE USER id in res locals: ',
@@ -59,7 +56,6 @@ userController.verifyUser = async (req, res, next) => {
     // else throw new Error('Password is incorrect');
   } catch (err) {
     // send to global error handler
-    console.log('error in verifyuser');
     return next({
       log: `Error in userController.verifyUser. Details: ${err}`,
       message: { err: 'An error occurred in userController.verifyUser' },

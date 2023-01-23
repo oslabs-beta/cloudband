@@ -1,0 +1,98 @@
+@import '../variables';
+
+.landing-page-wrapper {
+  padding: 40px;
+  h2 {
+    font-size: 36px;
+    font-weight: 600;
+  }
+  h3 {
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  button {
+    width: 200px;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 10px;
+    border: none;
+    color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
+  }
+
+  .hero {
+    img {
+      box-shadow: var(--drop-shadow);
+    }
+  }
+
+  .primary-btn {
+    background-color: var(--deep-yellow);
+  }
+
+  .subheading {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .column {
+    padding-right: 20px;
+  }
+
+  .section {
+    margin: 60px 0px;
+  }
+
+  .feature-box {
+    border-radius: 40px;
+    width: 25%;
+    padding: 20px;
+    box-shadow: var(--drop-shadow);
+    background-color: var(--mid-blue-opacity);
+  }
+
+  .highlights {
+    img {
+      box-shadow: var(--drop-shadow);
+    }
+    .row {
+      margin: 120px 0px;
+    }
+
+    .highlight-text {
+      width: 30%;
+    }
+    .highlight-img {
+      width: 50%;
+    }
+  }
+
+  .team-member-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // border: 1px solid var(--light-color);
+    background: var(--mid-blue-opacity);
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: var(--drop-shadow);
+    a {
+      color: var(--light-color);
+      padding: 0px 10px;
+    }
+
+    h4 {
+      margin: 20px 0;
+    }
+
+    .headshot {
+      width: 100px;
+    }
+  }
+}

@@ -52,7 +52,7 @@ const Settings = (props) => {
   function switchSettings() {
     if (tool === 'ec2') {
       return (
-        <div className="settings-wrapper">
+        <div>
           <h2>EC2 Settings</h2>
           <label htmlFor="ec2-metrics">Choose a metric to view:</label>
           <section className="dropdown-wrapper">
@@ -62,8 +62,7 @@ const Settings = (props) => {
               onChange={onEC2MetricChange}
               value={ec2Metric}
             >
-              <option value="cpu-credits">CPU Credits</option>
-              <option value="cpu-utilization">CPU Utilization</option>
+              <option value="cpu-credits">CPU</option>
               <option value="network-in-out">Network In/Out</option>
             </select>
           </section>
@@ -79,7 +78,8 @@ const Settings = (props) => {
       });
 
       return (
-        <div className="settings-wrapper">
+        <div>
+          <h2>Lambda Settings</h2>
           <label htmlFor="curr-func">Choose a Lambda function:</label>
           <section className="dropdown-wrapper">
             <select
