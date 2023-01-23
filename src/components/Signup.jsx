@@ -83,7 +83,7 @@ const Signup = () => {
               className="create-stack-link"
               rel="noopener noreferrer"
             >
-              {'Create New Stack'}
+              <button className="secondary-btn">Create New Stack</button>
             </a>
           </div>
           <div className="column">
