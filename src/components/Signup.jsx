@@ -25,7 +25,6 @@ const Signup = () => {
         region: region,
       })
       .then((response) => {
-        console.log(response);
         setSignedUp(true);
       })
       .catch((err) => {
