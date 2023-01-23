@@ -4,7 +4,7 @@ dotenv.config();
 
 const credentialController = {};
 
-const region = 'us-east-1';
+// const region = 'us-east-1';
 const credentials = {
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY,
