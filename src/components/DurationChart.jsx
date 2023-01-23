@@ -11,6 +11,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import '../componentStyling/LambdaChartStyling.scss';
 
 const DurationChart = (props) => {
   const { chartData } = props;
@@ -43,7 +44,11 @@ const DurationChart = (props) => {
     ],
   };
 
-  return <Line options={options} data={data} />;
+  return (
+    <div className="lambda-chart-wrapper">
+      <Line options={options} data={data} />
+    </div>
+  );
 };
 
 export default DurationChart;
