@@ -29,7 +29,18 @@ const ErrorsChart = (props) => {
     },
   };
 
-  const labels = chartData.timeStamps;
+  // const labels = chartData.timeStamps;
+  const labels = chartData.timestamps
+    .map((timestamp) => {
+      const date = new Date(timestamp);
+      // const month = date.getMonth() + 1;
+      // const day = date.getDate();
+      const hour = date.getHours();
+      const minute = date.getMinutes();
+
+      return `${hour}:${minute}`;
+    })
+    .reverse(); //[timestamps]
 
   const data = {
     labels,
