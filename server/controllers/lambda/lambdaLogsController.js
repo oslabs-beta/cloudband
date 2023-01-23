@@ -4,8 +4,8 @@ const {
 } = require('@aws-sdk/client-cloudwatch-logs');
 
 const getLambdaLogs = async (req, res, next) => {
-  // const { currFunc } = req.query;
-  const { currFunc } = req.body; //testing artillery
+  const { currFunc } = req.query;
+  // const { currFunc } = req.body; //testing artillery
   const logGroupName = '/aws/lambda/' + currFunc;
 
   const cloudWatchLogs = new CloudWatchLogsClient({

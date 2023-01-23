@@ -12,8 +12,8 @@ const getLambdaMetrics = async (req, res, next) => {
   const EndTime = new Date();
   const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
 
-  // const { currFunc } = req.query;
-  const { currFunc } = req.body; //testing artillery
+  const { currFunc } = req.query;
+  // const { currFunc } = req.body; //testing artillery
   const { functionLogs } = res.locals;
 
   const params = {

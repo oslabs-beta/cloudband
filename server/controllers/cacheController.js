@@ -73,7 +73,7 @@ const cacheSet = async (req, res, next) => {
     `${req.query.arn}${req.originalUrl}us-east-1`,
     JSON.stringify(res.locals.toBeCached),
     'EX',
-    60 * 60
+    300
     // timeScale[req.params.period]
   );
   console.log('cache is set');

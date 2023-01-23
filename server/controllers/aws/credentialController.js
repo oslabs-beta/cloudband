@@ -13,8 +13,8 @@ const credentials = {
 credentialController.getCredentials = async (req, res, next) => {
   // console.log('entered CredentialController');
   // console.log('credentials', credentials);
-  // const { arn } = req.query;
-  const { arn } = req.body; //testing artillery
+  const { arn } = req.query;
+  // const { arn } = req.body; //testing artillery
   const info = {
     RoleArn: arn, //will receive from front end
     RoleSessionName: 'CloudbandRoleSession',

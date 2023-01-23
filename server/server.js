@@ -113,18 +113,7 @@ app.get(
 // );
 // testing artillery
 
-app.post(
-  '/getLambdaMetrics',
-  cacheController.cacheGet,
-  credentialController.getCredentials,
-  lambdaLogsController.getLambdaLogs,
-  lambdaMetricsController.getLambdaMetrics,
-  cacheController.cacheSet,
-  (req, res) => {
-    return res.status(200).json(res.locals.lambdaMetricsLogs);
-  }
-);
-// app.get(
+// app.post(
 //   '/getLambdaMetrics',
 //   cacheController.cacheGet,
 //   credentialController.getCredentials,
@@ -135,6 +124,17 @@ app.post(
 //     return res.status(200).json(res.locals.lambdaMetricsLogs);
 //   }
 // );
+app.get(
+  '/getLambdaMetrics',
+  cacheController.cacheGet,
+  credentialController.getCredentials,
+  lambdaLogsController.getLambdaLogs,
+  lambdaMetricsController.getLambdaMetrics,
+  cacheController.cacheSet,
+  (req, res) => {
+    return res.status(200).json(res.locals.lambdaMetricsLogs);
+  }
+);
 
 // sign up
 app.post(
