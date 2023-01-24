@@ -116,20 +116,17 @@ app.post(
 // sign in
 app.post(
   '/signin',
-  (req, res, next) => {
-    console.log('req.body', req.body);
-    return next();
-  },
   userController.verifyUser,
   cookieController.setSSIDCookie,
-  sessionController.isLoggedIn,
-  // sessionController.startSession,
+  sessionController.startSession,
   (req, res) => {
     return res.status(200).json(res.locals); // need to send back token and cookie
     // return res.status(200).json('successful request'); // need to send back token and cookie
   }
 );
-
+app.get('/checkSession', sessionController.isLoggedIn, (req, res) => {
+  return res.status(200).json(res.locals);
+});
 // 404 error handler :)
 app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');

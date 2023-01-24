@@ -65,6 +65,11 @@ module.exports = {
         router: () => 'http://localhost:3000',
         secure: false,
       },
+      '/checkSession': {
+        target: 'http://localhost:8000/',
+        router: () => 'http://localhost:3000',
+        secure: false,
+      },
     },
   },
   module: {
