@@ -71,8 +71,8 @@ const Signup = () => {
             <h3>Step 1:</h3>
             {/* "I acknowledge that AWS CloudFormation might create IAM resources." */}
             <div>
-              <input type="checkbox" id="scales" name="scales" />
-              <label for="scales">
+              <input type="checkbox" id="accept-terms" name="accept-terms" />
+              <label htmlFor="accept-terms">
                 &nbsp; "I acknowledge that AWS CloudFormation might create IAM
                 resources."
               </label>
@@ -99,7 +99,6 @@ const Signup = () => {
               id="arn"
               onChange={(e) => {
                 setArn(e.target.value);
-                console.log('arn: ', e.target.value);
               }}
             />
             <label className="region-label">Select Region:</label>
@@ -160,7 +159,6 @@ const Signup = () => {
               id="email"
               onChange={(e) => {
                 setEmail(e.target.value);
-                console.log('email: ', e.target.value);
               }}
             />
             <label className="password-label">Enter Password:</label>
