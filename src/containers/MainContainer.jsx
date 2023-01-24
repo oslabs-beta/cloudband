@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import InputToken from '../components/Signup.jsx';
 import EC2ChartContainer from './EC2ChartContainer.jsx';
 import LambdaChartContainer from './LambdaChartContainer.jsx';
 import Settings from '../components/Settings.jsx';
@@ -10,11 +9,11 @@ const MainContainer = (props) => {
   const { loggedIn, arn, region } = props;
 
   const [ec2Metric, setEc2Metric] = useState('cpu-credits');
-  // const [arn, setArn] = useState();
   const [tool, setTool] = useState('ec2');
   const [funcNames, setFuncNames] = useState([]);
   const [currFunc, setCurrFunc] = useState('');
 
+  // renders ec2 or lambda charts/options based on drop down selection in settings
   function switchChartContainers() {
     if (tool === 'ec2') {
       return (
@@ -29,6 +28,7 @@ const MainContainer = (props) => {
     }
   }
 
+  // reroutes to login page if a user is not logged in
   if (!loggedIn) {
     return <Navigate to="/login" />;
   } else {
@@ -38,7 +38,6 @@ const MainContainer = (props) => {
           ec2Metric={ec2Metric}
           setEc2Metric={setEc2Metric}
           arn={arn}
-          // setArn={setArn}
           region={region}
           tool={tool}
           setTool={setTool}
