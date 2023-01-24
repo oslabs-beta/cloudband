@@ -14,15 +14,14 @@ const App = () => {
   const [arn, setArn] = useState();
   const [region, setRegion] = useState();
 
+  // check for session using cookie to persist login status, arn, and region
   useEffect(() => {
     axios
       .get('/checkSession')
       .then((response) => {
         if (response.data.user) {
           setLoggedIn(true);
-          // set arn to response.data.newUser.RoleARN
           setArn(response.data.user.RoleARN);
-          // set region to response.data.newUser.region
           setRegion(response.data.user.region);
         } else setLoggedIn(false);
       })
