@@ -14,9 +14,9 @@ const Signup = () => {
   const [arn, setArn] = useState('');
   const [region, setRegion] = useState('us-east-1');
 
+  // request to server to add a user to the database and then route to login page
   const handleSubmit = (event) => {
     event.preventDefault();
-    //create post req here to send info to server and build user in db ---> TO DO
     axios
       .post('/signup', {
         email: email,
@@ -50,26 +50,17 @@ const Signup = () => {
             </p>
           </div>
 
-          {/* <div style="position: relative; padding-bottom: 56.25%; height: 0;">
-           */}
           <div id="video-wrapper">
             <iframe
               src="https://cloudband.s3.amazonaws.com/CloudFormation+-+Stack+creation.mp4"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              // allowfullscreen
             ></iframe>
-            {/* <img
-            src="https://cloudband.s3.amazonaws.com/ezgif.com-gif-maker.gif"
-            alt="stack-creation-gif"
-          /> */}
           </div>
         </div>
-
         <div className="row-2">
           <div className="column">
             <h3>Step 1:</h3>
-            {/* "I acknowledge that AWS CloudFormation might create IAM resources." */}
             <div>
               <input type="checkbox" id="accept-terms" name="accept-terms" />
               <label htmlFor="accept-terms">

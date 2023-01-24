@@ -7,26 +7,25 @@ const Login = (props) => {
   const { loggedIn, setLoggedIn, setArn, setRegion } = props;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  // request to send login information to server to set login, arn, and region state
   const handleSubmit = (event) => {
     event.preventDefault();
-    //add get req to get user info and validate ----> TO DO
     axios
       .post('/signin', {
         email: email,
         password: password,
       })
       .then((response) => {
-        // setLoggedIn(true);
         setLoggedIn(true);
-        // set arn to response.data.newUser.RoleARN
         setArn(response.data.newUser.RoleARN);
-        // set region to response.data.newUser.region
         setRegion(response.data.newUser.region);
       })
       .catch((error) => {
         console.error('error in sign up request: ', error);
       });
   };
+  // automatically routes to visualer if logged in, otherwise renders login page
   if (loggedIn) {
     return <Navigate to="/visualizer" />;
   } else {
@@ -34,7 +33,6 @@ const Login = (props) => {
       <div className="login-form-wrapper">
         <div className="login-form-content">
           <h2>Login</h2>
-          {/* <label className="email-label">Enter Email:</label> */}
           <input
             type="text"
             placeholder="EMAIL"
@@ -43,7 +41,6 @@ const Login = (props) => {
               setEmail(e.target.value);
             }}
           />
-          {/* <label className="password-label">Enter Password:</label> */}
           <input
             type="password"
             placeholder="PASSWORD"
