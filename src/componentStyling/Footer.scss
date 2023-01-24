@@ -21,9 +21,9 @@
         margin-bottom: 18.26px;
       }
       a {
-        color: var(--light-color);
+        color: var(--deep-yellow);
         text-decoration: none;
-        font-weight: 800;
+        // font-weight: 800;
       }
     }
 
@@ -51,7 +51,8 @@
     .col-3-wrapper {
       a {
         // color: var(--mid-blue);
-        color: var(--light-color);
+        color: var(--deep-yellow);
+        text-decoration: none;
       }
     }
   }

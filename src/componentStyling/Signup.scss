@@ -1,5 +1,10 @@
 .signup-wrapper {
-  padding-bottom: 40px;
+  padding-top: 40px;
+  padding-bottom: 80px;
+
+  a {
+    color: var(--deep-yellow);
+  }
 
   button {
     width: 100%;
@@ -15,9 +20,10 @@
     background-color: var(--deep-yellow);
   }
   .primary-btn:hover {
-    background-color: var(--light-color);
-    color: var(--mid-blue);
-    transition: all 0.5s ease-in-out;
+    background-color: var(--med-blue);
+    color: var(--light-color);
+    border: 1px solid var(--light-color);
+    transition: all 0.3s ease-in-out;
   }
 
   .secondary-btn {
@@ -27,9 +33,9 @@
   }
   .secondary-btn:hover {
     border: none;
-    color: var(--light-color);
-    background-color: var(--mid-blue);
-    transition: all 0.5s ease-in-out;
+    color: var(--mid-blue);
+    background-color: var(--light-color);
+    transition: all 0.3s ease-in-out;
   }
 
   .row-1 {
@@ -70,13 +76,6 @@
     justify-content: space-between;
     padding: 0px 40px;
 
-    .column {
-      display: flex;
-      flex-direction: column;
-      padding-right: 10px;
-      width: 30%;
-    }
-
     select {
       width: 100%;
       padding: 5px;
@@ -86,6 +85,7 @@
       background: transparent;
       color: white;
     }
+
     input {
       padding: 5px;
       margin: 20px 0px;
@@ -107,6 +107,17 @@
     }
     p {
       margin-top: 0;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      padding-right: 10px;
+      width: 30%;
+    }
+    .help-link {
+      font-size: 10px;
+      color: var(--light-color-opacity);
     }
   }
 }
