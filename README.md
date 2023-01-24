@@ -3,7 +3,7 @@
 
 <p>
 Easy access and straightforward, intuitive visualization of AWS resource metrics are critical to AWS developers. It is intimidating to navigate the extensive AWS documentation and many hundreds of services, and challenging to quickly visualize metrics for these resources.</p>
-
+gir r
 <p>Our solution is a web application that provides comprehensive charts for direct visualization of a wide range of available EC2 metrics and Lambda functions, for those who use Lambda functions to process lifecycle events from Amazon Elastic Compute Cloud and their related EC2 resources</p>
 
 Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/addThisNext) | [Press](will write this later this week)
