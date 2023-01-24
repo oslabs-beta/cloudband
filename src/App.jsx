@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import axios from 'axios';
 import Navbar from './components/Navbar.jsx';
 import Footer from './components/Footer.jsx';
 import MainContainer from './containers/MainContainer.jsx';
@@ -12,6 +13,24 @@ const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [arn, setArn] = useState();
   const [region, setRegion] = useState();
+
+  useEffect(() => {
+    axios
+      .get('/checkSession')
+      .then((response) => {
+        // setLoggedIn(true);
+        if (response.data.user) {
+          setLoggedIn(true);
+          // set arn to response.data.newUser.RoleARN
+          setArn(response.data.user.RoleARN);
+          // set region to response.data.newUser.region
+          setRegion(response.data.user.region);
+        }
+      })
+      .catch((error) => {
+        console.error('error in sign up request: ', error);
+      });
+  }, []);
   return (
     <div className="router">
       <Navbar />
