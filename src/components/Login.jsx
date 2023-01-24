@@ -32,28 +32,30 @@ const Login = (props) => {
   } else {
     return (
       <div className="login-form-wrapper">
-        <h2>Login</h2>
-        <label className="email-label">Enter Email:</label>
-        <input
-          type="text"
-          placeholder="email"
-          id="email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <label className="password-label">Enter Password:</label>
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <button id="credentials-button" onClick={handleSubmit}>
-          Submit
-        </button>
+        <div className="login-form-content">
+          <h2>Login</h2>
+          {/* <label className="email-label">Enter Email:</label> */}
+          <input
+            type="text"
+            placeholder="EMAIL"
+            id="email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          {/* <label className="password-label">Enter Password:</label> */}
+          <input
+            type="password"
+            placeholder="PASSWORD"
+            id="password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+          <button id="credentials-button" onClick={handleSubmit}>
+            Login
+          </button>
+        </div>
       </div>
     );
   }

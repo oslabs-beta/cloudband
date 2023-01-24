@@ -4,7 +4,8 @@
 body {
   //   background: linear-gradient(to right, #d3d3d3, #87ceeb, #e6e6fa);
   // color: white;
-  background: linear-gradient(180deg, #5ea2ed 0%, #003566 100%);
+  // background: linear-gradient(180deg, #5ea2ed 0%, #003566 100%);
+  background: linear-gradient(180deg, #7cb6d6 0%, #042439 100%);
   // background: linear-gradient(
   //   180deg,
   //   #67aefd 0%,
@@ -18,7 +19,7 @@ body {
   color: var(--light-color);
 
   hr {
-    border: 0.5px solid var(--light-color);
+    border: 0.5px solid var(--light-color-opacity);
     margin: 0 auto;
   }
 }

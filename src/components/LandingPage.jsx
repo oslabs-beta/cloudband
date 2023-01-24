@@ -8,8 +8,11 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import '../componentStyling/LandingPage.scss';
 
 const LandingPage = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const redirectToSignup = (event) => {
+    return navigate('/get-started');
+  };
   const featureBox = (icon, heading, subheading) => {
     return (
       <div className="feature-box">
@@ -79,7 +82,9 @@ const LandingPage = () => {
             Metrics, get your fresh metrics here! Anyone who has metrics really
             really desperately needs this app.
           </p>
-          <button className="primary-btn">Signup for free!</button>
+          <button className="primary-btn" onClick={redirectToSignup}>
+            Signup for free!
+          </button>
           <a href="https://github.com/oslabs-beta/cloudband" target="_blank">
             <button className="secondary-btn">Contribute</button>
           </a>
