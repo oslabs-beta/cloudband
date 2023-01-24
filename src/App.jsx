@@ -10,7 +10,7 @@ import LandingPage from './components/LandingPage.jsx';
 import './styles.scss';
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
   const [arn, setArn] = useState();
   const [region, setRegion] = useState();
 
@@ -18,14 +18,13 @@ const App = () => {
     axios
       .get('/checkSession')
       .then((response) => {
-        // setLoggedIn(true);
         if (response.data.user) {
           setLoggedIn(true);
           // set arn to response.data.newUser.RoleARN
           setArn(response.data.user.RoleARN);
           // set region to response.data.newUser.region
           setRegion(response.data.user.region);
-        }
+        } else setLoggedIn(false);
       })
       .catch((error) => {
         console.error('error in sign up request: ', error);
