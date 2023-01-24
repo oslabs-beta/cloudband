@@ -29,6 +29,7 @@ const App = () => {
         console.error('error in sign up request: ', error);
       });
   }, []);
+
   return (
     <div className="router">
       <Navbar />
