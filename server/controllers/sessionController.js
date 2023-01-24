@@ -17,12 +17,18 @@ sessionController.startSession = async (req, res, next) => {
 };
 
 sessionController.isLoggedIn = async (req, res, next) => {
+  const { ssid } = req.cookies;
   try {
     const loggedInStatus = await Session.findOne({
-      cookieId: res.locals.ssidCookie,
+      cookieId: ssid,
     });
-    if (loggedInStatus) return next();
-    else return sessionController.startSession(req, res, next);
+    if (loggedInStatus) {
+      //find user and save arn and region to res.locals
+      const userData = await User.find({ _id: ssid });
+      const { RoleARN, region, _id } = userData[0];
+      res.locals.user = { RoleARN, region, _id };
+    }
+    return next();
   } catch (err) {
     // send to global error handler
     next({
