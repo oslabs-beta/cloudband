@@ -8,6 +8,12 @@
   line-height: 50px;
   align-items: center;
 
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
   .logo {
     font-weight: 700;
     font-size: 32px;
@@ -15,7 +21,10 @@
     // color: var(--mid-blue);
 
     color: var(--light-color);
-    // padding: 0 0 0 20px;
+    padding: 0 0 0 20px;
+  }
+  .logo-img {
+    width: 100px;
   }
 
   .menu-items {
