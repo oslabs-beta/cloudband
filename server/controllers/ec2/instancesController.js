@@ -1,6 +1,6 @@
 const { EC2Client, DescribeInstancesCommand } = require('@aws-sdk/client-ec2');
 
-//retrieve ids from all ec2 instances in a region
+//retrieve ids of all ec2 instances
 module.exports = {
   getInstances: async (req, res, next) => {
     const info = {
@@ -13,8 +13,6 @@ module.exports = {
 
     try {
       const data = await ec2Client.send(new DescribeInstancesCommand({}));
-
-      //extract instance ids from data
       const instances = data.Reservations;
       const instanceIds = instances.map((instance) => {
         return instance.Instances[0].InstanceId;
