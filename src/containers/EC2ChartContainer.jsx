@@ -79,19 +79,25 @@ const EC2ChartContainer = (props) => {
     if (ec2Metric === 'network-in-out') {
       return (
         <div className="chart-container-wrapper">
-          <NetworkInChart chartData={networkInData} />
-          <NetworkOutChart chartData={networkOutData} />
+          <div className="row">
+            <NetworkInChart chartData={networkInData} />
+            <NetworkOutChart chartData={networkOutData} />
+          </div>
         </div>
       );
     } else if (ec2Metric === 'cpu-credits') {
       return (
         <div className="chart-container-wrapper">
-          <CPUUtilizationChart chartData={cpuUtilizationData} />
-          <CPUCreditUsageChart chartData={cpuCreditUsageData} />
-          <CPUCreditBalanceChart chartData={cpuCreditBalanceData} />
-          <CPUSurplusCreditBalanceChart
-            chartData={cpuSurplusCreditBalanceData}
-          />
+          <div className="row">
+            <CPUUtilizationChart chartData={cpuUtilizationData} />
+            <CPUCreditUsageChart chartData={cpuCreditUsageData} />
+          </div>
+          <div className="row">
+            <CPUCreditBalanceChart chartData={cpuCreditBalanceData} />
+            <CPUSurplusCreditBalanceChart
+              chartData={cpuSurplusCreditBalanceData}
+            />
+          </div>
         </div>
       );
     }
