@@ -1,0 +1,123 @@
+.signup-wrapper {
+  padding-top: 40px;
+  padding-bottom: 80px;
+
+  a {
+    color: var(--deep-yellow);
+  }
+
+  button {
+    width: 100%;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 20px 0;
+    border: none;
+    color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
+  }
+
+  .primary-btn {
+    background-color: var(--deep-yellow);
+  }
+  .primary-btn:hover {
+    background-color: var(--med-blue);
+    color: var(--light-color);
+    border: 1px solid var(--light-color);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .secondary-btn {
+    border: 1px solid var(--light-color);
+    color: var(--light-color);
+    background-color: transparent;
+  }
+  .secondary-btn:hover {
+    border: none;
+    color: var(--mid-blue);
+    background-color: var(--light-color);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .row-1 {
+    display: flex;
+    flex-direction: row;
+    // width: 100%;
+    justify-content: space-between;
+    padding: 40px;
+
+    .instructions {
+      display: flex;
+      flex-direction: column;
+      width: 30%;
+      margin-right: 20px;
+
+      h2 {
+        margin-top: 0;
+      }
+
+      h3 {
+        font-weight: 600;
+      }
+    }
+
+    #video-wrapper {
+      width: 640px;
+      height: 360px;
+
+      iframe {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .row-2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 40px;
+
+    select {
+      width: 100%;
+      padding: 5px;
+      margin: 20px 0px;
+      border: none;
+      border-bottom: 1px solid var(--mid-blue);
+      background: transparent;
+      color: white;
+    }
+
+    input {
+      padding: 5px;
+      margin: 20px 0px;
+      border: none;
+      border-bottom: 1px solid var(--mid-blue);
+      background: transparent;
+      color: white;
+    }
+
+    input:active {
+      background: transparent;
+      border-bottom: 1px solid var(--mid-blue);
+      color: white;
+    }
+
+    ::placeholder {
+      color: white;
+      opacity: 50%;
+    }
+    p {
+      margin-top: 0;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      padding-right: 10px;
+      width: 30%;
+    }
+    .help-link {
+      font-size: 10px;
+      color: var(--light-color-opacity);
+    }
+  }
+}

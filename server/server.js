@@ -2,16 +2,16 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cloudWatchController = require('./controllers/aws/cloudwatchController');
+const cloudwatchController = require('./controllers/aws/cloudwatchController');
 const instancesController = require('./controllers/aws/instancesController');
 const credentialController = require('./controllers/aws/credentialController');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
-const invocationController = require('./controllers/lambda/invocationController');
-const throttleController = require('./controllers/lambda/throttleController');
-const errorsController = require('./controllers/lambda/errorsController');
+const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
+const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
+
 const mongoose = require('mongoose');
 
 mongoose
@@ -43,31 +43,24 @@ app.use(cors());
 app.use(express.json());
 
 // handle static files
-// if (process.env.NODE_ENV === 'production') {
-//   console.log('this is the production environment');
-//   app.use(express.static('dist'));
-// } else if (process.env.NODE_ENV === 'development') {
-//   console.log('this is the development environment');
-//   app.use(express.static('src'));
-// }
-app.use(express.static('dist'));
+// app.use(express.static('src'));
 
 // get metrics
-app.get(
-  '/cpu-utilization',
-  credentialController.getCredentials,
-  instancesController.getInstances,
-  cloudWatchController.getCPUUtilization,
-  (req, res) => {
-    return res.status(200).json(res.locals.chartData);
-  }
-);
+// app.get(
+//   '/cpu-utilization',
+//   credentialController.getCredentials,
+//   instancesController.getInstances,
+//   cloudwatchController.getCPUUtilization,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.chartData);
+//   }
+// );
 app.get(
   '/network-in-out',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getNetworkIn,
-  cloudWatchController.getNetworkOut,
+  cloudwatchController.getNetworkIn,
+  cloudwatchController.getNetworkOut,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
@@ -76,51 +69,48 @@ app.get(
   '/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudWatchController.getCPUCreditUsage,
-  cloudWatchController.getCPUCreditBalance,
-  cloudWatchController.getCPUSurplusCreditBalance,
+  cloudwatchController.getCPUUtilization,
+  cloudwatchController.getCPUCreditUsage,
+  cloudwatchController.getCPUCreditBalance,
+  cloudwatchController.getCPUSurplusCreditBalance,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
 );
-// get Lambda functions metrics
-app.get(
-  '/invocations',
-  credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  invocationController.getInvocationMetrics,
-  (req, res) => {
-    return res.status(200).json(res.locals.invocations);
-  }
-);
+
+//get Lambda function names
 
 app.get(
-  '/throttles',
+  '/getLambdaNames',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
-  throttleController.getThrottleMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.throttles);
+    return res.status(200).json(res.locals.lambdaNames);
   }
 );
-
+// get Lambda metrics by Each Function
 app.get(
-  '/errors',
+  '/getLambdaMetrics',
   credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  errorsController.getErrorMetrics,
+  lambdaLogsController.getLambdaLogs,
+  lambdaMetricsController.getLambdaMetrics,
   (req, res) => {
-    return res.status(200).json(res.locals.errors);
+    return res.status(200).json(res.locals.lambdaMetricsLogs);
   }
 );
 
 // sign up
 app.post(
   '/signup',
+  (req, res, next) => {
+    console.log('req.body', req.body);
+    return next();
+  },
   userController.createUser,
-  cookieController.setSSIDCookie,
-  sessionController.startSession,
+  // cookieController.setSSIDCookie,
+  // sessionController.startSession,
   (req, res) => {
+    // return res.status(200).json('successful request'); // need to send back token and cookie
     return res.status(200).json(res.locals); // need to send back token and cookie
   }
 );
@@ -133,9 +123,12 @@ app.post(
   sessionController.startSession,
   (req, res) => {
     return res.status(200).json(res.locals); // need to send back token and cookie
+    // return res.status(200).json('successful request'); // need to send back token and cookie
   }
 );
-
+app.get('/checkSession', sessionController.isLoggedIn, (req, res) => {
+  return res.status(200).json(res.locals);
+});
 // 404 error handler :)
 app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');
@@ -159,13 +152,3 @@ app.listen(PORT, () => {
 
 // exports (express app)
 module.exports = app;
-
-app.get(
-  '/metricsRequest',
-  credentialController.getCredentials,
-  listLambdasController.getLambdas,
-  errorsController.getErrorMetrics,
-  (req, res) => {
-    return res.status(200).json(res.locals.errors);
-  }
-);

@@ -14,7 +14,6 @@ cookieController.setSSIDCookie = async (req, res, next) => {
       httpOnly: true,
     });
     res.locals.ssidCookie = userId;
-    console.log('success creating ssid cookie: ', res.locals.ssidCookie);
     return next();
   } catch (err) {
     // send to global error handler

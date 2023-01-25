@@ -1,17 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import Chart from 'chart.js/auto';
+// import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
 import '../componentStyling/LineChartStyling.scss';
 
 const CPUUtilizationChart = (props) => {
   const { chartData } = props;
+  console.log('cpu utilization data: ', chartData);
   const labels = chartData.timestamps
     .map((timestamp) => {
       const date = new Date(timestamp);
       // const month = date.getMonth() + 1;
       // const day = date.getDate();
-      const hour = date.getHours();
-      const minute = date.getMinutes();
+      let hour = date.getHours();
+      let minute = date.getMinutes();
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      if (minute < 10) {
+        minute = `0${minute}`;
+      }
       return `${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
@@ -62,7 +69,7 @@ const CPUUtilizationChart = (props) => {
   };
   return (
     <div className="chart-wrapper">
-      <Line data={data} options={options} className="chart-content" />
+      <Line data={data} options={options} />
     </div>
   );
 };

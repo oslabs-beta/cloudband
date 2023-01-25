@@ -1,7 +1,3 @@
-<!-- PROJECT LOGO -->
-
-<img src="cloud.png" alt="" width="640" height="320" />
-</div>
 
 <h2>About Cloudband</h2>
 

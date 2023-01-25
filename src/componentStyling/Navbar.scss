@@ -5,12 +5,26 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 0 40px 0 40px;
+  line-height: 50px;
+  align-items: center;
 
-  h1 {
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .logo {
     font-weight: 700;
     font-size: 32px;
-    line-height: 50px;
-    // padding: 0 0 0 20px;
+    text-decoration: none;
+    // color: var(--mid-blue);
+
+    color: var(--light-color);
+    padding: 0 0 0 20px;
+  }
+  .logo-img {
+    width: 100px;
   }
 
   .menu-items {
@@ -26,7 +40,9 @@
 
     a {
       text-decoration: none;
-      color: var(--mid-blue);
+      // color: var(--mid-blue);
+
+      color: var(--light-color);
     }
   }
 }
