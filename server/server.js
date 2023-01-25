@@ -43,7 +43,7 @@ app.use(cors());
 app.use(express.json());
 
 // handle static files
-// app.use(express.static('src'));
+app.use(express.static('dist'));
 
 // get metrics
 // app.get(
