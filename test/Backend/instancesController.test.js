@@ -1,6 +1,5 @@
-import { getInstances } from '../../server/controllers/aws/instancesController';
-import {EC2Client} from '@aws-sdk/client-ec2';
-
+import { getInstances } from '../../server/controllers/ec2/instancesController';
+import { EC2Client } from '@aws-sdk/client-ec2';
 
 describe('getInstances', () => {
   test('should call the EC2Client with the correct parameters', async () => {
@@ -43,4 +42,3 @@ describe('getInstances', () => {
     expect(ec2Client.send).toHaveBeenCalled();
   });
 });
-

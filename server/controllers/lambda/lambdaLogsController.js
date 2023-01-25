@@ -3,16 +3,23 @@ const {
   FilterLogEventsCommand,
 } = require('@aws-sdk/client-cloudwatch-logs');
 
+//retrieve logs of each lambda function
 const getLambdaLogs = async (req, res, next) => {
   const { currFunc } = req.query;
-
   const logGroupName = '/aws/lambda/' + currFunc;
 
+  //create new instance of CloudWatchLogsClient with user's region and credentials
   const cloudWatchLogs = new CloudWatchLogsClient({
-    region: 'us-east-1',
+    region: req.query.region,
     credentials: res.locals.credentials,
   });
 
+  //initiate starttime to be 7 days before endtime in milliseconds from epoch time
+  const now = new Date();
+  const EndTime = now.valueOf();
+  const StartTime = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).valueOf();
+
+  //helper function to recursively retrieve logs if there's a nextToken
   const nextTokenHelper = async (nextToken, data = []) => {
     if (!nextToken) {
       return data;
@@ -20,38 +27,41 @@ const getLambdaLogs = async (req, res, next) => {
     const nextLogEvents = await cloudWatchLogs.send(
       new FilterLogEventsCommand({
         logGroupName,
-        endTime: new Date().valueOf(),
-        startTime: 1674335894,
+        endTime: EndTime.valueOf(),
+        startTime: StartTime.valueOf(),
         nextToken,
         filterPattern: '- START - END ',
       })
     );
-    // console.log('nextLogEvents', nextLogEvents);
     data.push(nextLogEvents.events);
     return nextTokenHelper(nextLogEvents.nextToken, data);
   };
 
+  //AWS query format for each individual lambda function to list logs
   try {
     const logEvents = await cloudWatchLogs.send(
       new FilterLogEventsCommand({
         logGroupName,
-        endTime: new Date().valueOf(),
-        startTime: 1674335894,
+        endTime: EndTime.valueOf(),
+        startTime: StartTime.valueOf(),
         filterPattern: '- START - END ',
       })
     );
-    // console.log('logEvents', logEvents);
+    //if there are no logs, return to next middleware
     if (!logEvents) {
       return next();
     }
 
+    //if there is a nextToken, recursively retrieve logs with helper function
     if (logEvents.nextToken) {
       const nextTokenData = await nextTokenHelper(logEvents.nextToken);
       logEvents.events = logEvents.events.concat(...nextTokenData);
     }
 
+    //only return the first 50 logs
     const fiftyLogEvents = logEvents.events.slice(0, 50);
 
+    //format the logs to remove unnecessary information
     const logEventsMessages = [];
     fiftyLogEvents.forEach((event) => {
       if (
@@ -70,9 +80,7 @@ const getLambdaLogs = async (req, res, next) => {
       }
     });
 
-    const eventLog = logEventsMessages;
-
-    res.locals.functionLogs = eventLog;
+    res.locals.functionLogs = logEventsMessages;
     return next();
   } catch (err) {
     if (err) console.error(err);

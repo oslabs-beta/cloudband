@@ -39,7 +39,6 @@ const EC2ChartContainer = (props) => {
             region,
           },
         });
-
         if (ec2Metric === 'network-in-out') {
           setNetworkInData({
             ...defaultDataStructure,
