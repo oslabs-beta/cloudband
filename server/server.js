@@ -79,6 +79,10 @@ app.get(
   }
 );
 
+app.delete('/logout', sessionController.logout, (req, res) => {
+  return res.status(200).send();
+});
+
 // sign up
 app.post('/signup', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals);
