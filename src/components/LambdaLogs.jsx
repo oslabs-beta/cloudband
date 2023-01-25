@@ -67,13 +67,24 @@ const LambdaLogsTable = (props) => {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper
+      sx={{
+        width: '100%',
+        overflow: 'hidden',
+        color: 'rgba(3, 41, 62, 0.5)',
+        backgroundColor: '#f5f5f5',
+      }}
+    >
       <TableContainer sx={{ maxHeight: 440 }}>
         <Typography
           sx={{
             flex: '1 1 100%',
-            textAlign: 'center',
+            textAlign: 'left',
             marginTop: '10px',
+            fontWeight: 'bold',
+            fontSize: 18,
+            paddingLeft: 10,
+            paddingBottom: 2,
           }}
           variant="h4"
           id="tableTitle"
@@ -89,6 +100,11 @@ const LambdaLogsTable = (props) => {
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
+                  sx={{
+                    color: 'rgba(3, 41, 62, 0.5)',
+                    backgroundColor: '#f5f5f5',
+                    paddingLeft: 10,
+                  }}
                 >
                   {column.label}
                 </TableCell>
@@ -104,7 +120,15 @@ const LambdaLogsTable = (props) => {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          sx={{
+                            color: 'rgba(3, 41, 62, 0.5)',
+                            backgroundColor: '#f5f5f5',
+                            paddingLeft: 10,
+                          }}
+                        >
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
@@ -125,6 +149,11 @@ const LambdaLogsTable = (props) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          color: 'rgba(3, 41, 62, 0.5)',
+          backgroundColor: '#f5f5f5',
+          paddingLeft: 10,
+        }}
       />
     </Paper>
   );
