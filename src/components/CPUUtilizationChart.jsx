@@ -7,7 +7,8 @@ import '../componentStyling/EC2ChartStyling.scss';
 
 const CPUUtilizationChart = (props) => {
   const { chartData } = props;
-  console.log('cpu utilization data: ', chartData);
+  // console.log('cpu utilization data: ', chartData);
+  console.log('chartData', chartData);
   const labels = chartData.timestamps
     .map((timestamp) => {
       const date = new Date(timestamp);
@@ -40,7 +41,7 @@ const CPUUtilizationChart = (props) => {
     labels: labels, // [..]
     datasets: datasets, // [{..}, {..}, {..}]
   };
-
+  console.log('data in cpuchart', data);
   const options = Options(
     'CPU Utilization',
     'Utilization as a percentage across all EC2 instances every eight hours for the past week.'

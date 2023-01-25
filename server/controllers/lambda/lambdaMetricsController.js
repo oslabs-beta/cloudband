@@ -3,22 +3,25 @@ const {
   GetMetricDataCommand,
 } = require('@aws-sdk/client-cloudwatch');
 
+//retrieve metrics for each lambda function
 const getLambdaMetrics = async (req, res, next) => {
   const credentials = {
-    region: 'us-east-1',
+    region: req.query.region,
     credentials: res.locals.credentials,
   };
 
+  //create new instance of CloudWatchClient with user's region and credentials
   const cloudwatch = new CloudWatchClient(credentials);
-  // const EndTime = new Date();
+
+  //initiate endtime to be current time rounded to nearest 5 minutes
   const EndTime = Math.round(new Date().getTime() / 1000 / 60 / 5) * 60 * 5;
-  // const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
-  const StartTime = EndTime - 30 * 60 * 24 * 7;
+  //initiate starttime to be 7 days before endtime
+  const StartTime = EndTime - 60 * 60 * 24 * 7;
 
   const { currFunc } = req.query;
   const { functionLogs } = res.locals;
-  // console.log('functionLogs: ', functionLogs);
 
+  //AWS query format for each individual lambda function to list metrics
   const params = {
     StartTime: new Date(StartTime * 1000),
     EndTime: new Date(EndTime * 1000),
@@ -101,6 +104,7 @@ const getLambdaMetrics = async (req, res, next) => {
     ],
   };
 
+  //send formatted query to AWS CloudWatch and format response to be used in frontend
   try {
     const command = new GetMetricDataCommand(params);
     const metricData = await cloudwatch.send(command);

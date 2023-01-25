@@ -4,13 +4,16 @@ const {
 } = require('@aws-sdk/client-lambda');
 
 const listLambdasController = {};
-//retrieve lambda function names
+
+//retrieve name of all user's lambda functions
 listLambdasController.getLambdas = async (req, res, next) => {
+  //create new instance of LambdaClient with user's region and credentials
   const lambdaClient = new LambdaClient({
-    region: 'us-east-1',
+    region: req.query.region,
     credentials: res.locals.credentials,
   });
 
+  //retrieve names of lambda functions (max 10)
   try {
     const allFuncs = await lambdaClient.send(
       new ListFunctionsCommand({
@@ -20,7 +23,6 @@ listLambdasController.getLambdas = async (req, res, next) => {
     );
 
     const funcList = allFuncs.Functions.map((func) => func.FunctionName);
-
     res.locals.lambdaNames = funcList;
 
     return next();
