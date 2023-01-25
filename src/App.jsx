@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <div className="router">
-      <Navbar />
+      <Navbar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
       <hr />
       <div className="routerMain" id="content">
         <Routes>
