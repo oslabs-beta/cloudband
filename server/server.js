@@ -2,9 +2,10 @@ const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const cloudwatchController = require('./controllers/aws/cloudwatchController');
-const instancesController = require('./controllers/aws/instancesController');
-const credentialController = require('./controllers/aws/credentialController');
+const cpuMetricsController = require('./controllers/ec2/cpuMetricsController');
+const networkMetricsController = require('./controllers/ec2/networkMetricsController');
+const instancesController = require('./controllers/ec2/instancesController');
+const credentialController = require('./controllers/credentialController');
 const userController = require('./controllers/userController');
 const cookieController = require('./controllers/cookieController');
 const sessionController = require('./controllers/sessionController');
@@ -22,8 +23,6 @@ mongoose
   })
   .then(() => console.log('MongoDB connected...'));
 
-// import routers and controllers
-
 // invoke express
 const app = express();
 const PORT = 3000;
@@ -38,46 +37,29 @@ app.use(cors());
 // use express json
 app.use(express.json());
 
-// user cookie parser
-
-// handle static files
-// app.use(express.static('src'));
-
-// get metrics
-// app.get(
-//   '/cpu-utilization',
-//   credentialController.getCredentials,
-//   instancesController.getInstances,
-//   cloudwatchController.getCPUUtilization,
-//   (req, res) => {
-//     return res.status(200).json(res.locals.chartData);
-//   }
-// );
+//handles requests for ec2 network metrics
 app.get(
   '/network-in-out',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudwatchController.getNetworkIn,
-  cloudwatchController.getNetworkOut,
+  networkMetricsController.getNetworkMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
 );
+
+//handles requests for ec2 cpu metrics and credits
 app.get(
   '/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
-  cloudwatchController.getCPUUtilization,
-  cloudwatchController.getCPUCreditUsage,
-  cloudwatchController.getCPUCreditBalance,
-  cloudwatchController.getCPUSurplusCreditBalance,
+  cpuMetricsController.getCPUMetrics,
   (req, res) => {
     return res.status(200).json(res.locals.chartData);
   }
 );
 
 //get Lambda function names
-
 app.get(
   '/getLambdaNames',
   credentialController.getCredentials,
@@ -86,7 +68,7 @@ app.get(
     return res.status(200).json(res.locals.lambdaNames);
   }
 );
-// get Lambda metrics by Each Function
+//handles requests for lambda logs and metrics
 app.get(
   '/getLambdaMetrics',
   credentialController.getCredentials,
@@ -98,32 +80,22 @@ app.get(
 );
 
 // sign up
-app.post(
-  '/signup',
-  (req, res, next) => {
-    console.log('req.body', req.body);
-    return next();
-  },
-  userController.createUser,
-  // cookieController.setSSIDCookie,
-  // sessionController.startSession,
-  (req, res) => {
-    // return res.status(200).json('successful request'); // need to send back token and cookie
-    return res.status(200).json(res.locals); // need to send back token and cookie
-  }
-);
+app.post('/signup', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals);
+});
 
-// sign in
+// handles sign in request
 app.post(
   '/signin',
   userController.verifyUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
   (req, res) => {
-    return res.status(200).json(res.locals); // need to send back token and cookie
-    // return res.status(200).json('successful request'); // need to send back token and cookie
+    return res.status(200).json(res.locals);
   }
 );
+
+//checks if user is logged in
 app.get('/checkSession', sessionController.isLoggedIn, (req, res) => {
   return res.status(200).json(res.locals);
 });
@@ -132,7 +104,7 @@ app.get('*', (req, res) => {
   return res.status(404).send('This page does not exist.');
 });
 
-// global error handler :(
+// global error handler
 app.use((err, req, res, next) => {
   const defaultErr = {
     log: 'Express error handler caught unknown middleware error',
@@ -143,10 +115,8 @@ app.use((err, req, res, next) => {
   return res.status(errorObj.status).json(errorObj.message);
 });
 
-// set it to listen to a port
 app.listen(PORT, () => {
   console.log('Server listening on port 3000');
 });
 
-// exports (express app)
 module.exports = app;

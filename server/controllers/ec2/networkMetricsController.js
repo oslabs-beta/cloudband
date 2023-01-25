@@ -5,22 +5,26 @@ const {
 
 const networkMetricsController = {};
 
+// Get network metrics for all instances in a region
 networkMetricsController.getNetworkMetrics = async (req, res, next) => {
-  const { region } = req.query;
   const { instances } = res.locals.ec2Instances;
 
   const credentials = {
-    region: region,
+    region: req.query.region,
     credentials: res.locals.credentials,
   };
 
+  // Create a new instance of the CloudWatchClient with the user's region and credentials
   const cloudwatch = new CloudWatchClient(credentials);
 
   try {
+    //initiate starttime to be 7 days before endtime
     const EndTime = new Date();
     const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+
     const queries = [];
 
+    //generate AWS EC2 network metrics queries for each instance
     instances.forEach((instanceId, index) => {
       const id = index * instances.length + index + 1;
       queries.push(
@@ -72,37 +76,25 @@ networkMetricsController.getNetworkMetrics = async (req, res, next) => {
       MetricDataQueries: queries,
     };
 
-    // console.log('queries', queries);
+    //send AWS query to CloudWatch
     const command = new GetMetricDataCommand(input);
     const responses = await cloudwatch.send(command);
-    // console.log('responses', responses);
-    const values = responses.MetricDataResults.reduce((acc, curr) => {
-      acc.push(curr.Values);
-      return acc;
-    }, []);
 
+    //format data to be sent to frontend
     const timestamps = responses.MetricDataResults[0].Timestamps;
+    const data = responses.MetricDataResults.reduce((acc, curr) => {
+      if (!acc[curr.Label]) {
+        acc[curr.Label] = {
+          values: [],
+          timestamps: timestamps,
+          instanceIds: instances,
+        };
+      }
+      acc[curr.Label].values.push(curr.Values);
+      return acc;
+    }, {});
 
-    const chartData = {
-      values: values,
-      timestamps: timestamps,
-      instanceIds: instances,
-    };
-    // console.log('chartData', chartData);
-    res.locals.chartData = { CPUUtilization: chartData };
-    // console.log('res.locals.chartData', res.locals.chartData);
-    // res.locals.chartData.CPUCreditUsage = chartData;
-    // res.locals.chartData.CPUCreditBalance = chartData;
-    // res.locals.chartData.CPUSurplusCreditBalance = chartData;
-
-    /*
-      chartData = {
-          CPUUtilization: {values: [], timestamps: [], instanceIds: []},
-          CPUCreditUsage: {values: [], timestamps: [], instanceIds: []},
-          CPUCreditBalance: {values: [], timestamps: [], instanceIds: []},
-          CPUSurplusCreditBalance: {values: [], timestamps: [], instanceIds: []},
-      };
-      */
+    res.locals.chartData = data;
 
     return next();
   } catch (error) {
