@@ -21,7 +21,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -41,7 +41,7 @@ cloudwatchController.getCPUUtilization = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Average',
       },
     }));
@@ -90,7 +90,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -110,7 +110,7 @@ cloudwatchController.getNetworkIn = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Sum',
       },
     }));
@@ -161,7 +161,7 @@ cloudwatchController.getNetworkOut = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -181,7 +181,7 @@ cloudwatchController.getNetworkOut = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Sum',
       },
     }));
@@ -231,7 +231,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -251,7 +251,7 @@ cloudwatchController.getCPUCreditUsage = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Sum',
       },
     }));
@@ -303,7 +303,7 @@ cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -323,7 +323,7 @@ cloudwatchController.getCPUCreditBalance = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Sum',
       },
     }));
@@ -373,7 +373,7 @@ cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
   try {
     const EndTime = new Date();
     //shows the EC2 CPU utilization of the past 7 days -> currently 0.3 days
-    const StartTime = new Date(EndTime.getTime() - 1 * 24 * 60 * 60 * 1000);
+    const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
 
     const { instances } = res.locals.ec2Instances; //[id1, id2, id3]
     //extract instance identifers from the list of instances
@@ -393,7 +393,7 @@ cloudwatchController.getCPUSurplusCreditBalance = async (req, res, next) => {
             },
           ],
         },
-        Period: 3600,
+        Period: 3600 * 8,
         Stat: 'Sum',
       },
     }));

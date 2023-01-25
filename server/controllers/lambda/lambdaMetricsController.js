@@ -10,16 +10,18 @@ const getLambdaMetrics = async (req, res, next) => {
   };
 
   const cloudwatch = new CloudWatchClient(credentials);
-  const EndTime = new Date();
-  const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+  // const EndTime = new Date();
+  const EndTime = Math.round(new Date().getTime() / 1000 / 60 / 5) * 60 * 5;
+  // const StartTime = new Date(EndTime.getTime() - 7 * 24 * 60 * 60 * 1000);
+  const StartTime = EndTime - 30 * 60 * 24 * 7;
 
   const { currFunc } = req.query;
   const { functionLogs } = res.locals;
   // console.log('functionLogs: ', functionLogs);
 
   const params = {
-    StartTime,
-    EndTime,
+    StartTime: new Date(StartTime * 1000),
+    EndTime: new Date(EndTime * 1000),
     LabelOptions: {
       Timezone: '-0400',
     },
@@ -39,7 +41,7 @@ const getLambdaMetrics = async (req, res, next) => {
             ],
           },
           Period: 60,
-          Stat: 'Average',
+          Stat: 'Sum',
         },
       },
       {
@@ -57,7 +59,7 @@ const getLambdaMetrics = async (req, res, next) => {
             ],
           },
           Period: 60,
-          Stat: 'Average',
+          Stat: 'Sum',
         },
       },
       {
@@ -75,7 +77,7 @@ const getLambdaMetrics = async (req, res, next) => {
             ],
           },
           Period: 60,
-          Stat: 'Average',
+          Stat: 'Sum',
         },
       },
       {

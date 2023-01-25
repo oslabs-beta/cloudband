@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 // import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import '../componentStyling/LineChartStyling.scss';
+import Options from './LineChartOptions.js';
+import '../componentStyling/EC2ChartStyling.scss';
 
 const CPUUtilizationChart = (props) => {
   const { chartData } = props;
@@ -11,8 +12,14 @@ const CPUUtilizationChart = (props) => {
       const date = new Date(timestamp);
       // const month = date.getMonth() + 1;
       // const day = date.getDate();
-      const hour = date.getHours();
-      const minute = date.getMinutes();
+      let hour = date.getHours();
+      let minute = date.getMinutes();
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      if (minute < 10) {
+        minute = `0${minute}`;
+      }
       return `${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
@@ -40,27 +47,12 @@ const CPUUtilizationChart = (props) => {
     labels: labels, // [..]
     datasets: datasets, // [{..}, {..}, {..}]
   };
-  const options = {
-    responsive: true,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    stacked: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'CPU Utilization Chart',
-      },
-    },
-    scales: {
-      y: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-      },
-    },
-  };
+
+  const options = Options(
+    'CPU Utilization',
+    'Utilization as a percentage across all EC2 instances every eight hours for the past week.'
+  );
+
   return (
     <div className="chart-wrapper">
       <Line data={data} options={options} />

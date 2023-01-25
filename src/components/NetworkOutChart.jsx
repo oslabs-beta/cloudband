@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import '../componentStyling/LineChartStyling.scss';
+import Options from './LineChartOptions.js';
+import '../componentStyling/EC2ChartStyling.scss';
 
 const NetworkOutChart = (props) => {
   const { chartData } = props;
@@ -11,9 +12,14 @@ const NetworkOutChart = (props) => {
       const date = new Date(timestamp);
       // const month = date.getMonth() + 1;
       // const day = date.getDate();
-      const hour = date.getHours();
-      const minute = date.getMinutes();
-
+      let hour = date.getHours();
+      let minute = date.getMinutes();
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      if (minute < 10) {
+        minute = `0${minute}`;
+      }
       return `${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
@@ -45,27 +51,11 @@ const NetworkOutChart = (props) => {
     datasets: datasets, // [{..}, {..}, {..}]
   };
 
-  const options = {
-    responsive: true,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    stacked: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Network Out Chart',
-      },
-    },
-    scales: {
-      y: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-      },
-    },
-  };
+  const options = Options(
+    'Network Out',
+    'Number of bytes sent out for each EC2 instance at 8 hour intervals for the past week.',
+    'EC2 Instance Ids'
+  );
 
   return (
     <div className="chart-wrapper">

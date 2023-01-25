@@ -28,24 +28,19 @@ const columns = [
 const LambdaLogsTable = (props) => {
   const { logs } = props;
 
-  // const labels = chartData.timestamps
-  //   .map((timestamp) => {
-  //     const date = new Date(timestamp);
-  //     // const month = date.getMonth() + 1;
-  //     // const day = date.getDate();
-  //     const hour = date.getHours();
-  //     const minute = date.getMinutes();
-
-  //     return `${hour}:${minute}`;
-  //   })
-  //   .reverse(); //[timestamps]
   const formattedLogs = logs.map((log) => {
     const message = log.message;
     const date = new Date(log.timestamp);
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    if (hour < 10) {
+      hour = `0${hour}`;
+    }
+    if (minute < 10) {
+      minute = `0${minute}`;
+    }
 
     return {
       message,
@@ -67,13 +62,24 @@ const LambdaLogsTable = (props) => {
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+    <Paper
+      sx={{
+        width: '100%',
+        overflow: 'hidden',
+        color: 'rgba(3, 41, 62, 0.5)',
+        backgroundColor: '#f5f5f5',
+      }}
+    >
       <TableContainer sx={{ maxHeight: 440 }}>
         <Typography
           sx={{
             flex: '1 1 100%',
-            textAlign: 'center',
+            textAlign: 'left',
             marginTop: '10px',
+            fontWeight: 'bold',
+            fontSize: 18,
+            paddingLeft: 10,
+            paddingBottom: 2,
           }}
           variant="h4"
           id="tableTitle"
@@ -89,6 +95,11 @@ const LambdaLogsTable = (props) => {
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
+                  sx={{
+                    color: 'rgba(3, 41, 62, 0.5)',
+                    backgroundColor: '#f5f5f5',
+                    paddingLeft: 10,
+                  }}
                 >
                   {column.label}
                 </TableCell>
@@ -104,7 +115,15 @@ const LambdaLogsTable = (props) => {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} align={column.align}>
+                        <TableCell
+                          key={column.id}
+                          align={column.align}
+                          sx={{
+                            color: 'rgba(3, 41, 62, 0.5)',
+                            backgroundColor: '#f5f5f5',
+                            paddingLeft: 10,
+                          }}
+                        >
                           {column.format && typeof value === 'number'
                             ? column.format(value)
                             : value}
@@ -125,6 +144,11 @@ const LambdaLogsTable = (props) => {
         page={page}
         onPageChange={handleChangePage}
         onRowsPerPageChange={handleChangeRowsPerPage}
+        sx={{
+          color: 'rgba(3, 41, 62, 0.5)',
+          backgroundColor: '#f5f5f5',
+          paddingLeft: 10,
+        }}
       />
     </Paper>
   );

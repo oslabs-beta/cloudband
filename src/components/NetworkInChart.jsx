@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import '../componentStyling/LineChartStyling.scss';
+import Options from './LineChartOptions.js';
+import '../componentStyling/EC2ChartStyling.scss';
 
 const NetworkInChart = (props) => {
   const { chartData } = props;
@@ -11,9 +12,14 @@ const NetworkInChart = (props) => {
       const date = new Date(timestamp);
       // const month = date.getMonth() + 1;
       // const day = date.getDate();
-      const hour = date.getHours();
-      const minute = date.getMinutes();
-
+      let hour = date.getHours();
+      let minute = date.getMinutes();
+      if (hour < 10) {
+        hour = `0${hour}`;
+      }
+      if (minute < 10) {
+        minute = `0${minute}`;
+      }
       return `${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
@@ -45,27 +51,11 @@ const NetworkInChart = (props) => {
     datasets: datasets, // [{..}, {..}, {..}]
   };
 
-  const options = {
-    responsive: true,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    stacked: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'Network In Chart',
-      },
-    },
-    scales: {
-      y: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-      },
-    },
-  };
+  const options = Options(
+    'Network In',
+    'Number of bytes sent in for each EC2 instance at 8 hour intervals for the past week.',
+    'EC2 Instance Ids'
+  );
 
   return (
     <div className="chart-wrapper">
