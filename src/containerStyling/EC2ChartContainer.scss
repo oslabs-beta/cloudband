@@ -2,4 +2,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: var(--light-color);
+  min-height: 800px;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
