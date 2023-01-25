@@ -11,23 +11,16 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import Options from './AreaChartOptions.js';
 import '../componentStyling/LambdaChartStyling.scss';
 
 const InvocationsChart = (props) => {
   const { chartData } = props;
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Lambda Area Chart',
-      },
-    },
-  };
+  const options = Options(
+    'Invocations',
+    'The sum of invocations of this function every hour for the past week.'
+  );
 
   // const labels = chartData.timeStamps;
   const labels = chartData.timestamps

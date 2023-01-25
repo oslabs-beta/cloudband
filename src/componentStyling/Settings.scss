@@ -3,42 +3,28 @@
 .settings-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 10px 40px 0 40px;
-  // background-color: var(--pale-blue);
-  border-right: 1px solid var(--light-color-opacity);
+  padding: 20px 40px 0 40px;
   min-width: 200px;
+  max-width: 200px;
 
   h2 {
     font-size: 24px;
     font-weight: 700;
+    margin-bottom: 10px;
   }
 
   label {
-    padding-bottom: 5px;
+    padding: 10px 0px;
+    font-weight: 700;
   }
 
-  .dropdown-wrapper {
-    // select {
-    //   border-radius: 40px;
-    //   // border: 1px solid var(--mid-blue);
-    //   color: var(--mid-blue);
-    //   font-size: 16px;
-    //   padding: 5px;
-    //   width: 190px;
-    // }
-
-    select {
-      width: 100%;
-      padding: 5px;
-      margin: 20px 0px;
-      border: none;
-      border-bottom: 1px solid var(--mid-blue-opacity);
-      background: transparent;
-      color: white;
-    }
-  }
-
-  .dropdown-wrapper:after {
-    color: red;
+  select {
+    width: 100%;
+    padding: 20px 0px;
+    margin: 20px 0px;
+    border: none;
+    border-bottom: 1px solid var(--mid-blue-opacity);
+    background: transparent;
+    color: white;
   }
 }

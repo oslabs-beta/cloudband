@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Chart from 'chart.js/auto';
 import { Line } from 'react-chartjs-2';
-import '../componentStyling/LineChartStyling.scss';
+import Options from './LineChartOptions.js';
+import '../componentStyling/EC2ChartStyling.scss';
 
 const CPUSurplusCreditBalanceChart = (props) => {
   const { chartData } = props;
@@ -50,27 +51,10 @@ const CPUSurplusCreditBalanceChart = (props) => {
     datasets: datasets, // [{..}, {..}, {..}]
   };
 
-  const options = {
-    responsive: true,
-    interaction: {
-      mode: 'index',
-      intersect: false,
-    },
-    stacked: false,
-    plugins: {
-      title: {
-        display: true,
-        text: 'CPU Surplus Credit Balance Chart',
-      },
-    },
-    scales: {
-      y: {
-        type: 'linear',
-        display: true,
-        position: 'left',
-      },
-    },
-  };
+  const options = Options(
+    'CPU Surplus Credit Balance',
+    'Number of credits remaining for each EC2 instance at 8 hour intervals for the past week.'
+  );
 
   return (
     <div className="chart-wrapper">
