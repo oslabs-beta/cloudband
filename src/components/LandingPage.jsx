@@ -95,8 +95,8 @@ const LandingPage = () => {
           </a>
         </div>
         <img
-          src="https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png"
-          alt="hero-image"
+          src="https://cloudband.s3.amazonaws.com/Cloudband_homepage_screenshot.png"
+          alt="Cloudband-app-screenshot"
         />
       </div>
       <div className="features section">
@@ -120,58 +120,58 @@ const LandingPage = () => {
       <div className="highlights section">
         {highlight(
           'text-left',
-          'Something something something and then some more something for you to consider',
-          'And some more detail here',
-          'https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png',
-          'placeholder image'
+          'Toggle between EC2 Metric Datasets',
+          'Conveniently compiled views of blahdy blah',
+          'https://cloudband.s3.amazonaws.com/Cloudband_toggle-ec2-metrics-cropped.gif',
+          'toggle-ec2-metrics-gif'
         )}
         {highlight(
           'text-right',
-          'Something something something and then some more something for you to consider',
+          'Compare between all EC2 instances or just the ones you want to see',
           'And some more detail here',
-          'https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png',
-          'placeholder image'
+          'https://cloudband.s3.amazonaws.com/Cloudband_toggleEC2instances_cropped.gif',
+          'toggle-ec2-instances-gif'
         )}
         {highlight(
           'text-left',
-          'Something something something and then some more something for you to consider',
+          'Easily toggle between EC2 Metrics and Lambda functions',
           'And some more detail here',
-          'https://s3-alpha.figma.com/hub/file/948140848/1f4d8ea7-e9d9-48b7-b70c-819482fb10fb-cover.png',
+          'https://cloudband.s3.amazonaws.com/Cloudband-toggle-lambda-functions.gif',
           'placeholder image'
         )}
       </div>
-      <div className="team section">
+      <div className="team section" id="team-section">
         <h3>Our Team</h3>
         <div className="row">
           {teamMember(
             'https://cloudband.s3.amazonaws.com/camille_salter_headshot.png',
             'Camille Salter',
-            '#',
-            '#'
+            'https://github.com/CamSalter',
+            'https://www.linkedin.com/in/camille-salter'
           )}
           {teamMember(
             'https://cloudband.s3.amazonaws.com/caroline_kimball_headshot.png',
             'Caroline Kimball',
-            '#',
-            '#'
+            'https://github.com/kimballcaroline',
+            'https://www.linkedin.com/in/kimballcaroline'
           )}
           {teamMember(
             'https://cloudband.s3.amazonaws.com/greg_jenner_portrait.png',
             'Greg Jenner',
-            '#',
-            '#'
+            'https://github.com/gregjenner',
+            'https://www.linkedin.com/in/greg-o-jenner'
           )}
           {teamMember(
             'https://cloudband.s3.amazonaws.com/john_donovan_headshot.png',
             'John Donovan',
-            '#',
-            '#'
+            'https://github.com/jodonovan845',
+            'https://www.linkedin.com/in/john-d-donovan'
           )}
           {teamMember(
             'https://cloudband.s3.amazonaws.com/tomas_kim_headshot.png',
             'Tomas Kim',
-            '#',
-            '#'
+            'https://github.com/tk0885',
+            'https://www.linkedin.com/in/tomasjskim'
           )}
         </div>
       </div>
