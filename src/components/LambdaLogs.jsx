@@ -33,8 +33,14 @@ const LambdaLogsTable = (props) => {
     const date = new Date(log.timestamp);
     const month = date.getMonth() + 1;
     const day = date.getDate();
-    const hour = date.getHours();
-    const minute = date.getMinutes();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    if (hour < 10) {
+      hour = `0${hour}`;
+    }
+    if (minute < 10) {
+      minute = `0${minute}`;
+    }
 
     return {
       message,

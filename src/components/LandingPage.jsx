@@ -10,9 +10,12 @@ import '../componentStyling/LandingPage.scss';
 const LandingPage = () => {
   const navigate = useNavigate();
 
+  // redirects to get-started when sign up button is clicked
   const redirectToSignup = (event) => {
     return navigate('/get-started');
   };
+
+  // reusable component highlighting a feature of the app
   const featureBox = (icon, heading, subheading) => {
     return (
       <div className="feature-box">
@@ -23,6 +26,7 @@ const LandingPage = () => {
     );
   };
 
+  // reusable component that renders text and a larger picture grouped horizontally
   const highlight = (
     orientation,
     primaryText,
@@ -55,6 +59,7 @@ const LandingPage = () => {
     }
   };
 
+  // reusable component that renders team member information
   const teamMember = (imgLink, name, github, linkedIn) => {
     return (
       <div className="team-member-box">

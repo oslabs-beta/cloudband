@@ -16,18 +16,22 @@ const Settings = (props) => {
     setCurrFunc,
   } = props;
 
+  // sets ec2 metric based on drop down select
   const onEC2MetricChange = (event) => {
     setEc2Metric(event.target.value);
   };
 
+  // changes between showing ec2 or lambda metrics/options based on drop down select
   const onToolChange = (event) => {
     setTool(event.target.value);
   };
 
+  // sets current lambda function based on drop down select
   const onCurrFuncChange = (event) => {
     setCurrFunc(event.target.value);
   };
 
+  // fetches lambda names when a user selects lambda to populate drop down and set the current lambda function
   useEffect(() => {
     axios
       .get(`http://localhost:3000/getLambdaNames`, {
@@ -49,6 +53,7 @@ const Settings = (props) => {
       });
   }, [tool]);
 
+  // toggles showing ec2 options or lambda options based on drop down select
   function switchSettings() {
     if (tool === 'ec2') {
       return (
@@ -73,6 +78,7 @@ const Settings = (props) => {
         </div>
       );
     } else if (tool === 'lambda') {
+      // populates lambda functions drop down with function names
       const lambdaDropdownOptions = funcNames.map((funcName, index) => {
         return (
           <option value={funcName} key={index}>
