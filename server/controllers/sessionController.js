@@ -15,6 +15,20 @@ sessionController.startSession = async (req, res, next) => {
   }
 };
 
+// log out user based on SSID cookie
+sessionController.logout = async (req, res, next) => {
+  const { ssid } = req.cookies;
+  try {
+    await Session.deleteOne({ cookieId: ssid });
+    return next();
+  } catch (err) {
+    next({
+      log: `Error in sessionController.logout. Details: ${err}`,
+      message: { err: 'An error occurred in sessionController.logout' },
+    });
+  }
+};
+
 //verify that user is logged in based on SSID cookie
 sessionController.isLoggedIn = async (req, res, next) => {
   const { ssid } = req.cookies;
