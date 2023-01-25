@@ -26,8 +26,8 @@ const ErrorsChart = (props) => {
   const labels = chartData.timestamps
     .map((timestamp) => {
       const date = new Date(timestamp);
-      // const month = date.getMonth() + 1;
-      // const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const day = date.getDate();
       let hour = date.getHours();
       let minute = date.getMinutes();
       if (hour < 10) {
@@ -36,7 +36,7 @@ const ErrorsChart = (props) => {
       if (minute < 10) {
         minute = `0${minute}`;
       }
-      return `${hour}:${minute}`;
+      return `${month}/${day} ${hour}:${minute}`;
     })
     .reverse(); //[timestamps]
 
