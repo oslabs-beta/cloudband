@@ -22,8 +22,12 @@
   }
 
   .hero {
+    .column {
+      padding-right: 40px;
+    }
     img {
-      box-shadow: var(--drop-shadow);
+      // box-shadow: var(--drop-shadow);
+      width: 50%;
     }
   }
 
@@ -58,9 +62,6 @@
   }
 
   .highlights {
-    img {
-      box-shadow: var(--drop-shadow);
-    }
     .row {
       margin: 120px 0px;
     }
@@ -68,8 +69,14 @@
     .highlight-text {
       width: 30%;
     }
-    .highlight-img {
+
+    .highlight-primary-text {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    img {
       width: 50%;
+      // box-shadow: var(--drop-shadow);
     }
   }
 
@@ -88,6 +95,11 @@
     }
 
     h4 {
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    p {
       margin: 20px 0;
     }
 

@@ -70,6 +70,11 @@ module.exports = {
         router: () => 'http://localhost:3000',
         secure: false,
       },
+      '/logout': {
+        target: 'http://localhost:8000/',
+        router: () => 'http://localhost:3000',
+        secure: false,
+      },
     },
   },
   module: {
