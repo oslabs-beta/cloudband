@@ -53,8 +53,7 @@ const Settings = (props) => {
     if (tool === 'ec2') {
       return (
         <div>
-          <h2>EC2 Settings</h2>
-          <label htmlFor="ec2-metrics">Choose a metric to view:</label>
+          <label htmlFor="ec2-metrics">Choose a set of metrics:</label>
           <section className="dropdown-wrapper">
             <select
               name="ec2-metrics"
@@ -66,6 +65,11 @@ const Settings = (props) => {
               <option value="network-in-out">Network In/Out</option>
             </select>
           </section>
+          <h4>Tip:</h4>
+          <p>
+            Once your metrics have loaded, try clicking on the EC2 Instance Id's
+            to add/remove the instance from your view.
+          </p>
         </div>
       );
     } else if (tool === 'lambda') {
@@ -79,7 +83,6 @@ const Settings = (props) => {
 
       return (
         <div>
-          <h2>Lambda Settings</h2>
           <label htmlFor="curr-func">Choose a Lambda function:</label>
           <section className="dropdown-wrapper">
             <select
@@ -98,7 +101,12 @@ const Settings = (props) => {
 
   return (
     <div className="settings-wrapper">
-      <label htmlFor="tool">Tool</label>
+      <h2>Settings</h2>
+      <p>
+        Use the dropdowns below to choose which AWS tool and specific metrics
+        you would like to view.
+      </p>
+      <label htmlFor="tool">Choose a View:</label>
       <section className="dropdown-wrapper">
         <select name="tool" id="tool" onChange={onToolChange} value={tool}>
           <option value="ec2">EC2</option>
