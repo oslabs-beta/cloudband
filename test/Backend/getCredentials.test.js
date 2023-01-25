@@ -1,5 +1,6 @@
 const credentialController = require('../../__mocks__/credentialController');
 
+//
 describe('credentialController', () => {
   const arn = 'arn:aws:iam::123456789:role/example-role';
   const req = { query: { arn } };

@@ -2,16 +2,16 @@ version: '3'
 services:
   mongodb:
     image: mongo
+    container_name: mongo
     ports:
       - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
   cloudband:
     image: cloudband
     container_name: cloudband
     ports:
       - 3000:3000
-    command: npm run dev:server
+    command: npm run start
 networks:
   app:
+
+
