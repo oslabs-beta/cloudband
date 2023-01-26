@@ -21,7 +21,7 @@
   <summary>Table of Contents</summary>
   <ol>
       <li><a href="#about-cloudband">About</a></li> 
-      <li><a href="#getting-started">Getting Started</a></li> 
+      <li><a href="#getting-started-user-guide">Getting Started</a></li> 
       <li><a href="#monitoring-features">Monitoring Features</a></li>    
       <li><a href="#contributing">Contributing</a></li>
       <li><a href="#built-with">Built With</a></li>
@@ -70,7 +70,28 @@ Visit our [Website](https://www.cloud-band.io)
 
 4. On Dockerhub, pull the mongo image.
 
+5. Create an .env file with the following information, replacing the AWS_ACCESS_KEY and AWS_SECRET_KEY for your cloudband-user account's keys.
+
+```
+
+# cloudband's keys
+AWS_ACCESS_KEY=********************
+AWS_SECRET_KEY=******************************************
+
+#MONGO URI
+MONGO_URI_=mongodb://mongodb:27017/cloudband
+
+export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY
+export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_KEY
+export AWS_DEFAULT_REGION=us-east-1
+export MONGO_URI=$MONGO_URI_
+
+```
+
+
 5. Run both images via the docker-compose YAML file.
+
+6. Go to your localhost:3000 to see the application.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
