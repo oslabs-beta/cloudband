@@ -7,7 +7,7 @@
 <div align='center'>
 <img src="https://cloudband.s3.amazonaws.com/tk0885_geometric_minimal_cloud_Logo_line_simple_4cc0c0da-cbd9-4d57-b6c8-d892979e2c27.png" height ="300px" width="300px" align="center">
   </a>
-<h1>Cloudband</h1>
+<h1>Cloudband - Developer's Guide</h1>
 
 <!-- PROJECT SHIELDS -->
 
@@ -32,28 +32,30 @@
 
 
 ## About Cloudband
-<p>
-Easy access and straightforward, intuitive visualization of AWS resource metrics are critical to AWS developers. It is intimidating to navigate the extensive AWS documentation and many hundreds of services, and challenging to quickly visualize metrics for these resources.</p>
+<p>An active AWS account is required in order to make full use of Cloudband’s features.  It is highly suggested to make a new AWS account specifically for Cloudband if your use case is anything more than demoing the application.</p>
 
-<p>Our solution is a web application that provides comprehensive charts for direct visualization of a wide range of available EC2 metrics and Lambda functions, for those who use Lambda functions to process lifecycle events from Amazon Elastic Compute Cloud and their related EC2 resources</p>
+## IAM Setup
 
-Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/addThisNext) | [Press](will write this later this week)
+<p>In order for the Cloudband application to pull a user’s metrics, we will need to create an IAM user to programmatically access that user’s AWS.</p>
 
+<p>On your AWS account, do the following:</p>
 
-## Getting started (User Guide)
-🛠️ 
+<p>1. Create an IAM user called cloudband-user with programmatic access (no need for this user to be able to sign in to the AWS console)</p>
 
-<p>Visit www.cloud-band.io</p>
+<p>2. Attach the following policies directly to cloudband-user:</p>
 
-<p>1. Existing user? You can log in using your email and password.</p>
+<ul>
+  <li>AdministratorAccess</li>
+  <li>AmazonEC2FullAccess</li>
+  <li>AmazonS3FullAccessAWS</li>
+  <li>AWSLambda_FullAccess</li>
+  <li>AWSLambdaRole</li>
+  <li>AWSSecurityHubFullAccess</li>
+  <li>CloudWatchFullAccess</li>
+  <li>CloudWatchLogsFullAccess</li>
+</ul>
 
-<p>2. For new users, click "Create New Stack.</p>
-
-<p>3. Follow the link and sign in as an IAM user. Follow the instructions on the How To page or watch our How To Create a New Stack Video Tutorial.</p>
-
-<p>4. Copy and paste the unique ARN outputted from the prior step.</p>
-
-<p>5. Input the ARN into the Enter ARN Here field</p>
+<p>3. Create an access key for cloudband-user.  Keep the access key and secret access key in your records - this will be used in the .env file in the Cloudband application.</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
