@@ -21,12 +21,13 @@
   <summary>Table of Contents</summary>
   <ol>
       <li><a href="#about-cloudband">About</a></li> 
-      <li><a href="#getting-started">Getting Started</a></li>      
-      <li><a href="#monitoring-features">Monitoring Features</a></li>
-      <li><a href="#authors">Authors</a></li>      
+      <li><a href="#getting-started">Getting Started</a></li> 
+      <li><a href="#monitoring-features">Monitoring Features</a></li>    
       <li><a href="#contributing">Contributing</a></li>
       <li><a href="#built-with">Built With</a></li>
-      <li><a href="#license">License</a></li>         
+      <li><a href="#license">License</a></li>
+    <li><a href="#authors">Authors</a></li>  
+    <li><a href="#acknowledgments">Authors</a></li> 
   </ol>
 </details>
 
@@ -71,6 +72,7 @@ Visit our [Website](https://www.cloud-band.io)
 
 5. Run both images via the docker-compose YAML file.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Monitoring Features:
 
@@ -94,6 +96,62 @@ Visit our [Website](https://www.cloud-band.io)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Contributing:
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request.
+Don't forget to give the project a star! Thanks again!
+
+1. Fork Cloudband
+2. Clone to your local machine
+   ```
+   git clone <your-repo-url>
+   ```
+3. Create your Feature Branch
+   ```
+   git checkout -b feature/AmazingFeature
+   ```
+
+4. Commit your Changes
+   ```
+   git commit -m 'Add some AmazingFeature'
+   ```
+5. Push to the Branch
+   ```
+   git push origin feature/AmazingFeature
+   ```
+10. Open a Pull Request
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<p> Have a suggestion? Found a bug? Want to make Cloudband even more amazing?</p>
+<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Built with
+   💻 
+
+- [React](https://reactjs.org/)
+- [NodeJS](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Mongoose](https://mongoosejs.com/)
+- [Material UI](https://mui.com/)
+- [Chart.js](https://www.chartjs.org/)
+- [Jest](https://jestjs.io/)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## License
+
+Distributed under the MIT License.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 ## Authors:
 
 Caroline Kimball - [Github](https://github.com/kimballcaroline) || [Linkedin](www.linkedin.com/in/kimballcaroline)
@@ -112,47 +170,24 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) || [Linkedin](
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-## Contributing:
+## Acknowledgments
 
-<p> Have a suggestion? Found a bug? Want to make Cloudband even more amazing?</p>
-<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## Built with
-   💻 
-
-- [React](https://reactjs.org/)
-- [ReactHooks](https://reactjs.org/docs/hooks-intro.html)
-- [ReactRouter](https://reactrouter.com/)
-- [NodeJS](https://nodejs.org/en/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Chart.js](https://www.chartjs.org/)
-- [Webpack](https://webpack.js.org/)
-- [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
-- [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
-- [AWS IAM](https://aws.amazon.com/iam/)
-- [AWS Lambda](https://aws.amazon.com/lambda/)
-- [AWS EC2](https://aws.amazon.com/ec2/)
-- [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/)
-- [AWS STS](https://aws.amazon.com/sts/)
-- [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
-- [Javascript](https://www.javascript.com/)
-- [HTML](https://html.com/)
-- [CSS](https://www.w3schools.com/css/)
-- [Babel](https://babeljs.io/)
-- [Jest](https://jestjs.io/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## License
-
-This project is licensed under the OurProjectNotYourProject license - see the LICENSE.md file for details
+* [ReactHooks](https://reactjs.org/docs/hooks-intro.html)
+* [ReactRouter](https://reactrouter.com/)
+* [Axios](https://www.npmjs.com/package/axios)
+* [Webpack](https://webpack.js.org/)
+* [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
+* [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
+* [AWS IAM](https://aws.amazon.com/iam/)
+* [AWS Lambda](https://aws.amazon.com/lambda/)
+* [AWS EC2](https://aws.amazon.com/ec2/)
+* [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/)
+* [AWS STS](https://aws.amazon.com/sts/)
+* [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
+* [Javascript](https://www.javascript.com/)
+* [HTML](https://html.com/)
+* [CSS](https://www.w3schools.com/css/)
+* [Babel](https://babeljs.io/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
