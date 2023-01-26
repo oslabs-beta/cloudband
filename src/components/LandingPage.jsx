@@ -84,8 +84,8 @@ const LandingPage = () => {
         <div className="column">
           <h2>An AWS Metric Visualizer</h2>
           <p className="subheading">
-            Metrics, get your fresh metrics here! Anyone who has metrics really
-            really desperately needs this app.
+            Optimize your AWS resource efficiency by viewing your EC2 metrics
+            and Lambda function data in one centralized interface.
           </p>
           <button className="primary-btn" onClick={redirectToSignup}>
             Signup for free!
@@ -104,38 +104,42 @@ const LandingPage = () => {
           <h3>Features</h3>
         </div>
         <div className="row">
-          {featureBox(<UpdateIcon fontSize="large" />, 'Heading', 'Subheading')}
+          {featureBox(
+            <UpdateIcon fontSize="large" />,
+            'Your most recent data at your fingertips',
+            'With each login, your most recent data will be fetched and displayed.'
+          )}
           {featureBox(
             <QueryStatsIcon fontSize="large" />,
-            'Heading',
-            'Subheading'
+            'Compare metrics across instances',
+            'Hide or display instances to compare only the data you want to see.'
           )}
           {featureBox(
             <CompareArrowsIcon fontSize="large" />,
-            'Heading',
-            'Subheading'
+            'Switch between EC2 or Lambda data with just a click',
+            'Toggle between views to see all your data in the same console.'
           )}
         </div>
       </div>
       <div className="highlights section">
         {highlight(
           'text-left',
-          'Toggle between EC2 Metric Datasets',
-          'Conveniently compiled views of blahdy blah',
+          'Conventiently compiled EC2 Metric Datasets',
+          'With two tailored views, you can see all of your CPU or Network In/Out data for all of your EC2 Instances at a glance.',
           'https://cloudband.s3.amazonaws.com/Cloudband_toggle-ec2-metrics-cropped.gif',
           'toggle-ec2-metrics-gif'
         )}
         {highlight(
           'text-right',
           'Compare between all EC2 instances or just the ones you want to see',
-          'And some more detail here',
+          "By clicking on the instance id, you can easily toggle an instance's data on or off to view only what you want to see.",
           'https://cloudband.s3.amazonaws.com/Cloudband_toggleEC2instances_cropped.gif',
           'toggle-ec2-instances-gif'
         )}
         {highlight(
           'text-left',
           'Easily toggle between EC2 Metrics and Lambda functions',
-          'And some more detail here',
+          'The Cloudband interface allows you to seamlessly switch between your EC2 and Lambda metrics for a more convenient way to view your data.',
           'https://cloudband.s3.amazonaws.com/Cloudband-toggle-lambda-functions.gif',
           'placeholder image'
         )}
