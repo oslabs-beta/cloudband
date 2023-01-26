@@ -23,10 +23,10 @@
       <li><a href="#about-cloudband">About</a></li> 
       <li><a href="#getting-started">Getting Started</a></li>      
       <li><a href="#monitoring-features">Monitoring Features</a></li>
-        <li><a href="#authors">Authors</a></li>      
-        <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#license">License</a></li>         
+      <li><a href="#authors">Authors</a></li>      
+      <li><a href="#contributing">Contributing</a></li>
+      <li><a href="#built-with">Built With</a></li>
+      <li><a href="#license">License</a></li>         
   </ol>
 </details>
 
@@ -37,23 +37,23 @@ Easy access and straightforward, intuitive visualization of AWS resource metrics
 
 <p>Our solution is a web application that provides comprehensive charts for direct visualization of a wide range of available EC2 metrics and Lambda functions, for those who use Lambda functions to process lifecycle events from Amazon Elastic Compute Cloud and their related EC2 resources</p>
 
-Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/addThisNext) | [Press](will write this later this week)
+Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/company/cloudbandec37) | [Press](will write this later this week)
 
 
 ## Getting started (User Guide)
 🛠️ 
 
-<p>Visit www.cloud-band.io</p>
+Visit our [Website](https://www.cloud-band.io)
 
-<p>1. Existing user? You can log in using your email and password.</p>
+1. Existing user? You can log in using your email and password.
 
-<p>2. For new users, click "Create New Stack.</p>
+2. For new users, click "Create New Stack.
 
-<p>3. Follow the link and sign in as an IAM user. Follow the instructions on the How To page or watch our How To Create a New Stack Video Tutorial.</p>
+3. Follow the link and sign in as an IAM user. Follow the instructions on the How To page or watch our How To Create a New Stack Video Tutorial.
 
-<p>4. Copy and paste the unique ARN outputted from the prior step.</p>
+4. Copy and paste the unique ARN outputted from the prior step.
 
-<p>5. Input the ARN into the Enter ARN Here field</p>
+5. Input the ARN into the Enter ARN Here field
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -76,15 +76,20 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 
 1. On the landing page, users can select the type of EC2 resources they'd like to monitor. Once selected, users can view the metrics for the selected EC2 resources.
 
-<p align="center">
-<img src="insert-picture-of-landing-page-here" />
-</p>
 
-2. Users can then select different EC2 metric data types to render.
+<img src="https://cloudband.s3.amazonaws.com/Cloudband_toggleEC2Metrics.gif" width='800px' align='center'/>
 
-<p align="center">
-<img src="image-of-dropdown-menu-options-here" />
-</p>
+
+2. By clicking on the instance id, you can easily toggle an instance's data on or off to view only what you want to see.
+
+
+<img src="https://cloudband.s3.amazonaws.com/Cloudband_toggleEC2instances_cropped.gif" width='800px' align='center'/>
+
+
+3. The Cloudband interface allows you to seamlessly switch between your EC2 and Lambda metrics for a more convenient way to view your data.
+
+
+<img src="https://cloudband.s3.amazonaws.com/Cloudband-toggle-lambda-functions.gif" width='800px' align='center'/>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
