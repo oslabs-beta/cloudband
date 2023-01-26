@@ -9,29 +9,23 @@
   </a>
 <h1>Cloudband - Developer's Guide</h1>
 
-<!-- PROJECT SHIELDS -->
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Stargazers][stars-shield]][stars-url]
-[![MIT License][license-shield]][license-url]
-
 </div>
 
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-      <li><a href="#about-cloudband">About</a></li> 
-      <li><a href="#getting-started">Getting Started</a></li>      
-      <li><a href="#monitoring-features">Monitoring Features</a></li>
-        <li><a href="#authors">Authors</a></li>      
-        <li><a href="#contributing">Contributing</a></li>
-        <li><a href="#built-with">Built With</a></li>
-        <li><a href="#license">License</a></li>         
+      <li><a href="#aws-account-creation">AWS Account Creationt</a></li> 
+      <li><a href="#iam-setup">IAM Setup</a></li>      
+      <li><a href="#streamlining-the-user-sign-up-experience">Streamlining the User Sign-Up Experience</a></li>
+        <li><a href="#template-creation-and-storage">Template Creation and Storage</a></li>      
+        <li><a href="#template-storage-in-an-s3-bucket">Template Storage in an S3 Bucket</a></li>
+        <li><a href="#stack-creation-link">Stack Creation Link</a></li>
+        <li><a href="#finish-setup">Finish Setup</a></li>         
   </ol>
 </details>
 
 
-## About Cloudband
+## AWS Account Creation
 <p>An active AWS account is required in order to make full use of Cloudband’s features.  It is highly suggested to make a new AWS account specifically for Cloudband if your use case is anything more than demoing the application.</p>
 
 ## IAM Setup
