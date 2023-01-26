@@ -11,8 +11,8 @@ const LandingPage = () => {
   const navigate = useNavigate();
 
   // redirects to get-started when sign up button is clicked
-  const redirectToSignup = (event) => {
-    return navigate('/get-started');
+  const redirectToDemo = (event) => {
+    return navigate('/visualizer');
   };
 
   // reusable component highlighting a feature of the app
@@ -87,8 +87,8 @@ const LandingPage = () => {
             Optimize your AWS resource efficiency by viewing your EC2 metrics
             and Lambda function data in one centralized interface.
           </p>
-          <button className="primary-btn" onClick={redirectToSignup}>
-            Signup for free!
+          <button className="primary-btn" onClick={redirectToDemo}>
+            Try the Demo
           </button>
           <a href="https://github.com/oslabs-beta/cloudband" target="_blank">
             <button className="secondary-btn">Contribute</button>

@@ -9,9 +9,6 @@ const Settings = (props) => {
     tool,
     setTool,
     funcNames,
-    setFuncNames,
-    arn,
-    region,
     currFunc,
     setCurrFunc,
   } = props;
@@ -30,28 +27,6 @@ const Settings = (props) => {
   const onCurrFuncChange = (event) => {
     setCurrFunc(event.target.value);
   };
-
-  // fetches lambda names when a user selects lambda to populate drop down and set the current lambda function
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/getLambdaNames`, {
-        params: {
-          arn,
-          region,
-        },
-      })
-      .then((response) => {
-        console.log(
-          'lambda names response from Settings component axios call: ',
-          response
-        );
-        setFuncNames(response.data);
-        setCurrFunc(response.data[0]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [tool]);
 
   // toggles showing ec2 options or lambda options based on drop down select
   function switchSettings() {
