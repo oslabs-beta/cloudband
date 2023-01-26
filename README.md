@@ -1,6 +1,37 @@
+<!--
+*** This ReadMe used the template from https://github.com/othneildrew/Best-README-Template as an inspiration
+-->
 
-<h2>About Cloudband</h2>
+<a name='readme-top'></a>
 
+<div align='center'>
+<img src="https://cloudband.s3.amazonaws.com/tk0885_geometric_minimal_cloud_Logo_line_simple_4cc0c0da-cbd9-4d57-b6c8-d892979e2c27.png" height ="300px" width="300px" align="center">
+  </a>
+<h1>Cloudband</h1>
+
+<!-- PROJECT SHIELDS -->
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Stargazers][stars-shield]][stars-url]
+[![MIT License][license-shield]][license-url]
+
+</div>
+
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+      <li><a href="#about-cloudband">About</a></li> 
+      <li><a href="#getting-started">Getting Started</a></li>      
+      <li><a href="#monitoring-features">Monitoring Features</a></li>
+        <li><a href="#authors">Authors</a></li>      
+        <li><a href="#contributing">Contributing</a></li>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#license">License</a></li>         
+  </ol>
+</details>
+
+
+## About Cloudband
 <p>
 Easy access and straightforward, intuitive visualization of AWS resource metrics are critical to AWS developers. It is intimidating to navigate the extensive AWS documentation and many hundreds of services, and challenging to quickly visualize metrics for these resources.</p>
 gir r
@@ -8,7 +39,9 @@ gir r
 
 Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/addThisNext) | [Press](will write this later this week)
 
-<h2>🛠️ Getting Started:</h2>
+
+## Getting started
+🛠️ 
 
 <p>Visit www.oururlhere.com</p>
 
@@ -22,7 +55,10 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 
 <p>5. Input the ARN into the Enter ARN Here field</p>
 
-<h2>Monitoring Features:</h2>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Monitoring Features:
 
 1. On the landing page, users can select the type of EC2 resources they'd like to monitor. Once selected, users can view the metrics for the selected EC2 resources.
 
@@ -36,8 +72,10 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 <img src="image-of-dropdown-menu-options-here" />
 </p>
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<h2>Authors:</h2>
+
+## Authors:
 
 Caroline Kimball - [Github](https://github.com/kimballcaroline) || [Linkedin](www.linkedin.com/in/kimballcaroline)
 
@@ -49,14 +87,22 @@ John Donovan - [Github](https://github.com/jodonovan845) || [Linkedin]()
 
 Tomas Kim - [Github](https://github.com/tk0885) || [Linkedin](www.linkedin.com/in/tomasjskim)
 
+
 Project Links: [Github](https://github.com/oslabs-beta/cloudband) || [Linkedin](https://www.linkedin.com/our-cloudband-project) || [Medium](https://medium.com/cloudbandwriteup)
 
-<h2>Contributing:</h2>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Contributing:
 
 <p> Have a suggestion? Found a bug? Want to make Cloudband even more amazing?</p>
-<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudband@gmail.com</p>
+<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
 
-<h2>💻 Built with:</h2>
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Built with
+   💻 
 
 - [React](https://reactjs.org/)
 - [ReactHooks](https://reactjs.org/docs/hooks-intro.html)
@@ -82,10 +128,23 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) || [Linkedin](
 - [Babel](https://babeljs.io/)
 - [Jest](https://jestjs.io/)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-
-<h2>License</h2>
+## License
 
 This project is licensed under the OurProjectNotYourProject license - see the LICENSE.md file for details
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/oslabs-beta/cloudband.svg?style=for-the-badge
+[contributors-url]: https://github.com/oslabs-beta/cloudband/graphs/contributors
+[stars-shield]: https://img.shields.io/github/stars/oslabs-beta/cloudband.svg?style=for-the-badge
+[stars-url]: https://github.com/oslabs-beta/cloudband/stargazers
+[license-shield]: https://img.shields.io/github/license/oslabs-beta/cloudband.svg?style=for-the-badge
+[license-url]: https://github.com/oslabs-beta/cloudband/blob/master/LICENSE.txt
+
+
