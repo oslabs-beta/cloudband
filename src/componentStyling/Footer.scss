@@ -7,6 +7,13 @@
   padding: 20px 40px 40px 40px;
   // margin-bottom: 30px;
 
+  button {
+    background-color: transparent;
+    color: var(--light-color);
+    border: none;
+    font-family: 'Quicksand';
+    font-size: 16px;
+  }
   .row-1-wrapper {
     display: flex;
     flex-direction: row;

@@ -1,7 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../componentStyling/Footer.scss';
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const redirectToPrivacyPolicy = () => {
+    return navigate('/privacy-policy');
+  };
+
   return (
     <div className="footer-wrapper">
       <div className="row-1-wrapper">
@@ -18,9 +24,7 @@ const Footer = () => {
           <h2 className="col-header">Quick Links</h2>
           <ul className="quick-links-list">
             <li>
-              <a href="#" target="_blank">
-                Privacy Policy
-              </a>
+              <button onClick={redirectToPrivacyPolicy}>Privacy Policy</button>
             </li>
           </ul>
         </div>

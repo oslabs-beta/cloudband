@@ -6,7 +6,26 @@
     color: var(--deep-yellow);
   }
 
-  button {
+  // button {
+  //   width: 100%;
+  //   padding: 10px 40px;
+  //   border-radius: 40px;
+  //   margin: 20px 0;
+  //   border: none;
+  //   color: var(--mid-blue);
+  //   box-shadow: var(--drop-shadow);
+  // }
+
+  .link-button {
+    background-color: transparent;
+    color: var(--deep-yellow);
+    border: none;
+    font-family: 'Quicksand';
+    font-size: 16px;
+    padding: 0;
+  }
+
+  .primary-btn {
     width: 100%;
     padding: 10px 40px;
     border-radius: 40px;
@@ -14,12 +33,16 @@
     border: none;
     color: var(--mid-blue);
     box-shadow: var(--drop-shadow);
-  }
-
-  .primary-btn {
     background-color: var(--deep-yellow);
   }
   .primary-btn:hover {
+    width: 100%;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 20px 0;
+    border: none;
+    // color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
     background-color: var(--med-blue);
     color: var(--light-color);
     border: 1px solid var(--light-color);
@@ -27,11 +50,25 @@
   }
 
   .secondary-btn {
+    width: 100%;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 20px 0;
+    border: none;
+    // color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
     border: 1px solid var(--light-color);
     color: var(--light-color);
     background-color: transparent;
   }
   .secondary-btn:hover {
+    width: 100%;
+    padding: 10px 40px;
+    border-radius: 40px;
+    margin: 20px 0;
+    border: none;
+    // color: var(--mid-blue);
+    box-shadow: var(--drop-shadow);
     border: none;
     color: var(--mid-blue);
     background-color: var(--light-color);

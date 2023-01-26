@@ -59,6 +59,11 @@
     padding: 20px;
     box-shadow: var(--drop-shadow);
     background-color: var(--mid-blue-opacity);
+
+    h4 {
+      color: var(--deep-yellow);
+      font-size: 18px;
+    }
   }
 
   .highlights {
@@ -71,8 +76,9 @@
     }
 
     .highlight-primary-text {
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 600;
+      color: var(--deep-yellow);
     }
     img {
       width: 50%;
@@ -84,7 +90,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border: 1px solid var(--light-color);
     background: var(--mid-blue-opacity);
     border-radius: 40px;
     padding: 20px;
@@ -97,6 +102,7 @@
     h4 {
       margin-top: 20px;
       margin-bottom: 0;
+      color: var(--deep-yellow);
     }
 
     p {
@@ -104,7 +110,7 @@
     }
 
     .headshot {
-      width: 100px;
+      height: 100px;
     }
   }
 }
