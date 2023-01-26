@@ -61,15 +61,15 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 ## Getting started (Contributor Guide)
 🛠️ 
 
-<p>1. Fork and clone this repository.</p>
+1. Fork and clone this repository.
 
-<p>2. Follow the [Developer Setup Guide](https://github.com/oslabs-beta/cloudband/blob/dev/README-DeveloperGuide.md).</p>
+2. Follow the [Developer Setup Guide](https://github.com/oslabs-beta/cloudband/blob/dev/README-DeveloperGuide.md).
 
-<p>3. Using the pre-made Dockerfile, build an image and tag it as "cloudband" (must use this name).</p>
+3. Using the pre-made Dockerfile, build an image and tag it as "cloudband" (must use this name).
 
-<p>4. On Dockerhub, pull the mongo image.</p>
+4. On Dockerhub, pull the mongo image.
 
-<p>5. Run both images via the docker-compose YAML file.</p>
+5. Run both images via the docker-compose YAML file.
 
 
 ## Monitoring Features:
