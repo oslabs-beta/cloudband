@@ -7,6 +7,7 @@ import MainContainer from './containers/MainContainer.jsx';
 import Login from './components/Login.jsx';
 import Signup from './components/Signup.jsx';
 import LandingPage from './components/LandingPage.jsx';
+import PrivacyPolicy from './components/PrivacyPolicy.jsx';
 import './styles.scss';
 
 const App = () => {
@@ -55,6 +56,7 @@ const App = () => {
               <MainContainer loggedIn={loggedIn} arn={arn} region={region} />
             }
           />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Routes>
       </div>
       <hr />
