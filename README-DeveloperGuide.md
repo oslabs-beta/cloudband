@@ -14,7 +14,7 @@
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-      <li><a href="#aws-account-creation">AWS Account Creationt</a></li> 
+      <li><a href="#aws-account-creation">AWS Account Creation</a></li> 
       <li><a href="#iam-setup">IAM Setup</a></li>      
       <li><a href="#streamlining-the-user-sign-up-experience">Streamlining the User Sign-Up Experience</a></li>
         <li><a href="#template-creation-and-storage">Template Creation and Storage</a></li>      
