@@ -381,107 +381,52 @@ Outputs:
 </details>
 
 
-## Getting started (Contributor Guide)
-🛠️ 
+## Template Storage in an S3 Bucket
 
-<p>1. Fork and clone this repository.</p>
+<p>The template must be stored on our AWS account.  The simplest way to do this is to create an S3 bucket and upload the template yaml file with the following steps:</p>
 
-<p>2. Follow the Developer Setup Guide.</p>
+<ol>
+  <li>Navigate to the AWS Service called S3.</li>
+  <li>Select Create Bucket.</li>
+  <li>Name the bucket "cloudband".</li>
+  <li>Unselect "Block all public access".</li>
+  <li>Create bucket.</li>
+  <li>Add to bucket policy the text below step 8.</li>    
+  <li>Click upload and upload your created yaml file template.</li>
+  <li>In the list of objects in your S3 bucket, check off the Cloudband Template and click Copy URL.</li>
+ </ol>
+ 
+```
 
-<p>3. Using the pre-made Dockerfile, build an image and tag it as "cloudband" (must use this name).</p>
+{
+    "Version": "2008-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowPublicRead",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::cloudband/*"
+        }
+    ]
+}
 
-<p>4. On Dockerhub, pull the mongo image.</p>
-
-<p>5. Run both images via the docker-compose YAML file.</p>
-
-
-## Monitoring Features:
-
-1. On the landing page, users can select the type of EC2 resources they'd like to monitor. Once selected, users can view the metrics for the selected EC2 resources.
-
-<p align="center">
-<img src="insert-picture-of-landing-page-here" />
-</p>
-
-2. Users can then select different EC2 metric data types to render.
-
-<p align="center">
-<img src="image-of-dropdown-menu-options-here" />
-</p>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## Authors:
-
-Caroline Kimball - [Github](https://github.com/kimballcaroline) || [Linkedin](www.linkedin.com/in/kimballcaroline)
-
-Camille Salter - [Github](https://github.com/CamSalter) || [Linkedin](www.linkedin.com/in/camille-salter)
-
-Greg Jenner - [Github](https://github.com/gregjenner) || [Linkedin](www.linkedin.com/in/greg-o-jenner)
-
-John Donovan - [Github](https://github.com/jodonovan845) || [Linkedin]()
-
-Tomas Kim - [Github](https://github.com/tk0885) || [Linkedin](www.linkedin.com/in/tomasjskim)
+```
 
 
-Project Links: [Github](https://github.com/oslabs-beta/cloudband) || [Linkedin](https://www.linkedin.com/our-cloudband-project) || [Medium](https://medium.com/cloudbandwriteup)
+## Stack Creation Link:
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p>Use the following link to allow your user to automatically create a stack.  This link can be attached to the “Create New Stack” button found in the codebase (in InputToken.jsx - line 42). Add in your template URL, region, and external id into the link to ensure the stack is properly configured.</p>
 
+```
 
-## Contributing:
+https://console.aws.amazon.com/cloudformation/home?region=<YOUR-REGION>#/stacks/quickcreate?stackName=cloudband-permission&param_ExternalId=<YOUR-EXTERNALID>&templateURL=<YOUR-TEMPLATE-S3-URL>
 
-<p> Have a suggestion? Found a bug? Want to make Cloudband even more amazing?</p>
-<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+```
 
 
-## Built with
-   💻 
+## Finish Setup:
 
-- [React](https://reactjs.org/)
-- [ReactHooks](https://reactjs.org/docs/hooks-intro.html)
-- [ReactRouter](https://reactrouter.com/)
-- [NodeJS](https://nodejs.org/en/)
-- [Express](https://expressjs.com/)
-- [MongoDB](https://www.mongodb.com/)
-- [Mongoose](https://mongoosejs.com/)
-- [Axios](https://www.npmjs.com/package/axios)
-- [Chart.js](https://www.chartjs.org/)
-- [Webpack](https://webpack.js.org/)
-- [AWS SDK](https://aws.amazon.com/sdk-for-javascript/)
-- [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
-- [AWS IAM](https://aws.amazon.com/iam/)
-- [AWS Lambda](https://aws.amazon.com/lambda/)
-- [AWS EC2](https://aws.amazon.com/ec2/)
-- [AWS Cloudwatch](https://aws.amazon.com/cloudwatch/)
-- [AWS STS](https://aws.amazon.com/sts/)
-- [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
-- [Javascript](https://www.javascript.com/)
-- [HTML](https://html.com/)
-- [CSS](https://www.w3schools.com/css/)
-- [Babel](https://babeljs.io/)
-- [Jest](https://jestjs.io/)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-## License
-
-This project is licensed under the OurProjectNotYourProject license - see the LICENSE.md file for details
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/oslabs-beta/cloudband.svg?style=for-the-badge
-[contributors-url]: https://github.com/oslabs-beta/cloudband/graphs/contributors
-[stars-shield]: https://img.shields.io/github/stars/oslabs-beta/cloudband.svg?style=for-the-badge
-[stars-url]: https://github.com/oslabs-beta/cloudband/stargazers
-[license-shield]: https://img.shields.io/github/license/oslabs-beta/cloudband.svg?style=for-the-badge
-[license-url]: https://github.com/oslabs-beta/cloudband/blob/master/LICENSE.txt
-
-
+Continue following the main [README](https://github.com/oslabs-beta/cloudband/blob/dev/README.md).
