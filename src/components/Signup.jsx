@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../componentStyling/Signup.scss';
 //import AWS SDK
@@ -8,6 +8,11 @@ const AWS = require('aws-sdk');
 AWS.config.update({ region: 'REGION' });
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const redirectToPrivacyPolicy = () => {
+    return navigate('/privacy-policy');
+  };
+
   const [signedUp, setSignedUp] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -46,7 +51,10 @@ const Signup = () => {
               the ARN. <br /> <br /> This will grant Cloudband access to AWS
               metrics. For more information on what data we capture, please
               refer to our&nbsp;
-              <a href="#">privacy policy.</a>
+              {/* <a href="#">privacy policy.</a> */}
+              <button onClick={redirectToPrivacyPolicy} className="link-button">
+                privacy policy.
+              </button>
             </p>
           </div>
 

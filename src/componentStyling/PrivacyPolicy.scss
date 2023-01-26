@@ -1,0 +1,16 @@
+@import '../variables';
+
+.privacy-policy-wrapper {
+  min-height: 800px;
+
+  h1 {
+    padding: 40px;
+  }
+  p {
+    padding: 0px 40px;
+    line-height: 1.5;
+  }
+  a {
+    color: var(--deep-yellow);
+  }
+}
