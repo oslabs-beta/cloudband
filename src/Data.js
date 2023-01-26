@@ -195,7 +195,7 @@ export const EC2Data = {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     ],
   },
-  NetworkInChart: {
+  NetworkIn: {
     instanceIds: [
       'i-0bfd3aad03ea6a75f',
       'i-0c0ee9c12fd89d217',
@@ -242,7 +242,7 @@ export const EC2Data = {
       ],
     ],
   },
-  NetworkOutChart: {
+  NetworkOut: {
     instanceIds: [
       'i-0bfd3aad03ea6a75f',
       'i-0c0ee9c12fd89d217',
