@@ -60,6 +60,327 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+## Streamlining the User Sign-Up Experience
+<p>If a user wants to allow cloudband-user to pull metrics from their account, they must create a role on their account.  This role will specify that cloudband-user can access their account as well as specifying exactly what cloudband-user can do once they have gained access.  An AWS Service called CloudFormation will be used to automate the creation of this role on a user’s account and streamline the user sign-up experience.</p>
+
+
+## Template Creation and Storage
+<p>In order to allow the use of CloudFormation to automate the creation of a role, we must first provide the instruction of what that role can do.  This comes in the form of a template.  Create a yaml file (extension is .yml) with the following content (<b>replacing the Principal / AWS ARN with the cloudband-user’s ARN & replacing the sts:External Id with the external ID that you generate via https://www.uuidgenerator.net/)</b>:</p>
+
+<div style="height:200px;width:300px;overflow:auto;border:2px solid black;padding:2%">
+  <p>
+Description: 'CloudFormation stack'
+Resources:
+ CloudbandDelegationRole:
+   Type: 'AWS::IAM::Role'
+   Properties:
+     AssumeRolePolicyDocument:
+       Version: 2012-10-17
+       Statement:
+         - Effect: Allow
+           Principal:
+             AWS:
+               - arn:aws:iam::635533801215:user/cloudband-user
+           Action:
+             - 'sts:AssumeRole'
+           Condition:
+             StringEquals:
+               'sts:ExternalId': 92a98196-9090-11ed-a1eb-0242ac120002
+     Path: /
+     RoleName: CloudbandDelegationRole
+     Policies:
+       - PolicyName: Resources
+         PolicyDocument:
+           Version: 2012-10-17
+           Statement:
+             - Effect: Allow
+               Action: 'apigateway:GET'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'apigateway:HEAD'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'apigateway:OPTIONS'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'appsync:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'appsync:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'athena:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'athena:batchGet*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'athena:getNamedQuery'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'athena:getQueryExecution'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'athena:getQueryExecution'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'autoscaling:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'batch:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudformation:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudformation:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudformation:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudfront:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudfront:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudwatch:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'cloudwatch:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'dax:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'dax:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'discovery:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'discovery:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'dynamodb:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'dynamodb:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ec2:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ecs:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ecs:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ecr:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ecr:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'ecr:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'eks:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'eks:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'elasticache:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'elasticache:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'elasticloadbalancing:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'es:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'es:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'events:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'events:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'firehose:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'firehose:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:getDataRetrievalPolicy'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:getVaultAccessPolicy'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:getVaultLock'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:getVaultNotifications'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:listTagsForVault'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'glacier:listVaults'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'iot:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'iot:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'iot:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'kinesis:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'kinesis:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'kinesisanalytics:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'kinesisanalytics:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'lambda:listFunctions'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'lambda:listTags'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'rds:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'rds:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'route53:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'route53:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 's3:getBucket*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 's3:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sdb:domainMetadata'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sdb:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sdb:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sns:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sns:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sqs:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'sqs:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'states:describe*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'states:get*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'states:list*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'tag:get*'
+               Resource: '*'
+       - PolicyName: Logs
+         PolicyDocument:
+           Version: 2012-10-17
+           Statement:
+             - Effect: Allow
+               Action: 'logs:deleteSubscriptionFilter'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:describeLogStreams'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:describeSubscriptionFilters'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:filterLogEvents'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:putSubscriptionFilter'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:startQuery'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'logs:stopQuery'
+               Resource: '*'
+       - PolicyName: Metrics
+         PolicyDocument:
+           Version: 2012-10-17
+           Statement:
+             - Effect: Allow
+               Action: 'cloudwatch:get*'
+               Resource: '*'
+       - PolicyName: Traces
+         PolicyDocument:
+           Version: 2012-10-17
+           Statement:
+             - Effect: Allow
+               Action: 'xray:batch*'
+               Resource: '*'
+             - Effect: Allow
+               Action: 'xray:get*'
+               Resource: '*'
+
+
+Parameters:
+ ExternalId:
+   Description: 'The external ID for the Cloudband delegation role'
+   Type: String
+
+
+Outputs:
+ Version:
+   Description: Cloudband CF template version
+   Value: 2020-02-06
+ CloudbandDelegationRoleArn:
+   Description: 'The ARN for the Cloudband delegation role'
+   Value: !GetAtt
+     - CloudbandDelegationRole
+     - Arn
+  </p>
+</div>
+
+
 ## Getting started (Contributor Guide)
 🛠️ 
 
