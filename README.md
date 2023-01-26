@@ -40,7 +40,7 @@ Easy access and straightforward, intuitive visualization of AWS resource metrics
 Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](https://www.linkedin.com/addThisNext) | [Press](will write this later this week)
 
 
-## Getting started
+## Getting started (User Guide)
 🛠️ 
 
 <p>Visit www.oururlhere.com</p>
@@ -56,6 +56,20 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 <p>5. Input the ARN into the Enter ARN Here field</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+## Getting started (Contributor Guide)
+🛠️ 
+
+<p>1. Fork and clone this repository.</p>
+
+<p>2. Follow the Developer Setup Guide.</p>
+
+<p>3. Using the pre-made Dockerfile, build an image and tag it as "cloudband" (must use this name).</p>
+
+<p>4. On Dockerhub, pull the mongo image.</p>
+
+<p>5. Run both images via the docker-compose YAML file.</p>
 
 
 ## Monitoring Features:
