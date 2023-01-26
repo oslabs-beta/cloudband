@@ -63,7 +63,7 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 
 <p>1. Fork and clone this repository.</p>
 
-<p>2. Follow the Developer Setup Guide.</p>
+<p>2. Follow the [Developer Setup Guide]().</p>
 
 <p>3. Using the pre-made Dockerfile, build an image and tag it as "cloudband" (must use this name).</p>
 
