@@ -68,7 +68,8 @@
 <p>In order to allow the use of CloudFormation to automate the creation of a role, we must first provide the instruction of what that role can do.  This comes in the form of a template.  Create a yaml file (extension is .yml) with the following content (<b>replacing the Principal / AWS ARN with the cloudband-user’s ARN & replacing the sts:External Id with the external ID that you generate via https://www.uuidgenerator.net/)</b>:</p>
 
 <details>
-<code>
+  
+```
 Description: 'CloudFormation stack'
 Resources:
  CloudbandDelegationRole:
@@ -375,7 +376,8 @@ Outputs:
    Value: !GetAtt
      - CloudbandDelegationRole
      - Arn
-  </code>
+```
+  
 </details>
 
 
