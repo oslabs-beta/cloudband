@@ -18,7 +18,7 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post('/signup', {
+      .post('/api/signup', {
         email: email,
         password: password,
         RoleARN: arn,

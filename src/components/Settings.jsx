@@ -34,7 +34,7 @@ const Settings = (props) => {
   // fetches lambda names when a user selects lambda to populate drop down and set the current lambda function
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/getLambdaNames`, {
+      .get(`http://localhost:3000/api/getLambdaNames`, {
         params: {
           arn,
           region,

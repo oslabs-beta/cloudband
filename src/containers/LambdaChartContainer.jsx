@@ -25,7 +25,7 @@ const LambdaChartContainer = (props) => {
   // request to populate lambda data for currFunc set in settings
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/getLambdaMetrics`, {
+      .get(`http://localhost:3000/api/getLambdaMetrics`, {
         params: {
           arn,
           currFunc,

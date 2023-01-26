@@ -30,51 +30,56 @@ module.exports = {
     historyApiFallback: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     proxy: {
-      '/cpu-utilization': {
+      '/api': {
         target: 'http://localhost:8000/',
         router: () => 'http://localhost:3000',
         secure: false,
       },
-      '/network-in-out': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/cpu-credits': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/getLambdaNames': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/getLambdaMetrics': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/signup': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/signin': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/checkSession': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
-      '/logout': {
-        target: 'http://localhost:8000/',
-        router: () => 'http://localhost:3000',
-        secure: false,
-      },
+      // '/cpu-utilization': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/network-in-out': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/cpu-credits': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/getLambdaNames': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/getLambdaMetrics': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/signup': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/signin': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/checkSession': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
+      // '/logout': {
+      //   target: 'http://localhost:8000/',
+      //   router: () => 'http://localhost:3000',
+      //   secure: false,
+      // },
     },
   },
   module: {

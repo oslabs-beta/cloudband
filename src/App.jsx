@@ -17,7 +17,7 @@ const App = () => {
   // check for session using cookie to persist login status, arn, and region
   useEffect(() => {
     axios
-      .get('/checkSession')
+      .get('/api/checkSession')
       .then((response) => {
         if (response.data.user) {
           setLoggedIn(true);

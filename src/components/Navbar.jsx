@@ -8,7 +8,7 @@ function Navbar(props) {
   const { loggedIn, setLoggedIn } = props;
 
   const logoutUser = (event) => {
-    axios.delete('/logout').then(() => {
+    axios.delete('/api/logout').then(() => {
       setLoggedIn(false);
       return navigate('/login');
     });

@@ -12,7 +12,7 @@ const Login = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     axios
-      .post('/signin', {
+      .post('/api/signin', {
         email: email,
         password: password,
       })

@@ -39,7 +39,7 @@ app.use(express.json());
 
 //handles requests for ec2 network metrics
 app.get(
-  '/network-in-out',
+  '/api/network-in-out',
   credentialController.getCredentials,
   instancesController.getInstances,
   networkMetricsController.getNetworkMetrics,
@@ -50,7 +50,7 @@ app.get(
 
 //handles requests for ec2 cpu metrics and credits
 app.get(
-  '/cpu-credits',
+  '/api/cpu-credits',
   credentialController.getCredentials,
   instancesController.getInstances,
   cpuMetricsController.getCPUMetrics,
@@ -61,7 +61,7 @@ app.get(
 
 //get Lambda function names
 app.get(
-  '/getLambdaNames',
+  '/api/getLambdaNames',
   credentialController.getCredentials,
   listLambdasController.getLambdas,
   (req, res) => {
@@ -70,7 +70,7 @@ app.get(
 );
 //handles requests for lambda logs and metrics
 app.get(
-  '/getLambdaMetrics',
+  '/api/getLambdaMetrics',
   credentialController.getCredentials,
   lambdaLogsController.getLambdaLogs,
   lambdaMetricsController.getLambdaMetrics,
@@ -79,18 +79,18 @@ app.get(
   }
 );
 
-app.delete('/logout', sessionController.logout, (req, res) => {
+app.delete('/api/logout', sessionController.logout, (req, res) => {
   return res.status(200).send();
 });
 
 // sign up
-app.post('/signup', userController.createUser, (req, res) => {
+app.post('/api/signup', userController.createUser, (req, res) => {
   return res.status(200).json(res.locals);
 });
 
 // handles sign in request
 app.post(
-  '/signin',
+  '/api/signin',
   userController.verifyUser,
   cookieController.setSSIDCookie,
   sessionController.startSession,
@@ -100,7 +100,7 @@ app.post(
 );
 
 //checks if user is logged in
-app.get('/checkSession', sessionController.isLoggedIn, (req, res) => {
+app.get('/api/checkSession', sessionController.isLoggedIn, (req, res) => {
   return res.status(200).json(res.locals);
 });
 // 404 error handler :)

@@ -33,12 +33,15 @@ const EC2ChartContainer = (props) => {
   useEffect(() => {
     const fetchCloudwatchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/${ec2Metric}`, {
-          params: {
-            arn,
-            region,
-          },
-        });
+        const response = await axios.get(
+          `http://localhost:3000/api/${ec2Metric}`,
+          {
+            params: {
+              arn,
+              region,
+            },
+          }
+        );
         if (ec2Metric === 'network-in-out') {
           setNetworkInData({
             ...defaultDataStructure,
