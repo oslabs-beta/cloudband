@@ -98,8 +98,8 @@ Visit our [Website](https://www.cloud-band.io)
 
 ## Contributing:
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request.
-Don't forget to give the project a star! Thanks again!
+Have a suggestion? Found a bug? Want to make Cloudband even more amazing? Please fork the repo and create a pull request.
+Don't forget to give the project a star ⭐️! Thanks again!
 
 1. Fork Cloudband
 2. Clone to your local machine
@@ -122,9 +122,6 @@ Don't forget to give the project a star! Thanks again!
 10. Open a Pull Request
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<p> Have a suggestion? Found a bug? Want to make Cloudband even more amazing?</p>
 <p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
