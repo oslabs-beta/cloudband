@@ -1,0 +1,38 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo
+    container_name: mongo
+    hostname: mongodb
+    ports:
+      - 27017:27017
+    network_mode: cloudband_network
+  cloudband:
+    image: cloudband
+    container_name: cloudband
+    ports:
+      - 3000:3000
+    network_mode: cloudband_network
+    command: npm run start
+    volumes: 
+      - cloudband_volume:/cloudband
+      - cloudband_bugcorrect_volume:/cloudband/bugcorrect
+      - cloudband_final_volume:/cloudband/final
+  nginx:
+    image: nginx
+    container_name: nginx-proxy
+    ports:
+      - 80:80
+    dns: 
+      - 8.8.8.8
+      - 8.8.4.4
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    command: nginx -g "daemon off;"
+    depends_on:
+      - cloudband
+    network_mode: cloudband_network
+volumes:
+    cloudband_volume:
+    cloudband_bugcorrect_volume:
+    cloudband_final_volume:
