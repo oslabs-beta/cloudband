@@ -43,7 +43,7 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) | [Linkedin](h
 ## Getting started (User Guide)
 🛠️ 
 
-<p>Visit www.oururlhere.com</p>
+<p>Visit www.cloud-band.io</p>
 
 <p>1. Existing user? You can log in using your email and password.</p>
 
