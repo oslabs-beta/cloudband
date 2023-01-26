@@ -122,8 +122,6 @@ Don't forget to give the project a star ⭐️! Thanks again!
 10. Open a Pull Request
 
 
-<p>Please submit issues/pull requests if you have feedback or message the Cloudband team to be added as a contributor: cloudbandEC37@gmail.com</p>
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
