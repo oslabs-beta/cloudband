@@ -204,6 +204,8 @@ Project Links: [Github](https://github.com/oslabs-beta/cloudband) || [Linkedin](
 * [HTML](https://html.com/)
 * [CSS](https://www.w3schools.com/css/)
 * [Babel](https://babeljs.io/)
+* [Docker](https://www.docker.com/)
+* [NGINX] (https://nginx.org/en/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
