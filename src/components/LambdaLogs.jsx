@@ -9,6 +9,7 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 
+//declare a constant columns and set it equal to an array of objects with the following properties: id, label, minWidth, format
 const columns = [
   {
     id: 'timestamp',
@@ -25,9 +26,11 @@ const columns = [
   },
 ];
 
+//declare a constant LambdaLogsTable and set it equal to an arrow function that takes in props as a parameter
 const LambdaLogsTable = (props) => {
   const { logs } = props;
 
+  //declare a constant formattedLogs and set it equal to the map method to iterate over the logs array and return a new array of objects for each element in the logs array
   const formattedLogs = logs.map((log) => {
     const message = log.message;
     const date = new Date(log.timestamp);
@@ -35,27 +38,30 @@ const LambdaLogsTable = (props) => {
     const day = date.getDate();
     let hour = date.getHours();
     let minute = date.getMinutes();
+    //if the hour is less than 10, add a 0 to the beginning of the hour
     if (hour < 10) {
       hour = `0${hour}`;
     }
+    //if the minute is less than 10, add a 0 to the beginning of the minute
     if (minute < 10) {
       minute = `0${minute}`;
     }
-
+    //return an object with the following properties: message and timestamp
     return {
       message,
       timestamp: `${month}/${day} ${hour}:${minute}`,
     };
   });
+  //declare a constant rows and set it equal to the value of formattedLogs
   const rows = formattedLogs;
-
+  //declare a constant [page, setPage] and set it equal to React.useState and pass in 0 as an argument
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
+  //declare a constant handleChangePage and set it equal to an arrow function that takes in event and newPage as parameters
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
-
+  //declare a constant handleChangeRowsPerPage and set it equal to an arrow function that takes in event as a parameter
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(+event.target.value);
     setPage(0);

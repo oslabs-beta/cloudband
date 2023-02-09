@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const credentialController = {};
-
+//declare a constant variable called credentials, which will be used to call the AWS STS API, passing in the access key id and secret access key of the cloudband account
 const credentials = {
   accessKeyId: process.env.AWS_ACCESS_KEY,
   secretAccessKey: process.env.AWS_SECRET_KEY,

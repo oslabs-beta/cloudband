@@ -1,3 +1,4 @@
+//declare a cookieController object
 const cookieController = {};
 
 //set the SSID cookie based on user's _id in the database
