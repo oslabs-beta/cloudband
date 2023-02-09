@@ -2,12 +2,14 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../componentStyling/Footer.scss';
 
+//declare a constant Footer and declare constants navigate and redirectToPrivacyPolicy and set them equal to useNavigate and an arrow function that returns navigate('/privacy-policy')
 const Footer = () => {
   const navigate = useNavigate();
   const redirectToPrivacyPolicy = () => {
     return navigate('/privacy-policy');
   };
 
+  //return the following JSX
   return (
     <div className="footer-wrapper">
       <div className="row-1-wrapper">

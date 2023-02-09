@@ -12,6 +12,8 @@ const sessionController = require('./controllers/sessionController');
 const listLambdasController = require('./controllers/lambda/listLambdasController');
 const lambdaMetricsController = require('./controllers/lambda/lambdaMetricsController');
 const lambdaLogsController = require('./controllers/lambda/lambdaLogsController');
+const rdsMetricsController = require('./controllers/rds/rdsMetricsController');
+//const latencyMetricsController = require('/controllers/latency/latencyMetrics');
 
 const mongoose = require('mongoose');
 
@@ -78,6 +80,25 @@ app.get(
     return res.status(200).json(res.locals.lambdaMetricsLogs);
   }
 );
+
+//handles requests for latency metrics
+// app.get(
+//   '/getLatencyMetrics',
+//   credentialController.getCredentials,
+//   latencyMetricController.getLatencyMetrics,
+//   (req, res) => {
+//     return res.status(200).json(res.locals.latencyMetrics);
+//   }
+// );
+
+//route for obtaining RDS metric data
+app.get(
+  '/getRDSCPUUtilizationMetrics', 
+  credentialController.getCredentials, 
+  rdsMetricsController.getRDSCPUUtilizationMetrics, 
+  (req, res) => {
+    return res.status(200).json(res.locals.rdsCPUUtilizationMetrics);
+});
 
 app.delete('/logout', sessionController.logout, (req, res) => {
   return res.status(200).send();
