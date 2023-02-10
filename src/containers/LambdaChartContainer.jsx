@@ -7,22 +7,28 @@ import DurationChart from '../components/DurationChart.jsx';
 import LambdaLogs from '../components/LambdaLogs.jsx';
 import '../containerStyling/LambdaChartContainer.scss';
 
-// initial value lambda data in state is set as
+//declare a constant defaultDataStructure and set it equal to an object with the following properties: values and timestamps
 const defaultDataStructure = {
   values: [],
   timestamps: [],
 };
 
+//declare a constant LambdaChartContainer and set it equal to an arrow function that takes in props as a parameter
 const LambdaChartContainer = (props) => {
+  //declare a constant {arn, currFunc, region} and set it equal to props
   const { arn, currFunc, region } = props;
-  // state to hold lambda metric data
+  //declare a constant [invocationData, setInvocationData] and set it equal to useState and pass in defaultDataStructure as an argument
   const [invocationData, setInvocationData] = useState(defaultDataStructure);
+  //declare a constant [throttleData, setThrottleData] and set it equal to useState and pass in defaultDataStructure as an argument
   const [throttleData, setThrottleData] = useState(defaultDataStructure);
+  //declare a constant [errorData, setErrorData] and set it equal to useState and pass in defaultDataStructure as an argument
   const [errorData, setErrorData] = useState(defaultDataStructure);
+  //declare a constant [durationData, setDurationData] and set it equal to useState and pass in defaultDataStructure as an argument
   const [durationData, setDurationData] = useState(defaultDataStructure);
+  //declare a constant [lambdaLogs, setLambdaLogs] and set it equal to useState and pass in an empty array as an argument
   const [lambdaLogs, setLambdaLogs] = useState([]);
 
-  // request to populate lambda data for currFunc set in settings
+  //use the useEffect hook to make an axios request to the getLambdaMetrics endpoint
   useEffect(() => {
     axios
       .get(`http://localhost:3000/getLambdaMetrics`, {
@@ -37,6 +43,7 @@ const LambdaChartContainer = (props) => {
           'response from LambdaChartContainer getLambdaMetrics: ',
           response
         );
+        //set the state of invocationData, throttleData, errorData, durationData, and lambdaLogs to the data returned from the axios request
         setInvocationData({
           ...defaultDataStructure,
           ...(response?.data[0] ?? {}),

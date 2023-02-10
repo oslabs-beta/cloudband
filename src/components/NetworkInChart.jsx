@@ -33,6 +33,7 @@ const NetworkInChart = (props) => {
     //reverse the array in order to display the most recent data first
     .reverse(); //[timestamps]
 
+    //declare a constant datasets and use the map method to iterate over the values array and return a new array of objects for each element in the values array
   const datasets = chartData.values
     .map((array, index) => {
       return {
@@ -43,13 +44,16 @@ const NetworkInChart = (props) => {
         yAxisID: `y`,
       };
     })
+    //reverse the array in order to display the most recent data first
     .reverse();
 
+    //declare a constant data and set it equal to an object with the following properties: labels and datasets
   const data = {
     labels: labels, // [..]
     datasets: datasets, // [{..}, {..}, {..}]
   };
 
+  //declare a constant options in order to set the options for the chart
   const options = Options(
     'Network In',
     'Number of bytes sent in for each EC2 instance at 8 hour intervals for the past week.',
