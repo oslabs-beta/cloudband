@@ -7,21 +7,31 @@ const AWS = require('aws-sdk');
 //set the region
 AWS.config.update({ region: 'REGION' });
 
+//declare a constant Signup in order to create a new user. 
 const Signup = () => {
+  //declare a constant navigate and set it equal to the invocation of the useNavigate hook
   const navigate = useNavigate();
+  //declare a constant redirectToPrivacyPolicy and set it equal to an arrow function that returns the invocation of the navigate function and pass in '/privacy-policy' as an argument
   const redirectToPrivacyPolicy = () => {
+    //return the invocation of the navigate function and pass in '/privacy-policy' as an argument
     return navigate('/privacy-policy');
   };
 
+  //declare a constant [signedUp, setSignedUp] and set it equal to the invocation of the useState hook and pass in false as an argument
   const [signedUp, setSignedUp] = useState(false);
+  //declare a constant [email, setEmail] and set it equal to the invocation of the useState hook and pass in an empty string as an argument
   const [email, setEmail] = useState('');
+  //declare a constant [password, setPassword] and set it equal to the invocation of the useState hook and pass in an empty string as an argument
   const [password, setPassword] = useState('');
+  //declare a constant [arn, setArn] and set it equal to the invocation of the useState hook and pass in an empty string as an argument
   const [arn, setArn] = useState('');
+  //declare a constant [region, setRegion] and set it equal to the invocation of the useState hook and pass in 'us-east-1' as an argument
   const [region, setRegion] = useState('us-east-1');
 
   // request to server to add a user to the database and then route to login page
   const handleSubmit = (event) => {
     event.preventDefault();
+    //make a request to the /signup endpoint and then invoke the setSignedUp function and pass in true as an argument
     axios
       .post('/signup', {
         email: email,
@@ -36,9 +46,11 @@ const Signup = () => {
         console.log('error in sign up request: ', err);
       });
   };
+  //if signedUp is truthy then return the following JSX
   if (signedUp) {
     return <Navigate to="/login" />;
   }
+  //if signedUp is falsy then return the following JSX
   if (!signedUp) {
     return (
       <div className="signup-wrapper">
